@@ -6,39 +6,45 @@ Page({
    */
   data: {
     latitude:'',
-    longitude: ''
+    longitude: '',
+    array: [{
+      message: 'foo',
+    }, {
+      message: 'bar'
+    }],
+    color: "red"
   },
 
   /**
    * 
    */
   getloca: function() {
-    // wx.getLocation({
-    //   type: 'wgs84',
-    //   success: (res) => {
-    //     var latitude = res.latitude // 经度
-    //     var longitude = res.longitude // 纬度
-    //     this.setData({
-    //       latitude: latitude,
-    //       longitude: longitude
-    //     })
-    //   }
-    // })
-    console.log(123);
+    wx.getLocation({
+      type: 'wgs84',
+      success: (res) => {
+        var latitude = res.latitude // 经度
+        var longitude = res.longitude // 纬度
+        this.setData({
+          latitude: latitude,
+          longitude: longitude
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getloca();
+    wx.showNavigationBarLoading()
+    this.getloca();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    wx.hideNavigationBarLoading()
   },
 
   /**
