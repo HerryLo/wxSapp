@@ -1,0 +1,6 @@
+<!--pages/demo/demo.wxml-->
+<view>
+  <text>pages/demo/demo.wxml</text>
+  <map></map>
+</view>
+
