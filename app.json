@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/demo/demo"
+    "pages/demo/demo",
+    "pages/flex/flex"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

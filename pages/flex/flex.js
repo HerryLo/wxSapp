@@ -1,58 +1,25 @@
-// pages/demo/demo.js
+// pages/flex/flex.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    latitude:'',
-    longitude: '',
-    view: [
-      { index: 1, class: "bc_green"},
-      { index: 2, class: "bc_red" },
-      { index: 3, class: "bc_blue" }
-    ]
-  },
-
-  /**
-   * 获取地理位置
-   */
-  getloca: function() {
-    wx.getLocation({
-      type: 'wgs84',
-      success: (res) => {
-        let latitude = res.latitude // 经度
-        let longitude = res.longitude // 纬度
-        this.setData({
-          latitude: latitude,
-          longitude: longitude
-        })
-      }
-    })
-  },
-
-  /**
-   * 跳转 
-   */
-  navigateTo: function() {
-    wx.navigateTo({
-      url: "../flex/flex"
-    })
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showNavigationBarLoading()
-    this.getloca();
+  
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    wx.hideNavigationBarLoading()
+  
   },
 
   /**
