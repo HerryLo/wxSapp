@@ -11,5 +11,12 @@ Page({
         return util.formatTime(new Date(log))
       })
     })
+    wx.authorize({
+      scope: 'scope.userInfo',
+      success(res) {
+        console.log(res);
+        alert(res);
+      }
+    })
   }
 })

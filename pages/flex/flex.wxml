@@ -1,1 +1,18 @@
 <!--pages/flex/flex.wxml-->
+<swiper class="swiper-style" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" 
+interval="{{interval}}" duration="{{duration}}" circular="true" current="{{current}}" style="height:400rpx;">
+  <block wx:for="{{imgUrls}}" wx:key="item">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image"/>
+    </swiper-item>
+  </block>
+</swiper>
+<button bindtap="changeIndicatorDots">显示dot点</button>
+<button bindtap="changeAutoplay">{{autoplay?"停止播放":"自动播放"}}</button>
+<slider bindchange="intervalChange" show-value min="500" max="2000" /> interval(间隔)
+<slider bindchange="durationChange" show-value min="1000" max="10000" /> duration(滑动动画时长)
+
+<view class="section__title">flex-direction: row</view>
+<view class="flex-wrp">
+  <view wx:for="{{view}}" wx:key="index" class="flex-item {{item.class}}">{{item.index}}</view>
+</view>

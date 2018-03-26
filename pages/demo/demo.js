@@ -6,12 +6,7 @@ Page({
    */
   data: {
     latitude:'',
-    longitude: '',
-    view: [
-      { index: 1, class: "bc_green"},
-      { index: 2, class: "bc_red" },
-      { index: 3, class: "bc_blue" }
-    ]
+    longitude: ''
   },
 
   /**

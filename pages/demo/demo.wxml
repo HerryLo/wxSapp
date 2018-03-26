@@ -1,9 +1,5 @@
 <!--pages/demo/demo.wxml-->
 <view>
   <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
-  <view class="section__title">flex-direction: row</view>
-  <view class="flex-wrp">
-    <view  wx:for="{{view}}" wx:key="index"  class="flex-item {{item.class}}">{{item.index}}</view>
-  </view>
   <button bindtap="navigateTo" data-a='1231'>点击跳转</button>
 </view>
