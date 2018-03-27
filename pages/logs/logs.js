@@ -15,7 +15,6 @@ Page({
       scope: 'scope.userInfo',
       success(res) {
         console.log(res);
-        alert(res);
       }
     })
   }

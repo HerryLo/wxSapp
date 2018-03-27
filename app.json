@@ -10,7 +10,8 @@
     "navigationBarTitleText": "Yo_pai微体验",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#eeeeee",
-    "backgroundTextStyle": "light"
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "list": [
