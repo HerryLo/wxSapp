@@ -41,6 +41,12 @@ Page({
   onLoad: function (options) {
     wx.showNavigationBarLoading()
     this.getloca();
+    /* 剪切板 */
+    wx.setClipboardData({
+      data: 'data',
+      success: function (res) {
+      }
+    })
   },
 
   /**

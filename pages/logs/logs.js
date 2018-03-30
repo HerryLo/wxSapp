@@ -15,6 +15,9 @@ Page({
       scope: 'scope.userInfo',
       success(res) {
         console.log(res);
+      },
+      fail(res){
+        console.log(res.errMsg)
       }
     })
   }
