@@ -1,38 +1,28 @@
 {
-  "pages": [
+  "pages":[
     "pages/index/index",
-    "pages/logs/logs",
     "pages/demo/demo",
-    "pages/flex/flex"
+    "pages/logs/logs"
   ],
-  "window": {
+  "window":{
+    "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Yo_pai微体验",
-    "navigationBarTextStyle": "black",
-    "backgroundColor": "#eeeeee",
-    "backgroundTextStyle": "light",
-    "enablePullDownRefresh": true
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "img/footerIcon_3.png",
-        "selectedIconPath": "img/footerIcon_3_select.png"
-      },
-      {
-        "pagePath": "pages/logs/logs",
-        "text": "日志",
-        "iconPath": "img/footerIcon_3.png",
-        "selectedIconPath": "img/footerIcon_3_select.png"
-      },
-      {
-        "pagePath": "pages/demo/demo",
-        "text": "Demo",
-        "iconPath": "img/footerIcon_4.png",
-        "selectedIconPath": "img/footerIcon_4_select.png"
-      }
-    ]
+    "backgroundColor": "#fff",
+    "color": "#000",
+    
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页"
+    },{
+      "pagePath": "pages/logs/logs",
+      "text": "log"
+    },{
+      "pagePath":  "pages/demo/demo",
+      "text": "demo"
+    }]
   }
 }

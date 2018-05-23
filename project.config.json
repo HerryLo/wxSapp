@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.93",
 	"appid": "wx6a0b834a3839e80d",
-	"projectname": "wxsapp",
+	"projectname": "wxapp",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
