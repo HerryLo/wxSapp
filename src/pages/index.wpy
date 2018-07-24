@@ -15,7 +15,7 @@
 
   export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '智声'
+      navigationBarTitleText: '智吱声'
     }
     components = {
       Indexlist: Indexlist
