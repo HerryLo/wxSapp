@@ -12,8 +12,8 @@
             .list-sign{
                 height: 30rpx;
                 width:38rpx;
-                background:yellow;
-                border-radius:5%;
+                background:#D87672;
+                border-radius:10%;
                 font-size: 20rpx;
                 text-align: center;
                 line-height: 30rpx;
@@ -39,7 +39,7 @@
 
 <template lang="wxml">
     <view wx:for="{{datalist}}" wx:key="item">
-        <view class="list">
+        <view class="list" @tap.stop="goRoute" >
             <view class="list-left">
                 <view>
                     <view class="list-sign">{{item}}</view>
@@ -71,7 +71,13 @@
 
     data = {};
 
-    methods = {};
+    methods = {
+      goRoute(e) {
+        wepy.navigateTo({
+          url: 'artDetail'
+        })
+      }
+    }
 
     events = {};
   }
