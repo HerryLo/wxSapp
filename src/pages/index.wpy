@@ -3,13 +3,17 @@
 
 <template>
   <view class="container">
-    <Indexlist :datalist="datalist"></Indexlist>
+    <!-- <Indexlist :datalist="datalist"></Indexlist> -->
+    <view class="weather"> 
+      <text>{{weatherData}}</text> 
+    </view>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
   import Indexlist from '../components/Indexlist'
+  import bmap from '../libs/bmap-wx'
   // import { connect } from 'wepy-redux'
   // import Toast from 'wepy-com-toast'
 
@@ -24,7 +28,8 @@
     mixins = []
 
     data = {
-      datalist: ['01']
+      datalist: ['01'],
+      weatherData: ''
     }
 
     computed = {
@@ -37,6 +42,26 @@
     }
 
     onLoad() {
+      var that = this; 
+        // 新建百度地图对象 
+        var BMap = new bmap.BMapWX({ 
+            ak: 'c0QYtl1i2j5najKgn23p1qM5YNixC21G' 
+        }); 
+        var fail = function(data) { 
+            console.log(data) 
+        }; 
+        var success = function(data) { 
+            var weatherData = data.currentWeather[0]; 
+            weatherData = '城市：' + weatherData.currentCity + '\n' + 'PM2.5：' + weatherData.pm25 + '\n' +'日期：' + weatherData.date + '\n' + '温度：' + weatherData.temperature + '\n' +'天气：' + weatherData.weatherDesc + '\n' +'风力：' + weatherData.wind + '\n'; 
+            that.setData({ 
+                weatherData: weatherData 
+            }); 
+        } 
+        // 发起weather请求 
+        BMap.weather({ 
+            fail: fail, 
+            success: success 
+        }); 
     }
   }
 </script>
