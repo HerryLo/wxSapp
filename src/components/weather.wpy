@@ -1,0 +1,41 @@
+<style lang="less">
+.weather{
+}
+</style>
+<template>
+    <view class="weather" wx:if="{{weatherData.currentCity}}"> 
+        <view>当前城市: {{weatherData.currentCity}}</view>
+        <view>{{weatherData.date}}</view>
+        <view>{{weatherData.temperature}}</view>
+        <view>pm2.5: {{weatherData.pm25}}</view>
+        <view>{{weatherData.weatherDesc}}</view>
+        <view>风力: {{weatherData.wind}}</view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+
+export default class Weather extends wepy.component {
+  data = {
+
+  };
+
+  props = {
+      weatherData: {
+          type: Object,
+          default: null
+      },
+      originalData: {
+          type: Object,
+          default: {}
+      }
+  };
+
+  events = {
+  };
+
+  methods = {
+  };
+}
+</script>

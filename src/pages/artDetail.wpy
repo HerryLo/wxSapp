@@ -15,7 +15,7 @@ import wepy from 'wepy'
 export default class ArtDetail extends wepy.page {
   config = {
     navigationBarTitleText: '如果格局决定了人生，那到底什么决定了格局？'
-  }
+  };
 
   data = {
     html1: `<div data-note-content="" class="show-content">
@@ -63,6 +63,6 @@ export default class ArtDetail extends wepy.page {
 </div><p><b>人生就像一盘棋局，你的结局将会由这盘棋的格局来决定。想要赢得最终的结果，关键在于把握好每一步棋局。</b></p><p>大境界才能有大胸怀，大格局才大有作为。拥有怎样的格局，就拥有怎样的命运。</p>
           </div>
         </div>`
-  }
+  };
 }
 </script>

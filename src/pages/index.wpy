@@ -4,64 +4,67 @@
 <template>
   <view class="container">
     <!-- <Indexlist :datalist="datalist"></Indexlist> -->
-    <view class="weather"> 
+    <Weather :weatherData.sync="weatherData" :originalData.sync="originalData"></Weather>
+    <!-- <view class="weather"> 
       <text>{{weatherData}}</text> 
-    </view>
+    </view> -->
   </view>
 </template>
 
 <script>
-  import wepy from 'wepy'
-  import Indexlist from '../components/Indexlist'
-  import bmap from '../libs/bmap-wx'
-  // import { connect } from 'wepy-redux'
-  // import Toast from 'wepy-com-toast'
+import wepy from 'wepy';
+import Indexlist from '../components/Indexlist';
+import Weather from '../components/weather';
+import bmap from '../libs/bmap-wx';
+// import { connect } from 'wepy-redux'
+// import Toast from 'wepy-com-toast'
 
-  export default class Index extends wepy.page {
-    config = {
-      navigationBarTitleText: '智吱声'
-    }
-    components = {
-      Indexlist: Indexlist
-    }
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '智吱声'
+  };
+  components = {
+    Indexlist: Indexlist,
+    Weather: Weather
+  };
 
-    mixins = []
+  mixins = [];
 
-    data = {
-      datalist: ['01'],
-      weatherData: ''
-    }
+  data = {
+    datalist: ['01'],
+    weatherData: '',
+    originalData: {}
+  };
 
-    computed = {
-    }
+  computed = {};
 
-    methods = {
-    }
+  methods = {};
 
-    events = {
-    }
+  events = {};
 
-    onLoad() {
-      var that = this; 
-        // 新建百度地图对象 
-        var BMap = new bmap.BMapWX({ 
-            ak: 'c0QYtl1i2j5najKgn23p1qM5YNixC21G' 
-        }); 
-        var fail = function(data) { 
-            console.log(data) 
-        }; 
-        var success = function(data) { 
-            var weatherData = data.currentWeather[0]; 
-            weatherData = '城市：' + weatherData.currentCity + '\n' + 'PM2.5：' + weatherData.pm25 + '\n' +'日期：' + weatherData.date + '\n' + '温度：' + weatherData.temperature + '\n' +'天气：' + weatherData.weatherDesc + '\n' +'风力：' + weatherData.wind + '\n'; 
-            that.setData({ 
-                weatherData: weatherData 
-            }); 
-        } 
-        // 发起weather请求 
-        BMap.weather({ 
-            fail: fail, 
-            success: success 
-        }); 
-    }
+  onLoad() {
+    this.getWeather();
+  };
+
+  getWeather() {
+      var that = this;
+      // 新建百度地图对象
+      const BMap = new bmap.BMapWX({
+        ak: 'c0QYtl1i2j5najKgn23p1qM5YNixC21G'
+      });
+      const fail = (data) => {
+        console.log(data);
+      };
+      var success = (data) => {
+        that.weatherData = data.currentWeather[0];
+        that.originalData = data.originalData;
+        that.$apply();
+      };
+      // 发起weather请求
+      BMap.weather({
+        success: success,
+        fail: fail
+      });
+    };
   }
 </script>

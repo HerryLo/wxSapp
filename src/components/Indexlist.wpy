@@ -77,7 +77,7 @@
           url: 'artDetail'
         })
       }
-    }
+    };
 
     events = {};
   }
