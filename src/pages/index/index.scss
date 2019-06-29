@@ -1,0 +1,70 @@
+page {
+  height: 100%;
+}
+
+.index {
+  height: 100%;
+  background: #A0EEE1;
+
+  .top {
+    margin-bottom: 100rpx;
+    position: relative;
+    padding:0rpx 20rpx;
+  }
+
+  .city {
+    font-size: 60rpx;
+    text-align: center;
+    padding-bottom:30rpx;
+    padding-top:50rpx;
+  }
+
+  .currentWind {
+    text-align:center;
+    font-size: 70rpx;
+  }
+
+  .weatherDesc {
+    text-align: center;
+    font-size:25rpx;
+    color: #e62121;
+  }
+
+  .temperature {
+    font-size: 30rpx;
+    text-align: center;
+  }
+
+  .windDesc {
+    font-size:25rpx;
+    text-align:center;
+  }
+
+  .time {
+    position: absolute;
+    top: 10rpx;
+    left: 10rpx;
+    font-size: 20rpx;
+  }
+
+  .padding {
+    padding: 10rpx 0;
+  }
+
+  .list {
+    padding:0rpx 20rpx;
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      border-top: 1rpx solid #eee;
+      padding: 10rpx 0rpx;
+
+      image {
+        width: 30rpx;
+        height: 30rpx;
+      }
+    }
+  }
+}
