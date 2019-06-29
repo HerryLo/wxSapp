@@ -1,6 +1,6 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
+import { View, Button, Text, Swiper } from '@tarojs/components'
 import { Bmap } from '../../utils/util'
 
 // import { connect } from '@tarojs/redux'
@@ -104,6 +104,7 @@ class Index extends Component {
   render () {
     return (
       <View className='index'>
+        {/* 头部内容 */}
         <View className="top">
           <View className="city">
             {dataInfo.currentWeather[0].currentCity}
@@ -124,7 +125,7 @@ class Index extends Component {
             {dataInfo.currentWeather[0].arrDate[0]} {dataInfo.currentWeather[0].arrDate[1]}
           </View>
         </View>
-        {/* 列表 */}
+        {/* 内容列表 */}
         <View className="list">
           {
             dataInfo.originalData.results[0].weather_data.map((item, index)=> {
@@ -134,6 +135,19 @@ class Index extends Component {
             })
           }
         </View>
+        {/* 指数卡片 */}
+        <ScrollView className="scrollView" scrollX={true}>
+          <View className="card">
+            {
+              dataInfo.originalData.results[0].index.map((item, index)=> {
+                return <View className="card-item" key={index} vertical={true}>
+                    <View className="title">{item.tipt}:</View>
+                    <View className="desc">{item.des}</View>
+                  </View>
+              })
+            }
+          </View>
+        </ScrollView>
       </View>
     )
   }

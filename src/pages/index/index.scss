@@ -66,4 +66,36 @@ page {
       }
     }
   }
+
+  .scrollView {
+    margin-top:50rpx;
+
+    .card {
+      padding: 0rpx 20rpx;
+      height: 400rpx!important;
+      width:2000rpx;
+      display: flex;
+      align-items: center;
+
+      .card-item {
+        width: 400rpx;
+        height: 400rpx;
+        background: #D6D5B7;
+        margin-right: 10rpx;
+        border-radius: 5%;
+        text-align: center;
+
+        .title {
+          margin-bottom:20rpx;
+          padding-top:20rpx;
+          color: red;
+        }
+
+        .desc {
+          font-size:30rpx;
+          padding:0rpx 20rpx;
+        }
+      }
+    }
+  }
 }
