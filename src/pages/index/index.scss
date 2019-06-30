@@ -4,6 +4,10 @@ page {
 
 .index {
   height: 100%;
+  width: 100%;
+  color: #fff;
+  background: url('../../static/image/bg.png') no-repeat center center;
+  background-size: 100% 100%;
 
   .top {
     margin-bottom: 100rpx;
@@ -26,7 +30,7 @@ page {
   .weatherDesc {
     text-align: center;
     font-size:25rpx;
-    color: #e62121;
+    // color: #e62121;
   }
 
   .temperature {
@@ -57,7 +61,7 @@ page {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      border-top: 1rpx solid #eee;
+      // border-top: 1rpx solid #eee;
       padding: 10rpx 0rpx;
 
       image {
