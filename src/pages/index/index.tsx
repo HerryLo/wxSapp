@@ -136,18 +136,22 @@ class Index extends Component {
           }
         </View>
         {/* 指数卡片 */}
-        <ScrollView className="scrollView" scrollX={true}>
-          <View className="card">
-            {
-              dataInfo.originalData.results[0].index.map((item, index)=> {
-                return <View className="card-item" key={index} vertical={true}>
-                    <View className="title">{item.tipt}:</View>
-                    <View className="desc">{item.des}</View>
-                  </View>
-              })
-            }
-          </View>
-        </ScrollView>
+        {
+          dataInfo.originalData.results[0].length > 0 ?
+          <ScrollView className="scrollView" scrollX={true}>
+            <View className="card">
+              {
+                dataInfo.originalData.results[0].index.map((item, index)=> {
+                  return <View className="card-item" key={index} vertical={true}>
+                      <View className="title">{item.tipt}:</View>
+                      <View className="desc">{item.des}</View>
+                    </View>
+                })
+              }
+            </View>
+          </ScrollView> :
+          ''
+        }
       </View>
     )
   }
