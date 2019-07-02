@@ -3,9 +3,6 @@ import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button, Text, Swiper } from '@tarojs/components'
 import { Bmap } from '../../utils/util'
 
-// import { connect } from '@tarojs/redux'
-// import { add, minus, asyncAdd } from '../../actions/counter'
-
 import './index.scss'
 
 // #region 书写注意
@@ -43,19 +40,6 @@ interface Index {
 // 百度地图实例
 const newBmap = new Bmap();
 
-// @connect(({ counter }) => ({
-//   counter
-// }), (dispatch) => ({
-//   add () {
-//     dispatch(add())
-//   },
-//   dec () {
-//     dispatch(minus())
-//   },
-//   asyncAdd () {
-//     dispatch(asyncAdd())
-//   }
-// }))
 class Index extends Component {
 
   /**
@@ -65,7 +49,9 @@ class Index extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '首页',
+    navigationBarTextStyle: 'white',
+    navigationBarBackgroundColor: '#2c7cf7'
   }
 
   constructor (props) {
