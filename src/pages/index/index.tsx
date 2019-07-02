@@ -1,158 +1,193 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Button, Text, Swiper } from '@tarojs/components'
-import { Bmap } from '../../utils/util'
+import { View, Icon, Input, Image} from '@tarojs/components'
 
 import './index.scss'
 
-// #region 书写注意
-//
-// 目前 typescript 版本还无法在装饰器模式下将 Props 注入到 Taro.Component 中的 props 属性
-// 需要显示声明 connect 的参数类型并通过 interface 的方式指定 Taro.Component 子类的 props
-// 这样才能完成类型检查和 IDE 的自动提示
-// 使用函数模式则无此限制
-// ref: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/20796
-//
-// #endregion
-
-type PageStateProps = {
-  counter: {
-    num: number
-  }
-}
-
-type PageDispatchProps = {
-  add: () => void
-  dec: () => void
-  asyncAdd: () => any
-}
-
-type PageOwnProps = {}
-
-type PageState = {}
-
-type IProps = PageStateProps & PageDispatchProps & PageOwnProps
-
-interface Index {
-  props: IProps;
-}
-
-// 百度地图实例
-const newBmap = new Bmap();
-
 class Index extends Component {
-
-  /**
-   * 指定config的类型声明为: Taro.Config
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
   config: Config = {
-    navigationBarTitleText: '首页',
-    navigationBarTextStyle: 'white',
-    navigationBarBackgroundColor: '#2c7cf7'
+    navigationBarTitleText: '垃圾分类工具',
   }
 
   constructor (props) {
     super(props)
     this.state = {
-      dataInfo: null
+      search: '',
+      selectedSort: null,
+      keywords: [],
+      imgList: [
+        'ico-3',
+        'ico-4',
+        'ico-2',
+        'ico-1'
+      ]
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
-  }
-
-  componentDidMount() {
-    this.weather();
-  }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  async weather() {
-    let res = await newBmap.getWeather();
-    let { currentWeather } = res;
-    let arrDate = currentWeather[0].date.split(' ')
-    // console.log(arrDate)
-    arrDate[2] = arrDate[2].replace(/(\(实时\：)|\)/g, '')
-    currentWeather[0].arrDate = arrDate
+  clear() {
     this.setState({
-      dataInfo: res
+      keywords: [],
+      search: ""
     })
-  };
+  }
 
-  render () {
+  seach(e) {
+    let str = e.detail.value
+    this.setState({
+      search: str
+    })
+    wx.request({
+      url: 'https://sffc.sh-service.com/wx_miniprogram/sites/feiguan/trashTypes_2/Handler/Handler.ashx?a=GET_KEYWORDS&kw=' + str,
+      success:(res)=> {
+        this.setState({
+          keywords: res.data.kw_list
+        })
+      }
+    })
+  }
+
+  searchSort(e) {
+    let keyword = e.currentTarget.dataset.keyword
+    wx.request({
+      url: 'https://sffc.sh-service.com/wx_miniprogram/sites/feiguan/trashTypes_2/Handler/Handler.ashx?a=EXC_QUERY&kw=' + keyword,
+      success:(res)=> {
+        let type = res.data.query_result_type_1.trashType
+        this.setState({
+          selectedSort: this.getSort(this.handleSorch(type))
+        })
+      }
+    })
+  }
+
+  getSort(i) {
+    let names = ["湿垃圾", "干垃圾", "可回收垃圾", "有害垃圾", "建筑垃圾"]
+    let colors = ["#48D1CC", "#8B4513", "#7CFC00", "#FF0000", "#8B4513"]
+    let des = ["日常生活垃圾产生的容易腐烂的生物质废弃物",
+      "除有害垃圾、可回收物、 湿垃圾以外的其他生活废弃物",
+      "适宜回收利用和资源化利 用的，如：玻、金、塑、 纸、衣",
+      "对人体健康或者自然环境造成直接或潜在危害的废弃物",
+      "建筑装修产生的垃圾, 不能直接丢入垃圾桶，需要投入专门的建筑垃圾桶或联系物业处理"
+    ]
+    let inc = ["剩菜剩饭、瓜皮果核、花卉绿植、过期食品等",
+      "餐盒、餐巾纸、湿纸巾、卫生间用纸、塑料袋、 食品包装袋、污染严重的纸、烟蒂、纸尿裤、 一次性杯子、大骨头、贝壳、花盆、陶瓷等",
+      "酱油瓶、玻璃杯、平板玻璃、易拉罐、饮料瓶、 洗发水瓶、塑料玩具、书本、报纸、广告单、 纸板箱、衣服、床上用品等",
+      "废电池、油漆桶、荧光灯管、废药品及其包装物等",
+      "砖块、瓷砖等"
+    ]
+    let req = ["尽量沥干水分 难以辨识类别的生活垃圾投入干垃圾容器内",
+      "纯流质的食物垃圾，如牛奶等，应直接倒进下水口 有包装物的湿垃圾应将包装物去除后分类投放，包装物请投放到对应的可回收物或干垃圾容器",
+      "轻投轻放 清洁干燥，避免污染 废纸尽量平整 立体包装物请清空内容物，清洁后压扁投放 有尖锐边角的，应包裹后投放",
+      "投放时请注意轻放 易破损的请连带包装或包裹后轻放 如易挥发，请密封后投放",
+      "不能直接丢入垃圾桶，需要投入专门的建筑垃圾桶或联系物业处理!"
+    ]
+
+    let model = {
+      "name": names[i],
+      "color": colors[i],
+      "icon": "../../static/Image" + (i + 1).toString() + ".png",
+      "des": des[i],
+      "inc": inc[i],
+      "req": req[i]
+    }
+    return model
+  }
+
+  handleSorch(i) {
+    switch (i) {
+      case 1:
+        i = 3
+        break
+      case 2:
+        i = 2
+        break
+      case 3:
+        i = 0
+        break
+      case 4:
+        i = 1
+        break
+      case -3:
+        i = 4
+        break
+    }
+    return i
+  }
+
+  dismiss() {
+    this.setState({
+      selectedSort: null
+    })
+  }
+
+  render() {
+    let { search, imgList, keywords, selectedSort} = this.state
     return (
-      <View className='index'>
-        {/* 头部内容 */}
-        <View className="top">
-          <View style="height: 80rpx;"></View>
-          <View className="currentWind">
-            {dataInfo.currentWeather[0].arrDate[2]}
-          </View>
-          <View className="weatherDesc padding">
-            {dataInfo.currentWeather[0].weatherDesc}
-          </View>
-          <View className="temperature padding">
-            {dataInfo.currentWeather[0].temperature}
-          </View>
-          <View className="windDesc padding">
-            {dataInfo.currentWeather[0].weatherDesc} {dataInfo.currentWeather[0].wind}
-          </View>
-          <View className="time">
-            <View>
-              {dataInfo.currentWeather[0].arrDate[0]}
-              {dataInfo.currentWeather[0].arrDate[1]}
-            </View>
-            <View>
-              {/* <Image src="../../static/image/position-icon.png" /> */}
-              {dataInfo.currentWeather[0].currentCity}
-            </View>
-          </View>
+      <View className='index-container'>
+        <View className='searchFiled'>
+          <Icon
+            type="search"
+            color='rgb(156, 156, 156)' />
+          <Input
+            className='input'
+            placeholder="输入垃圾名称"
+            confirmType="search"
+            onInput={this.seach}
+            value={search} />
+          <Icon
+            onClick={this.clear}
+            type="cancel"
+            color='rgb(156, 156, 156)'
+            />
         </View>
-        {/* 内容列表 */}
-        <View className="list">
-          {
-            dataInfo.originalData.results[0].weather_data.map((item, index)=> {
-              return item.date != dataInfo.currentWeather[0].date ? <View className="list-item" key={index}>
-                <Text>{item.date}</Text><Image src={item.dayPictureUrl} /> <Text>{item.temperature}</Text>
-              </View> : ''
-            })
-          }
-        </View>
-        {/* 指数卡片 */}
         {
-          dataInfo.originalData.results[0].index.length > 0 ?
-          <ScrollView className="scrollView" scrollX={true}>
-            <View className="card">
+          keywords.length != 0 && keywords.map((item, index)=> {
+            return <View className='searchList' key={index}><View
+              className="searchCell"
+              onClick={this.searchSort}
+              data-keyword={item}>{item}</View>
+            <View className='line'></View></View>
+          })
+        }
+        {
+          keywords.length == 0 &&<View className="img-container">
               {
-                dataInfo.originalData.results[0].index.map((item, index)=> {
-                  return <View className="card-item" key={index} vertical={true}>
-                      <View className="title">{item.tipt}:</View>
-                      <View className="desc">{item.des}</View>
-                    </View>
+                imgList.map((item, index)=> {
+                return <View key={index} className='inconImage {{item}}' ></View>
                 })
               }
+          </View>
+        }
+        {
+          selectedSort != null && <View className='resultback' onClick={this.dismiss}>
+          <View className='resultView'>
+            <View className='resultHead'>
+              {selectedSort.name}
             </View>
-          </ScrollView> :
-          ''
+            <View className='desView'>
+              <Image className='bigIcon' src={selectedSort.icon} style="background-color:{selectedSort.color}"></Image>
+              {selectedSort.des}
+            </View>
+            <View className='title'>
+              {selectedSort.name}主要包括
+            </View>
+            <View className='des'>
+              {selectedSort.inc}
+            </View>
+            <View className='title'>
+              {selectedSort.name}主要包括
+            </View>
+            <View className='des'>
+              {selectedSort.req}
+            </View>
+          </View>
+        </View>
+        }
+        {
+          keywords.length == 0 && <View className="desc">工具说明: 上海垃圾分类查询小工具，2019年7月1日,《上海市生活垃圾管理条例》正式实施，生活垃圾按照“可回收物”、“有害垃圾”、“湿垃圾”、“干垃圾”的分类标准。</View>
         }
       </View>
     )
   }
 }
 
-// #region 导出注意
-//
-// 经过上面的声明后需要将导出的 Taro.Component 子类修改为子类本身的 props 属性
-// 这样在使用这个子类时 Ts 才不会提示缺少 JSX 类型参数错误
-//
-// #endregion
-
-export default Index as ComponentClass<PageOwnProps, PageState>
+export default Index as ComponentClass

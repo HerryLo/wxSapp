@@ -1,106 +1,199 @@
 page {
+  width: 100%;
   height: 100%;
 }
 
-.index {
-  height: 100%;
-  width: 100%;
-  color: #fff;
-  background:linear-gradient(180deg, #2c7cf7, #2c7aa0);
+.index-container {
+  padding: 50rpx 50rpx;
+  background:#fff;
 
-
-  .top {
-    margin-bottom: 100rpx;
-    position: relative;
-    padding:0rpx 20rpx;
+  & .img-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 40rpx;
   }
 
-  .city {
-    font-size: 60rpx;
-    text-align: center;
-    padding-bottom:30rpx;
-    padding-top:50rpx;
+  & .inconImage {
+    width: 220rpx;
+    height: 220rpx;
+    margin:20rpx 40rpx 20rpx 40rpx;
   }
 
-  .currentWind {
-    text-align:center;
-    font-size: 100rpx;
+  & .ico-3 {
+    background: url('../../static/image/ico-3.jpg') no-repeat center center;
+    background-size:100% 100%;
   }
 
-  .weatherDesc {
-    text-align: center;
-    font-size:25rpx;
-    // color: #e62121;
+  & .ico-4 {
+    background: url('../../static/image/ico-4.jpg') no-repeat center center;
+    background-size:100% 100%;
   }
 
-  .temperature {
+  & .ico-2 {
+    background: url('../../static/image/ico-2.jpg') no-repeat center center;
+    background-size:100% 100%;
+  }
+
+  & .ico-1 {
+    background: url('../../static/image/ico-1.jpg') no-repeat center center;
+    background-size:100% 100%;
+  }
+
+  & .desc {
+    color:#888;
+    font-size:28rpx;
+    margin-top:30rpx;
+  }
+}
+
+.searchFiled {
+  background-color: #eee;
+  color: rgb(156, 156, 156);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  justify-content: space-between;
+  border-radius: 30rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+
+  & .input {
+    text-align: left;
     font-size: 30rpx;
-    text-align: center;
+    font-weight: 400;
+    flex-grow: 1;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
   }
 
-  .windDesc {
-    font-size:25rpx;
-    text-align:center;
+  & .icon {
+    /* background-color: red; */
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+    padding: 20rpx;
   }
+}
 
-  .time {
-    position: absolute;
-    top: 10rpx;
-    left: 10rpx;
-    font-size: 20rpx;
-  }
+.collectionView {
+  padding: 0rpx;
+  padding-top: 40rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
-  .padding {
-    padding: 10rpx 0;
-  }
+.cell {
+  width: 40%;
+  height: 180rpx;
+  border-radius: 30rpx;
+  background-color: white;
+  margin-bottom: 40rpx;
+  padding: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
 
-  .list {
-    padding:0rpx 20rpx;
+.head {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    .list-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      // border-top: 1rpx solid #eee;
-      padding: 10rpx 0rpx;
 
-      image {
-        width: 50rpx;
-        height: 40rpx;
-      }
-    }
-  }
 
-  .scrollView {
-    margin-top:50rpx;
+.count {
+  font-size: 80rpx;
+  font-weight: bold;
+}
 
-    .card {
-      padding: 0rpx 20rpx;
-      height: 400rpx!important;
-      min-width: 1750rpx;
-      display: flex;
-      align-items: center;
+.typeName {
+  font-size: 30rpx;
+  color: #3b3b3b;
+}
 
-      .card-item {
-        width: 350rpx;
-        height: 350rpx;
-        background: #24bc90;
-        margin-right: 15rpx;
-        border-radius: 5%;
-        text-align: center;
-        box-shadow:0rpx 2rpx 1rpx #555;
+.searchList {
+  padding-top: 12rpx;
+}
 
-        .title {
-          margin-bottom:20rpx;
-          padding-top:20rpx;
-          // color: red;
-        }
+.searchCell {
+  margin: 10rpx;
+  text-align: left;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 20;
+}
 
-        .desc {
-          font-size:30rpx;
-          padding:0rpx 20rpx;
-        }
-      }
-    }
-  }
+.line {
+  height: 2rpx;
+  background-color: rgb(221, 221, 221);
+}
+
+.resultback {
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  z-index: 9999;
+  background-color: rgba(75, 75, 75, 0.384);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resultView {
+  width: 80%;
+  background-color: white;
+  border-radius: 30rpx;
+  color: rgb(41, 41, 41);
+}
+
+.resultHead {
+  background-color: rgb(233, 233, 233);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200rpx;
+  border-radius: 30rpx 30rpx 0 0;
+  font-size: 60rpx;
+  font-weight: bold;
+  color: rgb(39, 39, 39);
+}
+
+.desView {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx;
+  word-break: break-all;
+  font-size: 30rpx;
+}
+
+.bigIcon {
+  width: 100rpx;
+  height: 100rpx;
+  padding: 50rpx;
+  border-radius: 30rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.title {
+  background-color: rgb(233, 233, 233);
+  line-height: 80rpx;
+  height: 80rpx;
+  padding-left: 30rpx;
+  font-size: 34rpx;
+}
+
+.des {
+  margin: 30rpx;
+  font-size: 30rpx;
 }

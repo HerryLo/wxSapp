@@ -7,6 +7,7 @@ import Index from './pages/index'
 import configStore from './store'
 
 import './app.scss'
+import { ComponentClass } from 'react';
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -16,7 +17,7 @@ import './app.scss'
 
 const store = configStore()
 
-class App extends Component {
+class App extends Component<ComponentClass> {
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -27,13 +28,28 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index'
+      'pages/index/index',
+      'pages/forecast/forecast',
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      // selectedColor: 'red',
+      backgroundColor: '#ffffff',
+      list: [
+        {
+          text: '垃圾分类',
+          pagePath: 'pages/index/index'
+        },
+        {
+          text: '天气预报',
+          pagePath: 'pages/forecast/forecast'
+        }
+      ]
     }
   }
 
