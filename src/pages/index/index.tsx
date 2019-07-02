@@ -93,8 +93,8 @@ class Index extends Component {
     let res = await newBmap.getWeather();
     let { currentWeather } = res;
     let arrDate = currentWeather[0].date.split(' ')
-    console.log(arrDate)
-    arrDate[2].replace(/\(&\)/g, '')
+    // console.log(arrDate)
+    arrDate[2] = arrDate[2].replace(/(\(实时\：)|\)/g, '')
     currentWeather[0].arrDate = arrDate
     this.setState({
       dataInfo: res
@@ -106,9 +106,7 @@ class Index extends Component {
       <View className='index'>
         {/* 头部内容 */}
         <View className="top">
-          <View className="city">
-            {dataInfo.currentWeather[0].currentCity}
-          </View>
+          <View style="height: 80rpx;"></View>
           <View className="currentWind">
             {dataInfo.currentWeather[0].arrDate[2]}
           </View>
@@ -122,7 +120,14 @@ class Index extends Component {
             {dataInfo.currentWeather[0].weatherDesc} {dataInfo.currentWeather[0].wind}
           </View>
           <View className="time">
-            {dataInfo.currentWeather[0].arrDate[0]} {dataInfo.currentWeather[0].arrDate[1]}
+            <View>
+              {dataInfo.currentWeather[0].arrDate[0]}
+              {dataInfo.currentWeather[0].arrDate[1]}
+            </View>
+            <View>
+              {/* <Image src="../../static/image/position-icon.png" /> */}
+              {dataInfo.currentWeather[0].currentCity}
+            </View>
           </View>
         </View>
         {/* 内容列表 */}
@@ -137,7 +142,7 @@ class Index extends Component {
         </View>
         {/* 指数卡片 */}
         {
-          dataInfo.originalData.results[0].length > 0 ?
+          dataInfo.originalData.results[0].index.length > 0 ?
           <ScrollView className="scrollView" scrollX={true}>
             <View className="card">
               {

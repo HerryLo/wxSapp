@@ -6,8 +6,10 @@ page {
   height: 100%;
   width: 100%;
   color: #fff;
-  background: url('../../static/image/bg.png') no-repeat center center;
-  background-size: 100% 100%;
+  // background: url('../../static/image/bg.png') no-repeat center center;
+  // background-size: 100% 100%;
+  background-color:#2c7cf7;
+
 
   .top {
     margin-bottom: 100rpx;
@@ -24,7 +26,7 @@ page {
 
   .currentWind {
     text-align:center;
-    font-size: 70rpx;
+    font-size: 100rpx;
   }
 
   .weatherDesc {
@@ -84,7 +86,7 @@ page {
       .card-item {
         width: 400rpx;
         height: 400rpx;
-        background: #D6D5B7;
+        background: #2c7c;
         margin-right: 10rpx;
         border-radius: 5%;
         text-align: center;
@@ -92,7 +94,7 @@ page {
         .title {
           margin-bottom:20rpx;
           padding-top:20rpx;
-          color: red;
+          // color: red;
         }
 
         .desc {
