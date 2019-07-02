@@ -4,9 +4,11 @@ import { View, Icon, Input, Image} from '@tarojs/components'
 
 import './index.scss'
 
+const requestUrl = `https://sffc.sh-service.com/wx_miniprogram/sites/feiguan/trashTypes_2/Handler/Handler.ashx`
+
 class Index extends Component {
   config: Config = {
-    navigationBarTitleText: '垃圾分类工具',
+    navigationBarTitleText: '垃圾分类助手'
   }
 
   constructor (props) {
@@ -24,6 +26,9 @@ class Index extends Component {
     }
   }
 
+  /**
+   * 清理 input和列表 内容
+   */
   clear() {
     this.setState({
       keywords: [],
@@ -31,14 +36,18 @@ class Index extends Component {
     })
   }
 
+  /**
+   * 查询input输入框内容
+   * @param e
+   */
   seach(e) {
     let str = e.detail.value
     this.setState({
       search: str
-    })
-    wx.request({
-      url: 'https://sffc.sh-service.com/wx_miniprogram/sites/feiguan/trashTypes_2/Handler/Handler.ashx?a=GET_KEYWORDS&kw=' + str,
-      success:(res)=> {
+    },async ()=> {
+      let url:string = `${requestUrl}?a=GET_KEYWORDS&kw=${str}`
+      let res = await Taro.request({url});
+      if(res) {
         this.setState({
           keywords: res.data.kw_list
         })
@@ -46,20 +55,28 @@ class Index extends Component {
     })
   }
 
-  searchSort(e) {
+  /**
+   * 搜索选择的内容
+   * @param e
+   */
+  async searchSort(e) {
     let keyword = e.currentTarget.dataset.keyword
-    wx.request({
-      url: 'https://sffc.sh-service.com/wx_miniprogram/sites/feiguan/trashTypes_2/Handler/Handler.ashx?a=EXC_QUERY&kw=' + keyword,
-      success:(res)=> {
-        let type = res.data.query_result_type_1.trashType
+    let url:string = `${requestUrl}?a=EXC_QUERY&kw=${keyword}`
+    let res = await Taro.request({url});
+    if(res) {
+      let type = res.data.query_result_type_1.trashType
         this.setState({
           selectedSort: this.getSort(this.handleSorch(type))
         })
-      }
-    })
+    }
   }
 
+  /**
+   * 排列匹配
+   * @param i
+   */
   getSort(i) {
+    let iconClass = '';
     let names = ["湿垃圾", "干垃圾", "可回收垃圾", "有害垃圾", "建筑垃圾"]
     let colors = ["#48D1CC", "#8B4513", "#7CFC00", "#FF0000", "#8B4513"]
     let des = ["日常生活垃圾产生的容易腐烂的生物质废弃物",
@@ -81,10 +98,25 @@ class Index extends Component {
       "不能直接丢入垃圾桶，需要投入专门的建筑垃圾桶或联系物业处理!"
     ]
 
+    switch(i){
+      case 0:
+          iconClass="ico-3.jpg";
+          break;
+      case 1:
+          iconClass="ico-4.jpg";
+          break;
+      case 2:
+        iconClass="ico-2.jpg";
+        break;
+      case 3:
+        iconClass="ico-1.jpg";
+        break;
+    }
+
     let model = {
       "name": names[i],
       "color": colors[i],
-      "icon": "../../static/Image" + (i + 1).toString() + ".png",
+      "iconClass": iconClass,
       "des": des[i],
       "inc": inc[i],
       "req": req[i]
@@ -119,6 +151,12 @@ class Index extends Component {
     })
   }
 
+  onShareAppMessage() {
+    return {
+      title: '垃圾分类助手'
+    }
+  }
+
   render() {
     let { search, imgList, keywords, selectedSort} = this.state
     return (
@@ -140,6 +178,7 @@ class Index extends Component {
             />
         </View>
         {
+          // 搜索le biao
           keywords.length != 0 && keywords.map((item, index)=> {
             return <View className='searchList' key={index}><View
               className="searchCell"
@@ -149,6 +188,7 @@ class Index extends Component {
           })
         }
         {
+          // img展示
           keywords.length == 0 &&<View className="img-container">
               {
                 imgList.map((item, index)=> {
@@ -158,13 +198,14 @@ class Index extends Component {
           </View>
         }
         {
+          // 弹层
           selectedSort != null && <View className='resultback' onClick={this.dismiss}>
           <View className='resultView'>
             <View className='resultHead'>
               {selectedSort.name}
             </View>
             <View className='desView'>
-              <Image className='bigIcon' src={selectedSort.icon} style="background-color:{selectedSort.color}"></Image>
+              <View className='bigIcon {{selectedSort.iconClass}}'style='background-color:{{selectedSort.color}}'></View>
               {selectedSort.des}
             </View>
             <View className='title'>
@@ -183,7 +224,7 @@ class Index extends Component {
         </View>
         }
         {
-          keywords.length == 0 && <View className="desc">工具说明: 上海垃圾分类查询小工具，2019年7月1日,《上海市生活垃圾管理条例》正式实施，生活垃圾按照“可回收物”、“有害垃圾”、“湿垃圾”、“干垃圾”的分类标准。</View>
+          keywords.length == 0 && <View className="desc">工具说明: 上海垃圾分类查询小工具，2019年7月1日,《上海市生活垃圾管理条例》正式实施，生活垃圾按照<Text>"可回收物"、"有害垃圾"、"湿垃圾"、"干垃圾"</Text>的分类标准。</View>
         }
       </View>
     )

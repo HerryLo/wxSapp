@@ -6,7 +6,7 @@ page {
   height: 1200rpx;
   width: 100%;
   color: #fff;
-  background:linear-gradient(180deg, #2c7cf7, #2c7aa0);
+  background:linear-gradient(120deg, #2c7cf7, #2c7aa0);
 
 
   .top {
@@ -92,12 +92,12 @@ page {
 
         .title {
           margin-bottom:20rpx;
-          padding-top:20rpx;
+          padding-top:40rpx;
           // color: red;
         }
 
         .desc {
-          font-size:30rpx;
+          font-size:25rpx;
           padding:0rpx 20rpx;
         }
       }
