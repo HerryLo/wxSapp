@@ -50,7 +50,12 @@ class App extends Component<ComponentClass> {
           pagePath: 'pages/forecast/forecast'
         }
       ]
-    }
+    },
+    "permission": {
+      "scope.userLocation": {
+        "desc": "允许智吱声访问您当前的地理位置信息？"
+      }
+    },
   }
 
   componentDidMount () {}

@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "WxSapp",
   "description": "开发一个天气小程序",
-  "appid": "touristappid",
+  "appid": "wx6a0b834a3839e80d",
   "setting": {
     "urlCheck": true,
     "es6": false,
