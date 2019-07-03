@@ -1,6 +1,6 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Icon, Input, Image} from '@tarojs/components'
+import { View, Icon, Input, Image, Button} from '@tarojs/components'
 
 import './index.scss'
 
@@ -8,7 +8,9 @@ const requestUrl = `https://sffc.sh-service.com/wx_miniprogram/sites/feiguan/tra
 
 class Index extends Component {
   config: Config = {
-    navigationBarTitleText: '垃圾分类助手'
+    navigationBarTitleText: '垃圾分类助手',
+    navigationBarTextStyle: 'white',
+    navigationBarBackgroundColor: '#2c7cf7'
   }
 
   constructor (props) {
@@ -235,6 +237,11 @@ class Index extends Component {
         {
           keywords.length == 0 && <View className="desc">工具说明: 上海垃圾分类查询小工具，2019年7月1日,《上海市生活垃圾管理条例》正式实施，生活垃圾按照<Text>"可回收物"、"有害垃圾"、"湿垃圾"、"干垃圾"</Text>的分类标准。</View>
         }
+        <Button
+          className="button"
+          openType="share">
+            分享
+          </Button>
       </View>
     )
   }

@@ -1,6 +1,6 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Button} from '@tarojs/components'
 import { Bmap } from '../../utils/util'
 
 import './forecast.scss'
@@ -136,6 +136,11 @@ class ForeCast extends Component {
           </ScrollView> :
           ''
         }
+        <Button
+          className="button"
+          openType="share">
+            分享
+        </Button>
       </View>
     )
   }

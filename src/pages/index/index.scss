@@ -50,6 +50,22 @@ page {
       font-weight: 900;
     }
   }
+
+  & .button {
+    height: 100rpx;
+    width: 100rpx;
+    border-radius: 50%;
+    line-height: 100rpx;
+    background: #2c7cf7;
+    color: #fff;
+    position: fixed;
+    right: 50rpx;
+    bottom: 80rpx;
+    font-size: 25rpx;
+    padding: 0rpx;
+    z-index: 100;
+    border: 0rpx;
+  }
 }
 
 .searchFiled {
