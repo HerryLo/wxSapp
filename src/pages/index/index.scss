@@ -164,7 +164,7 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 200rpx;
+  height: 150rpx;
   border-radius: 30rpx 30rpx 0 0;
   font-size: 60rpx;
   font-weight: bold;
@@ -175,14 +175,14 @@ page {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 40rpx;
+  padding: 30rpx 40rpx;
   word-break: break-all;
   font-size: 30rpx;
 }
 
 .bigIcon {
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
   padding: 50rpx;
   border-radius: 30rpx;
   margin-right: 20rpx;
