@@ -37,7 +37,7 @@ class App extends Component<ComponentClass> {
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
     },
-    tabBar: {
+    tabBar: process.env.TARO_ENV === 'alipay' ? {} :{
       // selectedColor: 'red',
       backgroundColor: '#ffffff',
       list: [

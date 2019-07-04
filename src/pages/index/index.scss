@@ -87,14 +87,16 @@ page {
     flex-grow: 1;
     padding-left: 30rpx;
     padding-right: 30rpx;
+    background: #eee;
   }
 
   & .icon {
-    /* background-color: red; */
     width: 50rpx;
     height: 50rpx;
     border-radius: 50%;
     padding: 20rpx;
+    display:flex;
+    align-items:center;
   }
 }
 
@@ -190,7 +192,7 @@ page {
 .desView {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-between;
   padding: 30rpx 40rpx;
   word-break: break-all;
   font-size: 30rpx;
