@@ -5,7 +5,6 @@ import { RequestUrl } from '../../constants/config'
 
 import './index.scss'
 
-
 class Index extends Component {
   config: Config = {
     navigationBarTitleText: '垃圾分类助手',

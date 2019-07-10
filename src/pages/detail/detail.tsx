@@ -11,6 +11,8 @@ import {
   Button
 } from '@tarojs/components'
 
+import './detail.scss'
+
 interface IProps {}
 
 interface IState {
