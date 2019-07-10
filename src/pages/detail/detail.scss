@@ -1,0 +1,52 @@
+.container {
+  margin:0rpx 65rpx;
+
+  & .inconImage {
+    width:100%;
+    height:200rpx;
+    margin:80rpx auto 40rpx auto;
+    text-align:center;
+  }
+
+  & .ico-3 {
+    background: url('../../static/image/ico-3.jpg') no-repeat center center;
+    background-size:200rpx 200rpx;
+  }
+
+  & .ico-4 {
+    background: url('../../static/image/ico-4.jpg') no-repeat center center;
+    background-size:200rpx 200rpx;
+  }
+
+  & .ico-2 {
+    background: url('../../static/image/ico-2.jpg') no-repeat center center;
+    background-size:200rpx 200rpx;
+  }
+
+  & .ico-1 {
+    background: url('../../static/image/ico-1.jpg') no-repeat center center;
+    background-size:200rpx 200rpx;
+  }
+
+  & .title {
+    font-size: 30rpx;
+
+    & text:first-child {
+      font-weight: 900;
+      padding-right:10rpx;
+      font-size:30rpx;
+    }
+  }
+
+  & .require {
+    font-weight:900;
+    padding-top:20rpx;
+    font-size: 30rpx;
+  }
+
+  & .requireDesc {
+    font-size: 28rpx;
+    line-height:40rpx;
+    padding-top: 10rpx;
+  }
+}

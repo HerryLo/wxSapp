@@ -1,10 +1,10 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Icon, Input, Image, Button} from '@tarojs/components'
+import { RequestUrl } from '../../constants/config'
 
 import './index.scss'
 
-const requestUrl = `https://sffc.sh-service.com/wx_miniprogram/sites/feiguan/trashTypes_2/Handler/Handler.ashx`
 
 class Index extends Component {
   config: Config = {
@@ -29,7 +29,7 @@ class Index extends Component {
   }
 
   /**
-   * 清理 input和列表 内容
+   * 清理input和列表 内容
    */
   clear() {
     this.setState({
@@ -45,12 +45,14 @@ class Index extends Component {
   seach(e) {
     let str = e.detail.value
     // console.log(str)
-    if(!str) return;
+    if(!str) {
+      this.clear()
+      return
+    }
     this.setState({
       search: str
     },async ()=> {
-      let url = `${requestUrl}?a=GET_KEYWORDS&kw=${encodeURIComponent(str)}`
-      // console.log(url, str);
+      let url = `${RequestUrl}?a=GET_KEYWORDS&kw=${encodeURIComponent(str)}`
       let res = await Taro.request({url});
       if(res) {
         this.setState({
@@ -66,7 +68,7 @@ class Index extends Component {
    */
   async searchSort(e) {
     let keyword = e.currentTarget.dataset.keyword
-    let url:string = `${requestUrl}?a=EXC_QUERY&kw=${encodeURIComponent(keyword)}`
+    let url:string = `${RequestUrl}?a=EXC_QUERY&kw=${encodeURIComponent(keyword)}`
     let res = await Taro.request({url});
     if(res) {
       let type = res.data.query_result_type_1.trashType
@@ -87,7 +89,7 @@ class Index extends Component {
     let des = [
       "日常生活垃圾产生的容易腐烂的生物质废弃物",
       "除有害垃圾、可回收物、湿垃圾以外的其他生活废弃物",
-      "适宜回收利用和资源化利 用的，如：玻、金、塑、 纸、衣",
+      "适宜回收利用和资源化利用的，如：玻、金、塑、纸、衣",
       "对人体健康或者自然环境造成直接或潜在危害的废弃物",
       "建筑装修产生的垃圾, 不能直接丢入垃圾桶，需要投入专门的建筑垃圾桶或联系物业处理",
       "体积较大、整体性强，需要拆分再处理的废弃物品",
@@ -95,8 +97,8 @@ class Index extends Component {
     ]
     let inc = [
       "食材废料，剩菜剩饭、瓜皮果核、花卉绿植、过期食品等易腐生活废弃物",
-      "餐盒、餐巾纸、湿纸巾、卫生间用纸、塑料袋、 食品包装袋、污染严重的纸、烟蒂、纸尿裤、 一次性杯子、大骨头、贝壳、花盆、陶瓷等",
-      "酱油瓶、玻璃杯、平板玻璃、易拉罐、饮料瓶、 洗发水瓶、塑料玩具、书本、报纸、广告单、纸板箱、衣服、床上用品等",
+      "餐盒、餐巾纸、湿纸巾、卫生间用纸、塑料袋、食品包装袋、污染严重的纸、烟蒂、纸尿裤、一次性杯子、大骨头、贝壳、花盆、陶瓷等",
+      "酱油瓶、玻璃杯、平板玻璃、易拉罐、饮料瓶、洗发水瓶、塑料玩具、书本、报纸、广告单、纸板箱、衣服、床上用品等",
       "废电池、油漆桶、荧光灯管、废药品及其包装物等",
       "水泥、砖块、瓷砖等",
       "床、床板、床头柜、桌子、椅子、沙发等",
@@ -114,11 +116,11 @@ class Index extends Component {
 
     switch(i){
       case 0:
-          iconClass="ico-3";
-          break;
+        iconClass="ico-3";
+        break;
       case 1:
-          iconClass="ico-4";
-          break;
+        iconClass="ico-4";
+        break;
       case 2:
         iconClass="ico-2";
         break;
@@ -171,6 +173,21 @@ class Index extends Component {
     })
   }
 
+  /**
+   * 跳转
+   */
+  RouteGo(e) {
+    let { dataset } = e.currentTarget;
+    let { link, index } = dataset
+    let url = `${link}?index=${index}`
+    Taro.navigateTo({
+      url
+    })
+  }
+
+  /**
+   * 分享函数
+   */
   onShareAppMessage() {
     return {
       title: '垃圾分类助手'
@@ -217,7 +234,13 @@ class Index extends Component {
           keywords.length == 0 &&<View className="img-container">
               {
                 imgList.map((item, index)=> {
-                return <View key={index} className='inconImage {{item}}' ></View>
+                return <View
+                  key={index}
+                  onClick={this.RouteGo}
+                  data-link="/pages/detail/detail"
+                  data-index={index}
+                  className='inconImage {{item}}' >
+                  </View>
                 })
               }
           </View>

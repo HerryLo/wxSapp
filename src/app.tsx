@@ -30,6 +30,7 @@ class App extends Component<ComponentClass> {
     pages: [
       'pages/index/index',
       'pages/forecast/forecast',
+      'pages/detail/detail',
     ],
     window: {
       backgroundTextStyle: 'light',
