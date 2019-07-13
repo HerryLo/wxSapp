@@ -1,0 +1,226 @@
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+
+  & .title {
+    width: 100%;
+    font-size: 60rpx;
+    font-weight: 900;
+    text-align: center;
+    padding: 80rpx 0rpx 20rpx 0rpx;
+  }
+
+  & .icon_Swiper {
+    display: flex;
+    height: 680rpx;
+    width:calc(100vw * 11);
+  }
+
+  & .icon_list {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0rpx 120rpx;
+    width:calc(100vw);
+    box-sizing:border-box;
+    position: relative;
+
+    & .number {
+      color:#bbb;
+      font-size:30rpx;
+      font-weight:900;
+      position:absolute;
+      left:40rpx;
+      top:20rpx;
+
+      text {
+        color: #000;
+      }
+    }
+
+    & .inconImage {
+      border-radius: 50%;
+      width: 80rpx;
+      height: 80rpx;
+    }
+
+    & .ico-3 {
+      background-color: #9ff64d;
+      background-image: url('../../static/image/3.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 50rpx 50rpx;
+    }
+
+    & .ico-4 {
+      background-color: #ea3222;
+      background-image: url('../../static/image/4.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 50rpx 50rpx;
+    }
+
+    & .ico-2 {
+      background-color: #824820;
+      background-image: url('../../static/image/2.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 50rpx 50rpx;
+    }
+
+    & .ico-1 {
+      background-color: #71ceca;
+      background-image: url('../../static/image/1.png');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 50rpx 50rpx;
+    }
+  }
+
+  & .card_Info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 20rpx;
+    margin: 20rpx 20rpx;
+    flex-direction: column;
+    border:1rpx solid #eee;
+
+    & .name {
+      font-size: 26rpx;
+      padding-top: 15rpx;
+    }
+  }
+
+  & .card_Info.active {
+    background-color: rgba(44, 124, 247, 0.3);
+    animation: fanIn 0.2s ease-in;
+  }
+
+  & .resultList {
+    width: calc(100vw);
+
+    .result-item {
+      font-size: 26rpx;
+      display: flex;
+      justify-content: space-between;
+      padding: 9rpx 0rpx;
+
+      .name {
+        padding-left: 50rpx;
+      }
+
+      .typeResult {
+        width: 300rpx;
+        display: flex;
+        justify-content: space-between;
+
+        .type {
+          width:140rpx;
+          text-align:center;
+        }
+        .result {
+          width:140rpx;
+          text-align:center;
+          padding-right: 10rpx;
+
+          & text {
+            color: #f34d4d;
+          }
+        }
+      }
+    }
+
+    .result-item:nth-child(2n){
+      background: #f6f6f6;
+    }
+
+    & .btnList {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top:60rpx;
+      padding:0rpx 80rpx;
+
+      & .btn1 {
+        height:70rpx;
+        line-height:70rpx;
+        border-radius:40rpx;
+        width:230rpx;
+        text-align:center;
+        font-size:30rpx;
+        background: #eeeeee;
+      }
+
+      & .btn2 {
+        height:70rpx;
+        line-height:70rpx;
+        border-radius:40rpx;
+        width:230rpx;
+        text-align:center;
+        font-size:30rpx;
+        background:#f3c503;
+        border: 0rpx;
+        padding: 0rpx;
+        margin: 0rpx;
+      }
+    }
+
+    & .foot {
+      text-align:center;
+      margin-top:40rpx;
+      color:#aaa;
+      font-size:35rpx;
+    }
+
+    & .resultList-title {
+      text-align:center;
+      margin:0rpx 0rpx 40rpx 0rpx;
+      font-size:60rpx;
+    }
+
+    .grade{
+      margin-top:20rpx;
+      text-align:right;
+      padding-right:40rpx;
+      font-size:35rpx;
+      font-weight:900;
+    }
+  }
+
+
+
+  @keyframes fanIn {
+    from {
+      background-color: rgba(44, 124, 247, 0);
+    }
+
+    to {
+      background-color: rgba(44, 124, 247, 0.3);
+    }
+  }
+}
+
+.button {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  line-height: 100rpx;
+  background: #2c7cf7;
+  color: #fff;
+  position: fixed;
+  right: 50rpx;
+  bottom: 80rpx;
+  font-size: 25rpx;
+  padding: 0rpx;
+  z-index: 100;
+  border: 0rpx;
+}

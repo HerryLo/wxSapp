@@ -83,7 +83,7 @@ class Index extends Component {
    */
   getSort(i) {
     let iconClass = '';
-    let names = ["湿垃圾", "干垃圾", "可回收垃圾", "有害垃圾", "建筑垃圾", "大件垃圾", "不属于生活垃圾"]
+    let names = ["湿垃圾", "干垃圾", "可回收物", "有害垃圾", "建筑垃圾", "大件垃圾", "不属于生活垃圾"]
     let colors = ["#48D1CC", "#8B4513", "#7CFC00", "#FF0000", "#8B4513", "#b85349", "#b85349"]
     let des = [
       "日常生活垃圾产生的容易腐烂的生物质废弃物",
@@ -281,7 +281,7 @@ class Index extends Component {
           className="button"
           openType="share">
             分享
-          </Button>
+        </Button>
       </View>
     )
   }

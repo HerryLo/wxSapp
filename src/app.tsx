@@ -31,6 +31,7 @@ class App extends Component<ComponentClass> {
       'pages/index/index',
       'pages/forecast/forecast',
       'pages/detail/detail',
+      'pages/test/test',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -38,16 +39,31 @@ class App extends Component<ComponentClass> {
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
     },
-    tabBar: process.env.TARO_ENV === 'alipay' ? {} :{
-      // selectedColor: 'red',
+    tabBar: process.env.TARO_ENV === 'alipay' ? {
       backgroundColor: '#ffffff',
       list: [
         {
-          text: '垃圾分类',
+          text: '分类',
           pagePath: 'pages/index/index'
         },
         {
-          text: '天气预报',
+          text: '测验',
+          pagePath: 'pages/test/test'
+        },
+      ]
+      } :{
+      backgroundColor: '#ffffff',
+      list: [
+        {
+          text: '分类',
+          pagePath: 'pages/index/index'
+        },
+        {
+          text: '测试',
+          pagePath: 'pages/test/test'
+        },
+        {
+          text: '预报',
           pagePath: 'pages/forecast/forecast'
         }
       ]

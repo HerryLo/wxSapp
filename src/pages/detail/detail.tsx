@@ -8,8 +8,8 @@ import Taro, {
 import {
   View,
   Text,
-  Button
 } from '@tarojs/components'
+import { result } from '../../static/result'
 
 import './detail.scss'
 
@@ -38,7 +38,7 @@ class Detail extends Component<IProps, IState> {
 
   public readonly state: Readonly<IState> = {
     index: '',
-    Names: ["湿垃圾", "干垃圾", "可回收垃圾", "有害垃圾"],
+    Names: ["湿垃圾", "干垃圾", "可回收物", "有害垃圾"],
     IconClass : ["ico-3", "ico-4", "ico-2", "ico-1"],
     Des : [
       "是指日常生活垃圾产生的容易腐烂的生物质废弃物。",
@@ -99,4 +99,4 @@ class Detail extends Component<IProps, IState> {
   }
 }
 
-export default Detail
+export default Detail as ComponentClass
