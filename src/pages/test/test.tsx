@@ -104,7 +104,6 @@ class Test extends Component<IProps, IState> {
     this.setState({
       index: index
     },()=> {
-      console.log(this.state.index)
       setTimeout(()=> {
         resultIndexList.push(index)
         this.setState({
@@ -112,7 +111,9 @@ class Test extends Component<IProps, IState> {
           resultIndexList,
           currentIndex: currentindex
         },()=> {
-          clickState = true
+          setTimeout(()=> {
+            clickState = true
+          }, 200)
           if(currentindex == 10){
             this.countGrade();
           }
@@ -157,7 +158,7 @@ class Test extends Component<IProps, IState> {
     return (
       <View className="container">
         <View
-          className="icon_Swiper" style="transform: translateX(-{{currentIndex*100}}vw);transition: .4s;">
+          className="icon_Swiper" style="transform: translateX(-{{currentIndex*100}}vw);transition: .3s;">
           {
             arrResult.map((item, ids)=> {
               return (
@@ -174,8 +175,8 @@ class Test extends Component<IProps, IState> {
                         <View
                           key={ins}
                           data-index={ins}
-                          data-currentIndex={ids}
-                          onTouchEnd={this.clickCard}
+                          data-currentindex={ids}
+                          onClick={this.clickCard}
                           className={(indexCard == ins ? 'active' : '') + ' card_Info'}>
                             <View className={item + ' inconImage'}></View>
                             <View className="name">{Names[ins]}</View>
