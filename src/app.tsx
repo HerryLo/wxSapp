@@ -40,6 +40,7 @@ class App extends Component<ComponentClass> {
       navigationBarTextStyle: 'black'
     },
     tabBar: process.env.TARO_ENV === 'alipay' ? {
+      selectedColor: '#49a9ee',
       backgroundColor: '#ffffff',
       list: [
         {
