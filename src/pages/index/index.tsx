@@ -1,7 +1,7 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Icon, Input, Image, Button} from '@tarojs/components'
-import { RequestUrl } from '../../constants/config'
+import { SeachType, SeachKey } from '../../api/index'
 
 import './index.scss'
 
@@ -51,8 +51,7 @@ class Index extends Component {
     this.setState({
       search: str
     },async ()=> {
-      let url = `${RequestUrl}?a=GET_KEYWORDS&kw=${encodeURIComponent(str)}`
-      let res = await Taro.request({url});
+      let res = await SeachKey({keyword: str})
       if(res) {
         this.setState({
           keywords: res.data.kw_list
@@ -67,8 +66,7 @@ class Index extends Component {
    */
   async searchSort(e) {
     let keyword = e.currentTarget.dataset.keyword
-    let url:string = `${RequestUrl}?a=EXC_QUERY&kw=${encodeURIComponent(keyword)}`
-    let res = await Taro.request({url});
+    let res = await SeachType({keyword});
     if(res) {
       let type = res.data.query_result_type_1.trashType
         this.setState({
