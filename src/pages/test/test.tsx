@@ -1,5 +1,6 @@
 import {
-  ComponentClass
+  ComponentClass,
+  ReactNode
 } from 'react'
 import Taro, {
   Component,
@@ -15,9 +16,9 @@ import { randomArray } from '../../utils/util'
 
 import './test.scss'
 
-interface IProps {}
+interface Props {}
 
-interface IState {
+interface State {
   Names: Array<string>,
   IconClass: Array<string>,
   arrResult: Array<ResultProp>,
@@ -38,7 +39,7 @@ const RandomNumber = 10
 
 let clickState = true
 
-class Test extends Component<IProps, IState> {
+class Test extends Component<Props, State> {
 
   config: Config = {
     navigationBarTitleText: '小测试',
@@ -50,7 +51,7 @@ class Test extends Component<IProps, IState> {
     super(props)
   }
 
-  public readonly state: Readonly<IState> = {
+  public readonly state: Readonly<State> = {
     Names: ["湿垃圾", "干垃圾", "可回收物", "有害垃圾"],
     IconClass : ["ico-1", "ico-2", "ico-3", "ico-4"],
     arrResult: [],
@@ -152,7 +153,7 @@ class Test extends Component<IProps, IState> {
     }
   }
 
-  render() {
+  render(): ReactNode {
     let indexCard = this.state.index
     let { IconClass, Names, arrResult, currentIndex, resultIndexList, grade } = this.state
     return (

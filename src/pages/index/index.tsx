@@ -1,9 +1,10 @@
-import { ComponentClass, ReactNode } from 'react'
+import { ComponentClass, TouchEvent } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Icon, Input, Button} from '@tarojs/components'
+import { View, Icon, Input, Button } from '@tarojs/components'
 import { SeachType, SeachKey } from '../../api/index'
 import IndexModel from '../../model/index/index'
 import { SelectedSort } from '../../type/index'
+import { ITouchEvent } from '@tarojs/components/types/common'
 
 import './index.scss'
 
@@ -12,7 +13,7 @@ interface State {
     search: string,
     keywords: Array<string>,
     imgList: Array<string>,
-    selectedSort: SelectedSort,
+    selectedSort: SelectedSort | null,
 }
 
 class Index extends Component <Props,State>   {
@@ -29,14 +30,7 @@ class Index extends Component <Props,State>   {
   readonly state: Readonly<State> = {
     search: '',
     keywords: [],
-    selectedSort: {
-        des: '',
-        req: '',
-        inc: '',
-        name: '',
-        color: '',
-        iconClass: ''
-    },
+    selectedSort: null,
     imgList: [
         'ico-3',
         'ico-4',
@@ -82,13 +76,16 @@ class Index extends Component <Props,State>   {
    * 搜索选择的内容
    * @param e
    */
-  async searchSort(e) {
+  async searchSort(e: ITouchEvent) {
+    console.log(e);
     let keyword = e.currentTarget.dataset.keyword
     let res = await SeachType({keyword});
     if(res) {
-      let type = res.data.query_result_type_1.trashType
+        let type = res.data.query_result_type_1.trashType
+        let index: number = IndexModel.handleSorch(type)
+        let selectedData: SelectedSort = IndexModel.getSort(index)
         this.setState({
-          selectedSort: IndexModel.getSort(IndexModel.handleSorch(type))
+            selectedSort: selectedData
         })
     }
   }
@@ -120,7 +117,7 @@ class Index extends Component <Props,State>   {
     }
   }
 
-  render(): ReactNode {
+  render() {
     let { search, imgList, keywords, selectedSort} = this.state
     return (
       <View className='index-container'>
@@ -148,10 +145,11 @@ class Index extends Component <Props,State>   {
         {
           // 搜索列表
           keywords.length != 0 && keywords.map((item, index)=> {
-            return <View className='searchList' key={index}><View
-              className="searchCell"
-              onClick={this.searchSort}
-              data-keyword={item}>{item}</View>
+            return <View className='searchList' key={index}>
+                <View
+                    className="searchCell"
+                    onClick={this.searchSort}
+                    data-keyword={item}>{item}</View>
             <View className='line'></View></View>
           })
         }
