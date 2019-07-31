@@ -45,10 +45,14 @@ class App extends Component<ComponentClass> {
       list: [
         {
           text: '分类',
+          iconPath: "./static/image/outline_home_black_18.png",
+          selectedIconPath: "./static/image/round_home_black_18.png",
           pagePath: 'pages/index/index'
         },
         {
           text: '测验',
+          iconPath: "./static/image/outline_visibility_black_18.png",
+          selectedIconPath: "./static/image/round_visibility_black_18.png",
           pagePath: 'pages/test/test'
         },
       ]
@@ -57,14 +61,20 @@ class App extends Component<ComponentClass> {
       list: [
         {
           text: '分类',
+          iconPath: "./static/image/outline_home_black_18.png",
+          selectedIconPath: "./static/image/round_home_black_18.png",
           pagePath: 'pages/index/index'
         },
         {
           text: '测试',
+          iconPath: "./static/image/outline_visibility_black_18.png",
+          selectedIconPath: "./static/image/round_visibility_black_18.png",
           pagePath: 'pages/test/test'
         },
         {
           text: '预报',
+          iconPath: "./static/image/outline_cloud_black_18.png",
+          selectedIconPath: "./static/image/round_cloud_black_18.png",
           pagePath: 'pages/forecast/forecast'
         }
       ]
