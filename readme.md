@@ -16,7 +16,7 @@
 
 ### 项目
 
-使用ts+react语法
+#### ts+react语法
 ```JavaScript
 // page/index.tsx
 import { ComponentClass, TouchEvent } from 'react'
@@ -44,6 +44,30 @@ class Index extends Component <Props,State>   {
     super(props)
     ......
 ```
+
+#### scss语法
+
+```scss
+.index-container {
+    padding: 50rpx 50rpx;
+    background: #fff;
+
+    & .img-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 40rpx;
+    }
+
+    & .inconImage {
+        width: 220rpx;
+        height: 220rpx;
+        margin: 20rpx 40rpx 20rpx 40rpx;
+    }
+    ......
+```
+
 ### 微信小程序
 
 <img width="300" height="300" center src="https://raw.githubusercontent.com/HerryLo/wxSapp/master/img/gh_75d5a8e03369_258.jpg" />
