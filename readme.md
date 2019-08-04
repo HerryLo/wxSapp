@@ -1,5 +1,8 @@
 ## 垃圾分类小程序
 ![taro](https://img.shields.io/badge/-taro%40v1.3.10-orange)
+![typescript](https://img.shields.io/badge/-typescript-brightgreen)
+![scss](https://img.shields.io/badge/-scss-brightgreen)
+![yarn](https://img.shields.io/badge/-yarn%401.12.3-brightgreen)
 
 > 我们的工具，目前的功能有垃圾分类查询功能、垃圾分类小测验、天气预报，后续会开启更多功能。
 
@@ -9,6 +12,7 @@
 * Taro-cli
 * TypeScript
 * Node.js
+* Yarn
 
 ### 项目
 
