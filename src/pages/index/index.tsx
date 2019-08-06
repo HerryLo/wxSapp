@@ -14,6 +14,16 @@ interface State {
     keywords: Array<string>,
     imgList: Array<string>,
     selectedSort: SelectedSort | null,
+    kwArr: Array<kwArrData>
+}
+
+interface kwArrData {
+    CssName: string,
+    Name: string,
+    Note: string;
+    QueryCount: number | null;
+    TargetId: string,
+    TypeKey: string
 }
 
 class Index extends Component <Props,State>   {
@@ -36,7 +46,8 @@ class Index extends Component <Props,State>   {
         'ico-4',
         'ico-2',
         'ico-1'
-    ]
+    ],
+    kwArr: []
   }
 
   /**
@@ -66,7 +77,8 @@ class Index extends Component <Props,State>   {
       let res = await SeachKey({keyword: str})
       if(res) {
         this.setState({
-          keywords: res.data.kw_list
+          keywords: res.data.kw_list,
+          kwArr: res.data.kw_arr
         })
       }
     })
@@ -76,18 +88,30 @@ class Index extends Component <Props,State>   {
    * 搜索选择的内容
    * @param e
    */
-  async searchSort(e: ITouchEvent) {
+  searchSort(e: ITouchEvent) {
     console.log(e);
-    let keyword = e.currentTarget.dataset.keyword
-    let res = await SeachType({keyword});
-    if(res) {
-        let type = res.data.query_result_type_1.trashType
-        let index: number = IndexModel.handleSorch(type)
+    let { kwArr } = this.state
+    let keyword: string = e.currentTarget.dataset.keyword
+    let data: kwArrData = kwArr.find((item)=> {
+        return item.Name == keyword
+    })
+    if(data) {
+        let CssName = data.CssName
+        let index: number = IndexModel.handleCssName(CssName)
         let selectedData: SelectedSort = IndexModel.getSort(index)
         this.setState({
             selectedSort: selectedData
         })
     }
+    // let res = await SeachType({keyword});
+    // if(res) {
+    //     let type = res.data.query_result_type_1.trashType
+    //     let index: number = IndexModel.handleSorch(type)
+    //     let selectedData: SelectedSort = IndexModel.getSort(index)
+    //     this.setState({
+    //         selectedSort: selectedData
+    //     })
+    // }
   }
 
   dismiss() {

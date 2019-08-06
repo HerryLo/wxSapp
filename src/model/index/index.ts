@@ -93,6 +93,30 @@ class IndexModel {
     }
     return i
   }
+
+  /**
+   * 转换
+   * @param i
+   */
+  handleCssName(CssName): number {
+      let i;
+    switch (CssName) {
+      case 'shi':
+        i = 0
+        break
+      case 'gan':
+        i = 1
+        break
+      case 'kehuishou':
+        i = 2
+        break
+      case 'youhai':
+        i = 3
+        break
+    }
+    return i
+  }
+
 }
 
 export default new IndexModel()
