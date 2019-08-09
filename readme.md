@@ -4,9 +4,11 @@
 ![scss](https://img.shields.io/badge/-scss-brightgreen)
 ![yarn](https://img.shields.io/badge/-yarn%401.12.3-brightgreen)
 
-> 我们的工具，目前的功能有垃圾分类查询功能、垃圾分类小测验、天气预报，后续会开启更多功能。
+> 垃圾分类查询、垃圾分类小测验、天气预报等功能，后续会开启更多功能。
 
-查询API是调取的别人的，目前支持微信小程序和支付宝小程序。
+🚮垃圾分类查询API是调取的别人的，目前支持微信小程序和支付宝小程序。欢迎 👏👏Star！！
+
+如果你之前没有开发过小程序，可以看看我的 [个人小程序开发指南](https://juejin.im/post/5d34888b6fb9a07ef90cd68c) 这篇文章，欢迎交流！！
 
 ### Tips
 * Taro-cli
