@@ -156,6 +156,7 @@ class Test extends Component<Props, State> {
   render(): ReactNode {
     let indexCard = this.state.index
     let { IconClass, Names, arrResult, currentIndex, resultIndexList, grade } = this.state
+    let ci = currentIndex < 9 ? '0'+(currentIndex+1): currentIndex+1
     return (
       <View className="container">
         <View
@@ -167,7 +168,7 @@ class Test extends Component<Props, State> {
                   key={ids}
                   className="icon_list">
                   <View className="number">
-                    <Text>{ currentIndex < 9 ? '0'+(currentIndex+1): currentIndex+1 }</Text> / 10
+                    <Text>{ ci }</Text> / 10
                   </View>
                   <View className="title">{item.n}</View>
                   {

@@ -98,7 +98,7 @@ class IndexModel {
    * 转换
    * @param i
    */
-  handleCssName(CssName): number {
+  handleCssName(CssName: string): number {
       let i;
     switch (CssName) {
       case 'shi':
