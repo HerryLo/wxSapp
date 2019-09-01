@@ -47,7 +47,14 @@ class Index extends Component <Props,State>   {
         'ico-2',
         'ico-1'
     ],
-    kwArr: []
+    kwArr: [{
+        CssName: '',
+        Name: '',
+        Note: '',
+        QueryCount: 0 || null,
+        TargetId: '',
+        TypeKey: ''
+    }]
   }
 
   /**
@@ -90,7 +97,7 @@ class Index extends Component <Props,State>   {
    */
   searchSort(e: ITouchEvent) {
     console.log(e);
-    let { kwArr } = this.state
+    let kwArr: Array<kwArrData> = this.state
     let keyword: string = e.currentTarget.dataset.keyword
     let data: kwArrData = kwArr.find((item)=> {
         return item.Name == keyword
@@ -103,15 +110,6 @@ class Index extends Component <Props,State>   {
             selectedSort: selectedData
         })
     }
-    // let res = await SeachType({keyword});
-    // if(res) {
-    //     let type = res.data.query_result_type_1.trashType
-    //     let index: number = IndexModel.handleSorch(type)
-    //     let selectedData: SelectedSort = IndexModel.getSort(index)
-    //     this.setState({
-    //         selectedSort: selectedData
-    //     })
-    // }
   }
 
   dismiss() {

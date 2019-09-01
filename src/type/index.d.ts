@@ -10,30 +10,45 @@ export interface SelectedSort {
     iconClass: string;
 }
 
-interface Target<T> {
-    dataset: T;
-    id: string;
-    offsetLeft: number;
-    offsetTop: number;
-    x: number;
-    y: number;
+interface resultsItemType {
+    currentCity: string;
+    pm25: number;
+    index: Array<{
+        des: string;
+        tipt: string;
+        title: string;
+        zs: string;
+    }>;
+    weather_data: Array<weatherDataItemType>;
 }
 
-interface Touches {
-    clientX: number;
-    clientY: number;
-    force: number;
-    identifier: number;
-    pageX: number;
-    pageY: number;
+interface weatherDataItemType {
+    date: string;
+    dayPictureUrl: string;
+    nightPictureUrl: string;
+    weather: string;
+    wind: string;
+    temperature: string;
 }
 
-export interface EventHandle<T> extends ITouchEvent {
-    preventDefault: ()=> void;
-    changedTouches: Array<Touches>;
-    detail: { x: number, y: number};
-    currentTarget: Target<T>;
-    target: Target<T>;
-    type: string;
-    timeStamp: number;
+export interface currentWeatherType {
+    currentCity: string;
+    pm25: string;
+    date: string;
+    temperature: string;
+    weatherDesc: string;
+    wind: string;
+    arrDate: Array<string>;
+}
+
+interface originalDataType {
+    error: number;
+    status: string;
+    date: string;
+    results: Array<resultsItemType>;
+}
+
+export interface dataInfoType {
+    originalData: originalDataType;
+    currentWeather: Array<currentWeatherType>;
 }

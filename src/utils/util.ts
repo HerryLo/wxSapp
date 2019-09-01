@@ -1,5 +1,6 @@
 import bmap from '../libs/bmap-wx';
 import { BMAPAK } from '../constants/config'
+import { dataInfoType } from '../type/index'
 
 /**
  * 百度地图对象类
@@ -15,9 +16,11 @@ export class Bmap {
     return new Promise((resolve, reject)=> {
       this.BMap.weather({
         success(data) {
-          resolve(data);
+          let res:dataInfoType = data;
+          resolve(res);
         },
         fail(data) {
+          let res:dataInfoType = data;
           reject(data);
         }
       });
