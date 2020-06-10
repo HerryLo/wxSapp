@@ -15,6 +15,7 @@
 * TypeScript
 * Node.js
 * Yarn
+* 微信小程序CI
 
 ### 项目
 
