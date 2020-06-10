@@ -20,7 +20,6 @@ export class Bmap {
           resolve(res);
         },
         fail(data) {
-          let res:dataInfoType = data;
           reject(data);
         }
       });
