@@ -1,7 +1,7 @@
 import { ComponentClass, TouchEvent } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Icon, Input, Button } from '@tarojs/components'
-import { SeachType, SeachKey } from '../../api/index'
+import { SeachKey } from '../../api/index'
 import IndexModel from '../../model/index/index'
 import { SelectedSort } from '../../type/index'
 import { ITouchEvent } from '@tarojs/components/types/common'
@@ -97,7 +97,7 @@ class Index extends Component <Props,State>   {
    */
   searchSort(e: ITouchEvent) {
     console.log(e);
-    let kwArr: Array<kwArrData> = this.state
+    let kwArr: Array<kwArrData> = this.state.kwArr
     let keyword: string = e.currentTarget.dataset.keyword
     let data: kwArrData = kwArr.find((item)=> {
         return item.Name == keyword

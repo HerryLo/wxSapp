@@ -1,5 +1,5 @@
 ## 垃圾分类小程序
-![taro](https://img.shields.io/badge/-taro%40v1.3.10-orange)
+![taro](https://img.shields.io/badge/-taro%40v2.2.0-orange)
 ![typescript](https://img.shields.io/badge/-typescript-brightgreen)
 ![scss](https://img.shields.io/badge/-scss-brightgreen)
 ![yarn](https://img.shields.io/badge/-yarn%401.12.3-brightgreen)
