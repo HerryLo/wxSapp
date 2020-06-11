@@ -11,7 +11,6 @@ import {
   Text,
   Button
 } from '@tarojs/components'
-import { result } from '../../static/result'
 import { randomArray } from '../../utils/util'
 
 import './test.scss'
@@ -70,6 +69,7 @@ class Test extends Component<Props, State> {
   }
 
   dataInit() {
+    let result = require('../../static/result')
     console.log(result)
     let { data } = result
     let arrResult:Array<ResultProp> = []
@@ -78,15 +78,15 @@ class Test extends Component<Props, State> {
     let arr: Array<number> = randomArray<number>(list, RandomNumber)
     console.log(arr);
     for(let i = 0; i < arr.length;i++) {
-      // 随机垃圾数据
-      arrResult = arrResult.concat(randomArray<ResultProp>(data[arr[i]], 1))
+    // 随机垃圾数据
+    arrResult = arrResult.concat(randomArray<ResultProp>(data[arr[i]], 1))
     }
     this.setState({
-      arrResult,
-      index: -1,
-      grade: 0,
-      currentIndex: 0,
-      resultIndexList: []
+    arrResult,
+    index: -1,
+    grade: 0,
+    currentIndex: 0,
+    resultIndexList: []
     })
     console.log(arrResult)
   }

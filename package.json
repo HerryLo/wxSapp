@@ -84,7 +84,7 @@
 		"webpack-bundle-analyzer": "^3.8.0"
 	},
 	"wx": {
-		"wxVersion": "1.1.8",
+		"wxVersion": "1.1.9",
 		"wxDesc": "测试小程序CI工具"
 	}
 }

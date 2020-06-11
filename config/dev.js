@@ -5,5 +5,11 @@ module.exports = {
   defineConstants: {
   },
   weapp: {},
-  h5: {}
+  h5: {},
+  mini: {
+    // webpackChain (chain, webpack) {
+    //     chain.plugin('analyzer')
+    //       .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [])
+    // }
+  }
 }
