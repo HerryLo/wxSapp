@@ -20,12 +20,12 @@ ci.upload({
   },
 }).then(res => {
   console.log(res)
-  console.log('上传成功----'+new Date())
+  console.log('上传成功')
 }).catch(error => {
   if (error.errCode == -1) {
-    console.log('上传成功----'+new Date())
+    console.log('上传成功')
   }
   console.log(error)
-  console.log('😭😭😭😭😭😭😭😭提 交 有 错 误😭😭😭😭😭😭😭😭')
+  console.log('上传失败')
   process.exit(-1)
 })
