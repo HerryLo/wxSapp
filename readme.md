@@ -11,9 +11,10 @@
 如果你之前没有开发过小程序，可以看看我的 [个人小程序开发指南](https://juejin.im/post/5d34888b6fb9a07ef90cd68c) 这篇文章，欢迎交流！！
 
 ### Tips
-* Taro-cli
-* TypeScript
 * Node.js
+* Taro-cli
+* React
+* TypeScript
 * Yarn
 * 微信小程序CI
 * 更多方案持续更新。。。
