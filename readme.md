@@ -80,6 +80,6 @@ class Index extends Component <Props,State>   {
 <img width="300" height="300" center src="https://didiheng.com/wxCode/gh_75d5a8e03369_258.jpg" />
 
 
-### 欢迎交流
+### vx欢迎交流
 
 <img width="300" height="300" center src="https://didiheng.com/image/IMG_0574.JPG" />
