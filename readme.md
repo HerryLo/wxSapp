@@ -82,4 +82,4 @@ class Index extends Component <Props,State>   {
 
 ### 欢迎交流
 
-<img width="300" height="350" center src="https://didiheng.com/image/IMG_0574.JPG" />
+<img width="300" height="300" center src="https://didiheng.com/image/IMG_0574.JPG" />
