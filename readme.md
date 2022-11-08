@@ -77,9 +77,6 @@ class Index extends Component <Props,State>   {
 
 ### 微信小程序
 
-<img width="300" height="300" center src="https://didiheng.com/wxCode/gh_75d5a8e03369_258.jpg" />
+<img width="300" height="300" center src="https://herrylo.github.io/wxCode/gh_75d5a8e03369_258.jpg" />
 
 
-### vx备注 加群交流
-
-<img width="300" height="300" center src="https://didiheng.com/image/IMG_0574.JPG" />
