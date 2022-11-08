@@ -9,7 +9,9 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [],
+  plugins: [
+    "@tarojs/plugin-sass"
+  ],
   babel: {
     sourceMap: true,
     presets: [['env', { modules: false }]],
@@ -31,6 +33,22 @@ const config = {
     patterns: [
     ],
     options: {
+    }
+  },
+  mini: {
+    webpackChain (chain, webpack) {},
+    cssLoaderOption: {},
+    postcss: {
+      pxtransform: {
+        enable: true,
+        config: {}
+      },
+      url: {
+        enable: true,
+        config: {
+          limit: 10240 // 设定转换尺寸上限
+        }
+      }
     }
   },
   weapp: {

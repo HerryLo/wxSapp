@@ -13,19 +13,20 @@
     "noUnusedParameters": true,
     "strictNullChecks": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "rootDir": ".",
-    "jsx": "preserve",
+    "jsx": "react",
     "jsxFactory": "Taro.createElement",
     "allowJs": true,
     "resolveJsonModule": true,
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
   },
   "exclude": [
     "node_modules",
     "dist"
   ],
+  "include": ["src"],
   "compileOnSave": false
 }

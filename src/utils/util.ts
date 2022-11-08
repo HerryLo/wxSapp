@@ -20,6 +20,7 @@ export class Bmap {
           resolve(res);
         },
         fail(data) {
+          console.log(data, '123')
           reject(data);
         }
       });
