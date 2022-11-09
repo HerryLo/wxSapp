@@ -1,5 +1,5 @@
 ## 垃圾分类小程序
-![taro](https://img.shields.io/badge/-taro%40v2.2.0-orange)
+![taro](https://img.shields.io/badge/-taro%40v2.2.17-orange)
 ![typescript](https://img.shields.io/badge/-typescript-brightgreen)
 ![scss](https://img.shields.io/badge/-scss-brightgreen)
 ![yarn](https://img.shields.io/badge/-yarn%401.12.3-brightgreen)
@@ -11,6 +11,17 @@
 如果你之前没有开发过小程序，可以看看我的 [个人小程序开发指南](https://juejin.im/post/5d34888b6fb9a07ef90cd68c) 这篇文章，欢迎交流！！
 
 目前支持了微信小程序CI工具，一键发布，非常的舒适！！[源码：我的微信小程序CI工具配置](https://github.com/HerryLo/wxSapp/blob/master/config/upload.wx.js)。可以看看这篇文章：[微信小程序CI工具](https://zhuanlan.zhihu.com/p/147839106)
+
+### 运行开发
+```
+npm install
+
+// 小程序运行
+npm run dev:weapp
+
+// 小程序发布
+npm run upload-wx
+```
 
 ### Tips
 * Node.js
