@@ -1,4 +1,4 @@
-import { RequestUrl } from '../constants/config'
+import { RequestUrl, WeatherUrl, QweatherKey } from '../constants/config'
 import Taro from '@tarojs/taro'
 
 interface SeachListOption {
