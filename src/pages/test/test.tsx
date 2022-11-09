@@ -2,6 +2,7 @@ import { ComponentClass, ReactNode } from "react";
 import Taro, { Component, Config } from "@tarojs/taro";
 import { View, Text, Button } from "@tarojs/components";
 import { randomArray } from "../../utils/util";
+import { result } from "../../static/result";
 
 import "./test.scss";
 
@@ -58,8 +59,6 @@ class Test extends Component<Props, State> {
   }
 
   dataInit() {
-    let { result } = require("../../static/result");
-    console.log(result);
     let { data } = result;
     let arrResult: Array<ResultProp> = [];
     let list: Array<number> = [1, 2, 3, 4];

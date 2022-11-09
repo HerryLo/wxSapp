@@ -33,6 +33,7 @@
 		"@tarojs/components": "2.2.17",
 		"@tarojs/components-rn": "2.2.17",
 		"@tarojs/mini-runner": "^2.2.17",
+		"@tarojs/plugin-uglify": "^2.2.17",
 		"@tarojs/redux": "^2.2.17",
 		"@tarojs/redux-h5": "2.2.17",
 		"@tarojs/router": "2.2.17",
@@ -48,9 +49,11 @@
 		"@tarojs/taro-weapp": "^2.2.17",
 		"autoprefixer": "^8.0.0",
 		"babel-runtime": "^6.26.0",
-		"miniprogram-ci": "^1.0.31",
+		"miniprogram-ci": "^1.8.35",
 		"nerv-devtools": "^1.5.7",
 		"nervjs": "^1.5.7",
+		"postcss": "^8.4.18",
+		"postcss-discard-comments": "^5.1.2",
 		"postcss-loader": "^7.0.1",
 		"react": "16.3.1",
 		"react-native": "0.55.4",
@@ -87,7 +90,7 @@
 		"webpack-bundle-analyzer": "^3.8.0"
 	},
 	"wx": {
-		"wxVersion": "1.1.9",
-		"wxDesc": "测试小程序CI工具"
+		"wxVersion": "1.1.10",
+		"wxDesc": "接口请求升级；包版本升级"
 	}
 }

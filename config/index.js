@@ -1,42 +1,40 @@
 const config = {
-  projectName: 'WxSapp',
-  date: '2019-6-29',
+  projectName: "WxSapp",
+  date: "2019-6-29",
   designWidth: 750,
   deviceRatio: {
-    '640': 2.34 / 2,
-    '750': 1,
-    '828': 1.81 / 2
+    "640": 2.34 / 2,
+    "750": 1,
+    "828": 1.81 / 2
   },
-  sourceRoot: 'src',
-  outputRoot: 'dist',
-  plugins: [
-    "@tarojs/plugin-sass"
-  ],
+  sourceRoot: "src",
+  outputRoot: "dist",
+  plugins: ["@tarojs/plugin-sass", "@tarojs/plugin-uglify"],
   babel: {
     sourceMap: true,
-    presets: [['env', { modules: false }]],
+    presets: [["env", { modules: false }]],
     plugins: [
-      'transform-decorators-legacy',
-      'transform-class-properties',
-      'transform-object-rest-spread',
-      ['transform-runtime', {
-        "helpers": false,
-        "polyfill": false,
-        "regenerator": true,
-        "moduleName": 'babel-runtime'
-      }]
+      "transform-decorators-legacy",
+      "transform-class-properties",
+      "transform-object-rest-spread",
+      [
+        "transform-runtime",
+        {
+          helpers: false,
+          polyfill: false,
+          regenerator: true,
+          moduleName: "babel-runtime"
+        }
+      ]
     ]
   },
-  defineConstants: {
-  },
+  defineConstants: {},
   copy: {
-    patterns: [
-    ],
-    options: {
-    }
+    patterns: [],
+    options: {}
   },
   mini: {
-    webpackChain (chain, webpack) {},
+    webpackChain(chain, webpack) {},
     cssLoaderOption: {},
     postcss: {
       pxtransform: {
@@ -52,7 +50,7 @@ const config = {
     }
   },
   weapp: {
-    webpackChain (chain, webpack) {},
+    webpackChain(chain, webpack) {},
     cssLoaderOption: {},
     postcss: {
       pxtransform: {
@@ -68,27 +66,23 @@ const config = {
     }
   },
   h5: {
-    publicPath: '/',
-    staticDirectory: 'static',
-    webpackChain (chain, webpack) {},
+    publicPath: "/",
+    staticDirectory: "static",
+    webpackChain(chain, webpack) {},
     postcss: {
       autoprefixer: {
         enable: true,
         config: {
-          browsers: [
-            'last 3 versions',
-            'Android >= 4.1',
-            'ios >= 8'
-          ]
+          browsers: ["last 3 versions", "Android >= 4.1", "ios >= 8"]
         }
       }
     }
   }
-}
+};
 
-module.exports = function (merge) {
-  if (process.env.NODE_ENV === 'development') {
-    return merge({}, config, require('./dev'))
+module.exports = function(merge) {
+  if (process.env.NODE_ENV === "development") {
+    return merge({}, config, require("./dev"));
   }
-  return merge({}, config, require('./prod'))
-}
+  return merge({}, config, require("./prod"));
+};
