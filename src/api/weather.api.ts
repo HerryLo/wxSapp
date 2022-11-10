@@ -17,6 +17,17 @@ export const RealTimeWeather = async (options: WeatherOption) => {
 };
 
 /**
+ * 7天预报
+ * @param options
+ */
+ export const WeatherV7d = async (options: WeatherOption) => {
+  let location: string = options.location;
+  let url: string = `${WeatherUrl}/v7/weather/7d?key=${QweatherKey}&location=${location}`;
+  let res = await Taro.request({ url });
+  return res;
+};
+
+/**
  * 城市搜索
  * @param options
  */

@@ -1,33 +1,3 @@
-import bmap from '../libs/bmap-wx';
-import { BMAPAK } from '../constants/config'
-import { dataInfoType } from '../type/index'
-
-/**
- * 百度地图对象类
- */
-export class Bmap {
-  constructor() {
-    this.BMap =  new bmap.BMapWX({
-      ak: BMAPAK
-    });
-  }
-
-  getWeather():Promise<Object> {
-    return new Promise((resolve, reject)=> {
-      this.BMap.weather({
-        success(data) {
-          let res:dataInfoType = data;
-          resolve(res);
-        },
-        fail(data) {
-          console.log(data, '123')
-          reject(data);
-        }
-      });
-    })
-  }
-}
-
 /**
  * 随机获取数组 下标
  * @param len 数组长度

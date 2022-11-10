@@ -1,7 +1,7 @@
 import { ComponentClass } from "react";
 import Taro, { Component, Config } from "@tarojs/taro";
 import { View, Text, Button } from "@tarojs/components";
-import { RealTimeWeather, SearchCity } from "../../api/index";
+import { RealTimeWeather, SearchCity, WeatherV7d } from "../../api/index";
 
 import "./forecast.scss";
 
@@ -50,9 +50,14 @@ class ForeCast extends Component<IProps, IState> {
           location: `${longitude},${latitude}`
         });
         console.log(weatherRes);
+        let weather7dRes = await WeatherV7d({
+          location: `${longitude},${latitude}`
+        });
+        console.log(weather7dRes);
         this.setState({
           dataInfo: weatherRes.data.now,
-          areaInfo: areaRes.data.location
+          areaInfo: areaRes.data.location,
+          data7dInfo: weather7dRes.data
         });
       }
     });
