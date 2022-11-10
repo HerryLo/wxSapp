@@ -3,14 +3,14 @@ page {
 }
 
 .forecast {
-  height: 1300rpx;
+  min-height: 1300px;
   width: 100%;
   color: #fff;
   background:linear-gradient(120deg, #2c7cf7, #2c7aa0);
 
 
   .top {
-    margin-bottom: 100rpx;
+    // margin-bottom: 100rpx;
     position: relative;
     padding:0rpx 20rpx;
   }
@@ -29,7 +29,7 @@ page {
 
   .weatherDesc {
     text-align: center;
-    font-size:25rpx;
+    font-size:40rpx;
     // color: #e62121;
   }
 
@@ -56,6 +56,7 @@ page {
 
   .list {
     padding:0rpx 20rpx;
+    font-size: 25px;
 
     .list-item {
       display: flex;
@@ -102,6 +103,11 @@ page {
         }
       }
     }
+  }
+
+  .updateTime7d {
+    font-size: 20rpx;
+    margin-left: 20px;
   }
 
   .button {
