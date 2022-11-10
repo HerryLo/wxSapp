@@ -90,7 +90,7 @@ class ForeCast extends Component<IProps, IState> {
           <View className="temperature padding">风速 {dataInfo.windSpeed || '--'}公里/小时</View>
           <View className="time">
             <View>
-              {handleTime(dataInfo.obsTime)}
+              {dataInfo && handleTime(dataInfo.obsTime)}
             </View>
             <View>
               {areaInfo[0].adm2} {areaInfo[0].name}
