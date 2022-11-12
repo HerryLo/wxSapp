@@ -88,6 +88,6 @@ class Index extends Component <Props,State>   {
 
 ### 小程序二维码
 
-![img](https://herrylo.github.io/wxCode/gh_75d5a8e03369_258.jpg "二维码")
+![img](https://raw.githubusercontent.com/HerryLo/wxSapp/master/img/gh_75d5a8e03369_258.jpg "二维码")
 
 
