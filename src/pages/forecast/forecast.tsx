@@ -33,8 +33,8 @@ class ForeCast extends Component<IProps, IState> {
 
   readonly state: Readonly<IState> = {
     dataInfo: null,
-    areaInfo: null,
-    data7dInfo: null
+    areaInfo: {},
+    data7dInfo: {}
   };
 
   componentDidMount() {

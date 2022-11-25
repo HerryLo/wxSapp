@@ -227,3 +227,14 @@ page {
   z-index: 100;
   border: 0rpx;
 }
+
+.tipswrapper {
+  margin-top: 50rpx;
+  font-size: 30rpx;
+  color: #888;
+
+  Text {
+    color: rgb(226, 22, 22);
+    font-weight: 800;
+  }
+}

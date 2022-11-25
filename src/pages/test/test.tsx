@@ -188,6 +188,9 @@ class Test extends Component<Props, State> {
                     </View>
                   );
                 })}
+                <View className="tipswrapper">
+                  <Text>注意：</Text>这是垃圾分类小测验，用于测验垃圾分类小知识。一共有10道题，每题10分，快来试试吧，看您可以得多少分！
+                </View>
               </View>
             );
           })}
