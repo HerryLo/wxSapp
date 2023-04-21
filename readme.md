@@ -27,7 +27,7 @@ npm run upload-wx
 
 ![img](https://raw.githubusercontent.com/HerryLo/wxSapp/master/img/gh_75d5a8e03369_258.jpg "二维码")
 
-![](./img/s6x01351xerl2wqeqhpfn56_55388962.jpg)
+[](./img/s6x01351xerl2wqeqhpfn56_55388962.jpg)
 
 ### Tips
 * Node.js
