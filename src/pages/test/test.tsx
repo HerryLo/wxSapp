@@ -1,6 +1,6 @@
 import { ComponentClass, ReactNode } from "react";
 import Taro, { Component, Config } from "@tarojs/taro";
-import { View, Text, Button } from "@tarojs/components";
+import { View, Text, Button, Ad } from "@tarojs/components";
 import { randomArray } from "../../utils/util";
 import { result } from "../../static/result";
 
@@ -235,6 +235,14 @@ class Test extends Component<Props, State> {
         <Button className="button" openType="share">
           分享
         </Button>
+
+        <Ad
+          unitId='adunit-1a4ad7108719235b'
+          // adIntervals={60}
+          onLoad={() => console.log('ad onLoad')}
+          onError={() => console.log('ad onError')}
+          onClose={() => console.log('ad onClose')}
+        />
       </View>
     );
   }

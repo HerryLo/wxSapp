@@ -27,6 +27,8 @@ class ForeCast extends Component<IProps, IState> {
     navigationBarBackgroundColor: "#2c7cf7"
   };
 
+  interstitialAd: any = null;
+
   constructor(props) {
     super(props);
   }
@@ -39,6 +41,30 @@ class ForeCast extends Component<IProps, IState> {
 
   componentDidMount() {
     this.weather();
+  }
+
+  componentDidShow() {
+    this.createAd();
+  }
+
+  createAd() {
+    if (Taro.createInterstitialAd && !this.interstitialAd) {
+      this.interstitialAd = Taro.createInterstitialAd({
+        adUnitId: 'adunit-e3b0b4a6854a07e2'
+      })
+      this.interstitialAd.onLoad(() => { })
+      this.interstitialAd.onError((err) => {
+        console.error('插屏广告加载失败', err)
+      })
+      this.interstitialAd.onClose(() => { })
+    }
+
+    // 在适合的场景显示插屏广告
+    if (this.interstitialAd) {
+      this.interstitialAd.show().catch((err) => {
+        console.error('插屏广告显示失败', err)
+      })
+    }
   }
 
   async weather() {

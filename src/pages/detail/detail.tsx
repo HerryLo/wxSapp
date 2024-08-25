@@ -7,7 +7,7 @@ import Taro, {
 } from '@tarojs/taro'
 import {
   View,
-  Text,
+  Text
 } from '@tarojs/components'
 import { result } from '../../static/result'
 
@@ -94,6 +94,7 @@ class Detail extends Component<IProps, IState> {
           <View className="require">投放要求:</View>
           <View className="requireDesc">💡 {Reqs[index]}</View>
         </View>
+        
       </View>
     )
   }

@@ -1,6 +1,6 @@
 import { ComponentClass, TouchEvent } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Icon, Input, Button } from '@tarojs/components'
+import { View, Icon, Input, Button, Ad } from '@tarojs/components'
 import { SeachKey } from '../../api/index'
 import IndexModel from '../../model/index/index'
 import { SelectedSort } from '../../type/index'
@@ -8,52 +8,52 @@ import { ITouchEvent } from '@tarojs/components/types/common'
 
 import './index.scss'
 
-interface Props {}
+interface Props { }
 interface State {
-    search: string,
-    keywords: Array<string>,
-    imgList: Array<string>,
-    selectedSort: SelectedSort | null,
-    kwArr: Array<kwArrData>
+  search: string,
+  keywords: Array<string>,
+  imgList: Array<string>,
+  selectedSort: SelectedSort | null,
+  kwArr: Array<kwArrData>
 }
 
 interface kwArrData {
-    CssName: string,
-    Name: string,
-    Note: string;
-    QueryCount: number | null;
-    TargetId: string,
-    TypeKey: string
+  CssName: string,
+  Name: string,
+  Note: string;
+  QueryCount: number | null;
+  TargetId: string,
+  TypeKey: string
 }
 
-class Index extends Component <Props,State>   {
+class Index extends Component<Props, State> {
   config: Config = {
     navigationBarTitleText: '垃圾分类助手',
     navigationBarTextStyle: 'white',
     navigationBarBackgroundColor: '#2c7cf7'
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  readonly state: Readonly<State> = {
+  readonly state: Readonly<any> = {
     search: '',
     keywords: [],
     selectedSort: null,
     imgList: [
-        'ico-3',
-        'ico-4',
-        'ico-2',
-        'ico-1'
+      'ico-3',
+      'ico-4',
+      'ico-2',
+      'ico-1'
     ],
     kwArr: [{
-        CssName: '',
-        Name: '',
-        Note: '',
-        QueryCount: 0 || null,
-        TargetId: '',
-        TypeKey: ''
+      CssName: '',
+      Name: '',
+      Note: '',
+      QueryCount: 0 || null,
+      TargetId: '',
+      TypeKey: ''
     }]
   }
 
@@ -74,15 +74,15 @@ class Index extends Component <Props,State>   {
   seach(e) {
     let str = e.detail.value
     // console.log(str)
-    if(!str) {
+    if (!str) {
       this.clear()
       return
     }
     this.setState({
       search: str
-    },async ()=> {
-      let res = await SeachKey({keyword: str})
-      if(res) {
+    }, async () => {
+      let res = await SeachKey({ keyword: str })
+      if (res) {
         this.setState({
           keywords: res.data.kw_list,
           kwArr: res.data.kw_arr
@@ -99,16 +99,16 @@ class Index extends Component <Props,State>   {
     console.log(e);
     let kwArr: Array<kwArrData> = this.state.kwArr
     let keyword: string = e.currentTarget.dataset.keyword
-    let data: kwArrData = kwArr.find((item)=> {
-        return item.Name == keyword
+    let data: kwArrData = kwArr.find((item) => {
+      return item.Name == keyword
     })
-    if(data) {
-        let CssName = data.CssName
-        let index: number = IndexModel.handleCssName(CssName)
-        let selectedData: SelectedSort = IndexModel.getSort(index)
-        this.setState({
-            selectedSort: selectedData
-        })
+    if (data) {
+      let CssName = data.CssName
+      let index: number = IndexModel.handleCssName(CssName)
+      let selectedData: SelectedSort = IndexModel.getSort(index)
+      this.setState({
+        selectedSort: selectedData
+      })
     }
   }
 
@@ -140,7 +140,7 @@ class Index extends Component <Props,State>   {
   }
 
   render() {
-    let { search, imgList, keywords, selectedSort} = this.state
+    let { search, imgList, keywords, selectedSort } = this.state
     return (
       <View className='index-container'>
         <View className='searchFiled'>
@@ -161,65 +161,65 @@ class Index extends Component <Props,State>   {
               // onClick={this.clear}
               type="cancel"
               color='rgb(156, 156, 156)'
-              />
+            />
           </View>
         </View>
         {
           // 搜索列表
-          keywords.length != 0 && keywords.map((item, index)=> {
+          keywords.length != 0 && keywords.map((item, index) => {
             return <View className='searchList' key={index}>
-                <View
-                    className="searchCell"
-                    onClick={this.searchSort}
-                    data-keyword={item}>{item}</View>
-            <View className='line'></View></View>
+              <View
+                className="searchCell"
+                onClick={this.searchSort}
+                data-keyword={item}>{item}</View>
+              <View className='line'></View></View>
           })
         }
         {
           // img展示
-          keywords.length == 0 &&<View className="img-container">
-              {
-                imgList.map((item, index)=> {
+          keywords.length == 0 && <View className="img-container">
+            {
+              imgList.map((item, index) => {
                 return <View
                   key={index}
                   onClick={this.RouteGo}
                   data-link="/pages/detail/detail"
                   data-index={index}
                   className='inconImage {{item}}' >
-                  </View>
-                })
-              }
+                </View>
+              })
+            }
           </View>
         }
         {
           // 详情弹层
           selectedSort != null && <View className='resultback' onClick={this.dismiss}>
-          <View className='resultView'>
-            <View className='resultHead'>
-              {selectedSort.name}
-            </View>
-            <View className='desView'>
-              <View className='bigIcon {{selectedSort.iconClass}}'style='background-color:{{selectedSort.color}}'></View>
-              {selectedSort.des}
-            </View>
-            {
-              selectedSort.inc && <View className='title'>
-                {selectedSort.name}主要包括
+            <View className='resultView'>
+              <View className='resultHead'>
+                {selectedSort.name}
               </View>
-            }
-            <View className='des'>
-              {selectedSort.inc}
-            </View>
-            {
-              selectedSort.req && <View className='title'>
-                {selectedSort.name}投放要求
+              <View className='desView'>
+                <View className='bigIcon {{selectedSort.iconClass}}' style='background-color:{{selectedSort.color}}'></View>
+                {selectedSort.des}
               </View>
-            }
-            <View className='des'>
-              {selectedSort.req}
+              {
+                selectedSort.inc && <View className='title'>
+                  {selectedSort.name}主要包括
+                </View>
+              }
+              <View className='des'>
+                {selectedSort.inc}
+              </View>
+              {
+                selectedSort.req && <View className='title'>
+                  {selectedSort.name}投放要求
+                </View>
+              }
+              <View className='des'>
+                {selectedSort.req}
+              </View>
             </View>
           </View>
-        </View>
         }
         {
           keywords.length == 0 && <View className="desc">工具说明: 上海垃圾分类查询小工具，2019年7月1日,《上海市生活垃圾管理条例》正式实施，生活垃圾按照<Text>"可回收物"、"有害垃圾"、"湿垃圾"、"干垃圾"</Text>的分类标准。</View>
@@ -227,8 +227,16 @@ class Index extends Component <Props,State>   {
         <Button
           className="button"
           openType="share">
-            分享
+          分享
         </Button>
+
+        <Ad
+          unitId='adunit-8f9c15536d079fb7'
+          // adIntervals={60}
+          onLoad={() => console.log('ad onLoad')}
+          onError={() => console.log('ad onError')}
+          onClose={() => console.log('ad onClose')}
+        />
       </View>
     )
   }

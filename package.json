@@ -2,7 +2,7 @@
 	"name": "wxSapp",
 	"version": "1.0.0",
 	"private": true,
-	"description": "开发一个天气小程序",
+	"description": "垃圾分类小程序工具",
 	"templateInfo": {
 		"name": "redux",
 		"typescript": true,
