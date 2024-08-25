@@ -90,7 +90,7 @@
 		"webpack-bundle-analyzer": "^3.8.0"
 	},
 	"wx": {
-		"wxVersion": "1.1.11",
-		"wxDesc": "天气接口请求升级；天气界面样式修改"
+		"wxVersion": "1.1.13",
+		"wxDesc": "添加广告组件展示"
 	}
 }
