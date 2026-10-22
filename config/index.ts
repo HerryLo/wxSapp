@@ -28,7 +28,13 @@ export default defineConfig<'webpack5'>(async (merge) => {
       options: {}
     },
     framework: 'react',
-    compiler: 'webpack5',
+    compiler: {
+      type: 'webpack5',
+      // Taro 4 的 prebundle 产物在部分微信开发者工具环境会导致页面白屏
+      prebundle: {
+        enable: false
+      }
+    },
     cache: {
       enable: false
     },
