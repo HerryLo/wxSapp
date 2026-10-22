@@ -1,58 +1,65 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Taro, { useShareAppMessage } from '@tarojs/taro'
 import { View, Icon, Input, Button, Text, Ad } from '@tarojs/components'
-import { SeachKey } from '../../api/index'
+import { SearchGarbage } from '../../api/index'
 import IndexModel from '../../model/index/index'
-import { SelectedSort } from '../../type/index'
+import { GarbageItem, SelectedSort } from '../../type/index'
 import { ITouchEvent } from '@tarojs/components/types/common'
 
 import './index.scss'
-
-interface KwArrData {
-  CssName: string
-  Name: string
-  Note: string
-  QueryCount: number | null
-  TargetId: string
-  TypeKey: string
-}
 
 const IMG_LIST = ['ico-3', 'ico-4', 'ico-2', 'ico-1']
 
 function Index() {
   const [search, setSearch] = useState('')
-  const [keywords, setKeywords] = useState<string[]>([])
-  const [kwArr, setKwArr] = useState<KwArrData[]>([])
+  const [garbageList, setGarbageList] = useState<GarbageItem[]>([])
   const [selectedSort, setSelectedSort] = useState<SelectedSort | null>(null)
+  const requestId = useRef(0)
 
   useShareAppMessage(() => ({ title: '垃圾分类助手' }))
 
   const clear = () => {
-    setKeywords([])
+    requestId.current += 1
+    setGarbageList([])
     setSearch('')
   }
 
   const seach = async (e: any) => {
     const str: string = e.detail.value
-    if (!str) {
+    setSearch(str)
+    if (!str.trim()) {
       clear()
       return
     }
-    setSearch(str)
-    const res = await SeachKey({ keyword: str })
-    if (res) {
-      setKeywords(res.data.kw_list || [])
-      setKwArr(res.data.kw_arr || [])
+    const currentId = ++requestId.current
+    try {
+      const list = await SearchGarbage(str.trim())
+      if (currentId === requestId.current) {
+        setGarbageList(list)
+      }
+    } catch (err) {
+      if (currentId === requestId.current) {
+        setGarbageList([])
+        Taro.showToast({
+          title: err instanceof Error ? err.message : '查询失败',
+          icon: 'none'
+        })
+      }
     }
   }
 
   const searchSort = (e: ITouchEvent) => {
-    const keyword = e.currentTarget.dataset.keyword as string
-    const data = kwArr.find(item => item.Name === keyword)
-    if (data) {
-      const index = IndexModel.handleCssName(data.CssName)
-      setSelectedSort(IndexModel.getSort(index))
+    const name = e.currentTarget.dataset.name as string
+    const data = garbageList.find(item => item.name === name)
+    if (!data) {
+      return
     }
+    const index = IndexModel.handleCategory(data.category)
+    if (index === undefined) {
+      Taro.showToast({ title: '暂不支持该垃圾类型', icon: 'none' })
+      return
+    }
+    setSelectedSort(IndexModel.getSort(index))
   }
 
   const dismiss = () => {
@@ -82,15 +89,15 @@ function Index() {
         </View>
       </View>
       {
-        keywords.length !== 0 && keywords.map((item, index) => {
+        garbageList.map((item, index) => {
           return (
-            <View className='searchList' key={index}>
+            <View className='searchList' key={`${item.name}-${index}`}>
               <View
                 className='searchCell'
                 onClick={searchSort}
-                data-keyword={item}
+                data-name={item.name}
               >
-                {item}
+                {item.name}
               </View>
               <View className='line'></View>
             </View>
@@ -98,7 +105,11 @@ function Index() {
         })
       }
       {
-        keywords.length === 0 &&
+        search && garbageList.length === 0 &&
+          <View className='desc'>未找到相关垃圾分类信息</View>
+      }
+      {
+        garbageList.length === 0 && !search &&
           <View className='img-container'>
             {
               IMG_LIST.map((item, index) => {
@@ -152,7 +163,7 @@ function Index() {
           </View>
       }
       {
-        keywords.length === 0 &&
+        garbageList.length === 0 && !search &&
           <View className='desc'>
             工具说明: 上海垃圾分类查询小工具，2019年7月1日,《上海市生活垃圾管理条例》正式实施，生活垃圾按照
             <Text>"可回收物"、"有害垃圾"、"湿垃圾"、"干垃圾"</Text>

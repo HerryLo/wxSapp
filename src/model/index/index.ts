@@ -95,26 +95,20 @@ class IndexModel {
   }
 
   /**
-   * 转换
-   * @param i
+   * 中文分类名转排序索引
+   * @param category
    */
-  handleCssName(CssName: string): number {
-      let i;
-    switch (CssName) {
-      case 'shi':
-        i = 0
-        break
-      case 'gan':
-        i = 1
-        break
-      case 'kehuishou':
-        i = 2
-        break
-      case 'youhai':
-        i = 3
-        break
+  handleCategory(category: string): number | undefined {
+    const categoryIndex: Record<string, number> = {
+      '湿垃圾': 0,
+      '干垃圾': 1,
+      '可回收物': 2,
+      '有害垃圾': 3,
+      '建筑垃圾': 4,
+      '大件垃圾': 5,
+      '不属于生活垃圾': 6
     }
-    return i
+    return categoryIndex[category]
   }
 
 }

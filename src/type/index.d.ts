@@ -1,3 +1,15 @@
+export interface GarbageItem {
+    name: string;
+    category: string;
+    content: string;
+}
+
+export interface GarbageResponse {
+    code: number;
+    data?: Array<GarbageItem>;
+    msg?: string;
+}
+
 export interface SelectedSort {
     name: string;
     des: string;
