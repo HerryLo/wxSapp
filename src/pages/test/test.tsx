@@ -1,251 +1,170 @@
-import { ComponentClass, ReactNode } from "react";
-import Taro, { Component, Config } from "@tarojs/taro";
-import { View, Text, Button, Ad } from "@tarojs/components";
-import { randomArray } from "../../utils/util";
-import { result } from "../../static/result";
+import { useEffect, useRef, useState } from 'react'
+import Taro, { useShareAppMessage } from '@tarojs/taro'
+import { View, Text, Button, Ad } from '@tarojs/components'
+import { ITouchEvent } from '@tarojs/components/types/common'
+import { randomArray } from '../../utils/util'
+import { result } from '../../static/result'
 
-import "./test.scss";
-
-interface Props {}
-
-interface State {
-  Names: Array<string>;
-  IconClass: Array<string>;
-  arrResult: Array<ResultProp>;
-  currentIndex: number;
-  index: number;
-  resultIndexList: Array<number>;
-  grade: number;
-}
+import './test.scss'
 
 interface ResultProp {
-  a: string;
-  c: string; // 类型
-  i: string; // 拼音缩写
-  n: string; // name
+  a: string
+  c: string
+  i: string
+  n: string
 }
 
-const RandomNumber = 10;
+const RANDOM_NUMBER = 10
+const NAMES = ['湿垃圾', '干垃圾', '可回收物', '有害垃圾']
+const ICON_CLASS = ['ico-1', 'ico-2', 'ico-3', 'ico-4']
 
-let clickState = true;
+function Test() {
+  const clickState = useRef(true)
+  const [arrResult, setArrResult] = useState<ResultProp[]>([])
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [index, setIndex] = useState(-1)
+  const [resultIndexList, setResultIndexList] = useState<number[]>([])
+  const [grade, setGrade] = useState(0)
 
-class Test extends Component<Props, State> {
-  config: Config = {
-    navigationBarTitleText: "小测试",
-    navigationBarTextStyle: "white",
-    navigationBarBackgroundColor: "#2c7cf7"
-  };
+  useShareAppMessage(() => ({ title: '垃圾分类统一考试' }))
 
-  constructor(props) {
-    super(props);
+  const dataInit = () => {
+    const { data } = result
+    const list = [1, 2, 3, 4]
+    const arr = randomArray<number>(list, RANDOM_NUMBER)
+    const nextResult = arr.reduce<ResultProp[]>((acc, i) => {
+      return acc.concat(randomArray<ResultProp>(data[i], 1))
+    }, [])
+    setArrResult(nextResult)
+    setIndex(-1)
+    setGrade(0)
+    setCurrentIndex(0)
+    setResultIndexList([])
   }
 
-  public readonly state: Readonly<State> = {
-    Names: ["湿垃圾", "干垃圾", "可回收物", "有害垃圾"],
-    IconClass: ["ico-1", "ico-2", "ico-3", "ico-4"],
-    arrResult: [],
-    currentIndex: 0,
-    index: -1,
-    resultIndexList: [],
-    grade: 0
-  };
+  useEffect(() => {
+    dataInit()
+  }, [])
 
-  componentDidMount() {
-    this.init();
-  }
-
-  init() {
-    this.dataInit();
-  }
-
-  dataInit() {
-    let { data } = result;
-    let arrResult: Array<ResultProp> = [];
-    let list: Array<number> = [1, 2, 3, 4];
-    // 得到类型数组的对应下标
-    let arr: Array<number> = randomArray<number>(list, RandomNumber);
-    console.log(arr);
-    console.log(data);
-    for (let i = 0; i < arr.length; i++) {
-      // 随机垃圾数据
-      arrResult = arrResult.concat(randomArray<ResultProp>(data[arr[i]], 1));
-    }
-    this.setState({
-      arrResult,
-      index: -1,
-      grade: 0,
-      currentIndex: 0,
-      resultIndexList: []
-    });
-    console.log(arrResult);
-  }
-
-  clickCard(e) {
-    let { resultIndexList } = this.state;
-    if (!clickState) return false;
-    clickState = false;
-    let { dataset } = e.currentTarget;
-    let { currentindex, index } = dataset;
-    index = Number(index);
-    // 当前卡片下标加1
-    currentindex = Number(currentindex) + 1;
-
-    // 当前点击的下标
-    this.setState(
-      {
-        index: index
-      },
-      () => {
-        setTimeout(() => {
-          resultIndexList.push(index);
-          this.setState(
-            {
-              index: -1,
-              resultIndexList,
-              currentIndex: currentindex
-            },
-            () => {
-              setTimeout(() => {
-                clickState = true;
-              }, 200);
-              if (currentindex == 10) {
-                this.countGrade();
-              }
-            }
-          );
-        }, 300);
+  const clickCard = (e: ITouchEvent) => {
+    if (!clickState.current) return
+    clickState.current = false
+    const { currentindex, index: cardIndex } = e.currentTarget.dataset
+    const nextCurrentIndex = Number(currentindex) + 1
+    const selected = Number(cardIndex)
+    setIndex(selected)
+    setTimeout(() => {
+      const nextList = [...resultIndexList, selected]
+      setResultIndexList(nextList)
+      setIndex(-1)
+      setCurrentIndex(nextCurrentIndex)
+      setTimeout(() => {
+        clickState.current = true
+      }, 200)
+      if (nextCurrentIndex === 10) {
+        let nextGrade = 0
+        nextList.forEach((item, i) => {
+          if (item + 1 === Number(arrResult[i].c)) {
+            nextGrade += 10
+          }
+        })
+        setGrade(nextGrade)
       }
-    );
+    }, 300)
   }
 
-  countGrade() {
-    let grade = 0;
-    let { resultIndexList, arrResult } = this.state;
-    resultIndexList.forEach((item, index) => {
-      if (item + 1 === Number(arrResult[index].c)) {
-        grade += 10;
-      }
-    });
-    this.setState({
-      grade
-    });
-  }
-
-  routerGo(e) {
-    let { dataset } = e.currentTarget;
-    let { link } = dataset;
+  const routerGo = (e: ITouchEvent) => {
     Taro.reLaunch({
-      url: link
-    });
+      url: e.currentTarget.dataset.link
+    })
   }
 
-  /**
-   * 分享函数
-   */
-  onShareAppMessage() {
-    return {
-      title: "垃圾分类统一考试"
-    };
-  }
+  const ci = currentIndex < 9 ? '0' + (currentIndex + 1) : currentIndex + 1
 
-  render(): ReactNode {
-    let indexCard = this.state.index;
-    let {
-      IconClass,
-      Names,
-      arrResult,
-      currentIndex,
-      resultIndexList,
-      grade
-    } = this.state;
-    let ci = currentIndex < 9 ? "0" + (currentIndex + 1) : currentIndex + 1;
-    return (
-      <View className="container">
-        <View
-          className="icon_Swiper"
-          style="transform: translateX(-{{currentIndex*100}}vw);transition: .3s;"
-        >
-          {arrResult.map((item, ids) => {
-            return (
-              <View key={ids} className="icon_list">
-                <View className="number">
-                  <Text>{ci}</Text> / 10
-                </View>
-                <View className="title">{item.n}</View>
-                {IconClass.map((item, ins) => {
-                  return (
-                    <View
-                      key={ins}
-                      data-index={ins}
-                      data-currentindex={ids}
-                      onClick={this.clickCard}
-                      className={
-                        (indexCard == ins ? "active" : "") + " card_Info"
-                      }
-                    >
-                      <View className={item + " inconImage"}></View>
-                      <View className="name">{Names[ins]}</View>
-                    </View>
-                  );
-                })}
-                <View className="tipswrapper">
-                  <Text>注意：</Text>这是垃圾分类小测验，用于测验垃圾分类小知识。一共有10道题，每题10分，快来试试吧，看您可以得多少分！
-                </View>
+  return (
+    <View className='container'>
+      <View
+        className='icon_Swiper'
+        style={{
+          transform: `translateX(-${currentIndex * 100}vw)`,
+          transition: '0.3s'
+        }}
+      >
+        {arrResult.map((item, ids) => {
+          return (
+            <View key={ids} className='icon_list'>
+              <View className='number'>
+                <Text>{ci}</Text> / 10
               </View>
-            );
-          })}
-          <View className="resultList">
-            <View className="resultList-title">成绩单</View>
-            {arrResult.map((item, index) => {
-              let seletype = resultIndexList[index];
-              return (
-                <View className="result-item" key={item.i}>
-                  <View className="name">{item.n}</View>
-                  <View className="typeResult">
-                    <View className="type">{Names[item.c - 1]}</View>
-                    <View className="result">
-                      {Names[seletype] == Names[item.c - 1] ? (
-                        "✔"
-                      ) : (
-                        <Text>{Names[seletype]}</Text>
-                      )}
-                    </View>
+              <View className='title'>{item.n}</View>
+              {ICON_CLASS.map((iconClass, ins) => {
+                return (
+                  <View
+                    key={ins}
+                    data-index={ins}
+                    data-currentindex={ids}
+                    onClick={clickCard}
+                    className={
+                      (index === ins ? 'active' : '') + ' card_Info'
+                    }
+                  >
+                    <View className={iconClass + ' inconImage'}></View>
+                    <View className='name'>{NAMES[ins]}</View>
+                  </View>
+                )
+              })}
+            </View>
+          )
+        })}
+        <View className='resultList'>
+          <View className='resultList-title'>成绩单</View>
+          {arrResult.map((item, resultIndex) => {
+            const seletype = resultIndexList[resultIndex]
+            return (
+              <View className='result-item' key={item.i}>
+                <View className='name'>{item.n}</View>
+                <View className='typeResult'>
+                  <View className='type'>{NAMES[Number(item.c) - 1]}</View>
+                  <View className='result'>
+                    {NAMES[seletype] === NAMES[Number(item.c) - 1] ? (
+                      '✔'
+                    ) : (
+                      <Text>{NAMES[seletype]}</Text>
+                    )}
                   </View>
                 </View>
-              );
-            })}
-            <View className="grade">分数：{grade}</View>
-            <View className="btnList">
-              <View className="btn1" onClick={this.dataInit}>
-                再试一次
               </View>
-              <Button className="btn2" openType="share">
-                考考别人
-              </Button>
+            )
+          })}
+          <View className='grade'>分数：{grade}</View>
+          <View className='btnList'>
+            <View className='btn1' onClick={dataInit}>
+              再试一次
             </View>
-            <View
-              className="foot"
-              onClick={this.routerGo}
-              data-link="/pages/index/index"
-            >
-              更多垃圾分类
-            </View>
+            <Button className='btn2' openType='share'>
+              考考别人
+            </Button>
+          </View>
+          <View
+            className='foot'
+            onClick={routerGo}
+            data-link='/pages/index/index'
+          >
+            更多垃圾分类
           </View>
         </View>
-        <Button className="button" openType="share">
-          分享
-        </Button>
-
-        <Ad
-          unitId='adunit-1a4ad7108719235b'
-          // adIntervals={60}
-          onLoad={() => console.log('ad onLoad')}
-          onError={() => console.log('ad onError')}
-          onClose={() => console.log('ad onClose')}
-        />
       </View>
-    );
-  }
+      <Button className='button' openType='share'>
+        分享
+      </Button>
+      <Ad
+        unitId='adunit-1a4ad7108719235b'
+        onLoad={() => console.log('ad onLoad')}
+        onError={() => console.log('ad onError')}
+        onClose={() => console.log('ad onClose')}
+      />
+    </View>
+  )
 }
 
-export default Test as ComponentClass;
+export default Test
