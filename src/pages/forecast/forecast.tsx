@@ -1,163 +1,164 @@
-import { ComponentClass } from "react";
-import Taro, { Component, Config } from "@tarojs/taro";
-import { View, Text, Button } from "@tarojs/components";
-import { RealTimeWeather, SearchCity, WeatherV7d } from "../../api/index";
-import { handleTime } from '../../utils/util';
+import { useEffect, useRef, useState } from 'react'
+import Taro, { useDidShow, useShareAppMessage } from '@tarojs/taro'
+import { View, Text, Button, ScrollView } from '@tarojs/components'
+import { RealTimeWeather, SearchCity, WeatherV7d } from '../../api/index'
+import { handleTime } from '../../utils/util'
 
-import "./forecast.scss";
+import './forecast.scss'
 
-interface IProps { }
-interface IState {
-  dataInfo: any;
-  areaInfo: any;
-  data7dInfo: any
+interface AreaInfo {
+  adm2?: string
+  name?: string
 }
 
-class ForeCast extends Component<IProps, IState> {
-  [x: string]: any;
-  /**
-   * 指定config的类型声明为: Taro.Config
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
-  config: Config = {
-    navigationBarTitleText: "天气预报",
-    navigationBarTextStyle: "white",
-    navigationBarBackgroundColor: "#2c7cf7"
-  };
+interface WeatherNow {
+  text?: string
+  temp?: string
+  feelsLike?: string
+  windDir?: string
+  windSpeed?: string
+  obsTime?: string
+  humidity?: string
+  vis?: string
+  [key: string]: any
+}
 
-  interstitialAd: any = null;
+interface DailyWeather {
+  fxDate: string
+  tempMin: string
+  tempMax: string
+  textDay: string
+  textNight: string
+  sunrise: string
+  sunset: string
+}
 
-  constructor(props) {
-    super(props);
+interface Weather7d {
+  daily?: DailyWeather[]
+  updateTime?: string
+}
+
+function ForeCast() {
+  const [dataInfo, setDataInfo] = useState<WeatherNow | null>(null)
+  const [areaInfo, setAreaInfo] = useState<AreaInfo[] | null>(null)
+  const [data7dInfo, setData7dInfo] = useState<Weather7d | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const interstitialAd = useRef<any>(null)
+
+  useShareAppMessage(() => ({ title: '天气预报' }))
+
+  const weather = async () => {
+    setLoading(true)
+    setError('')
+    try {
+      const location = await Taro.getLocation({ type: 'wgs84' })
+      const { latitude, longitude } = location
+      const areaRes = await SearchCity({
+        location: `${longitude},${latitude}`
+      })
+      const weatherRes = await RealTimeWeather({
+        location: `${longitude},${latitude}`
+      })
+      const weather7dRes = await WeatherV7d({
+        location: `${longitude},${latitude}`
+      })
+      setDataInfo(weatherRes.data.now)
+      setAreaInfo(areaRes.data.location)
+      setData7dInfo(weather7dRes.data)
+    } catch (err) {
+      console.error('获取天气失败', err)
+      setError('获取天气失败')
+    } finally {
+      setLoading(false)
+    }
   }
 
-  readonly state: Readonly<IState> = {
-    dataInfo: null,
-    areaInfo: {},
-    data7dInfo: {}
-  };
+  useEffect(() => {
+    weather()
+  }, [])
 
-  componentDidMount() {
-    this.weather();
-  }
-
-  componentDidShow() {
-    this.createAd();
-  }
-
-  createAd() {
-    if (Taro.createInterstitialAd && !this.interstitialAd) {
-      this.interstitialAd = Taro.createInterstitialAd({
+  useDidShow(() => {
+    if ((Taro as any).createInterstitialAd && !interstitialAd.current) {
+      const ad = Taro.createInterstitialAd({
         adUnitId: 'adunit-e3b0b4a6854a07e2'
       })
-      this.interstitialAd.onLoad(() => { })
-      this.interstitialAd.onError((err) => {
+      ad.onLoad(() => {})
+      ad.onError((err) => {
         console.error('插屏广告加载失败', err)
       })
-      this.interstitialAd.onClose(() => { })
+      ad.onClose(() => {})
+      interstitialAd.current = ad
     }
 
-    // 在适合的场景显示插屏广告
-    if (this.interstitialAd) {
-      this.interstitialAd.show().catch((err) => {
+    if (interstitialAd.current) {
+      interstitialAd.current.show().catch((err: any) => {
         console.error('插屏广告显示失败', err)
       })
     }
-  }
+  })
 
-  async weather() {
-    Taro.getLocation({
-      success: async res => {
-        console.log(res);
-        const { latitude, longitude } = res;
-        const areaRes = await SearchCity({
-          location: `${longitude},${latitude}`
-        });
-        console.log(areaRes);
-        let weatherRes = await RealTimeWeather({
-          location: `${longitude},${latitude}`
-        });
-        console.log(weatherRes);
-        let weather7dRes = await WeatherV7d({
-          location: `${longitude},${latitude}`
-        });
-        console.log(weather7dRes);
-        this.setState({
-          dataInfo: weatherRes.data.now,
-          areaInfo: areaRes.data.location,
-          data7dInfo: weather7dRes.data
-        });
-      }
-    });
-  }
-
-  onShareAppMessage() {
-    return {
-      title: "天气预报"
-    };
-  }
-
-  render() {
-    let { dataInfo, areaInfo, data7dInfo } = this.state;
-    return (
-      <View className="forecast">
-        {/* 头部内容 */}
-        <View className="top">
-          <View style="height: 80rpx;"></View>
-          <View className="currentWind">
-            {dataInfo.text || '--'} {dataInfo.temp || '--'}℃
+  return (
+    <View className='forecast'>
+      <View className='top'>
+        <View style='height: 80rpx;'></View>
+        <View className='currentWind'>
+          {dataInfo?.text || '--'} {dataInfo?.temp || '--'}℃
+        </View>
+        <View className='weatherDesc padding'>
+          体感温度 {dataInfo?.feelsLike || '--'}℃
+        </View>
+        <View className='temperature padding'>风向 {dataInfo?.windDir || '--'}</View>
+        <View className='temperature padding'>风速 {dataInfo?.windSpeed || '--'}公里/小时</View>
+        <View className='time'>
+          <View>
+            {dataInfo?.obsTime ? handleTime(dataInfo.obsTime) : '--'}
           </View>
-          <View className="weatherDesc padding">
-            体感温度 {dataInfo.feelsLike || '--'}℃
-          </View>
-          <View className="temperature padding">风向 {dataInfo.windDir || '--'}</View>
-          <View className="temperature padding">风速 {dataInfo.windSpeed || '--'}公里/小时</View>
-          <View className="time">
-            <View>
-              {dataInfo && handleTime(dataInfo.obsTime)}
-            </View>
-            <View>
-              {areaInfo[0].adm2} {areaInfo[0].name}
-            </View>
+          <View>
+            {areaInfo?.[0]?.adm2} {areaInfo?.[0]?.name}
           </View>
         </View>
-        {/* 内容列表 */}
-        <View className="list">
-          <View className="list-item">
-            <Text>相对湿度 {dataInfo.humidity || '--'}%</Text>
-          </View>
-          <View className="list-item">
-            <Text>能见度 {dataInfo.vis || '--'}公里</Text>
-          </View>
-        </View>
-        {/* 7天天气 */}
-        {data7dInfo.daily.length > 0 && (
-          <ScrollView className="scrollView" scrollX={true}>
-            <View className="card">
-              {data7dInfo.daily.map((item, index) => {
-                return (
-                  <View className="card-item" key={index} vertical={true}>
-                    <View className="title">{item.fxDate}</View>
-                    <View className="desc">温度：{item.tempMin}℃~{item.tempMax}℃</View>
-                    <View className="desc">白天： {item.textDay}</View>
-                    <View className="desc">夜间： {item.textNight}</View>
-                    <View className="desc">日出： {item.sunrise}</View>
-                    <View className="desc">日落： {item.sunset}</View>
-                  </View>
-                );
-              })}
-            </View>
-          </ScrollView>
-        )}
-        {data7dInfo.updateTime && <View className="updateTime7d">7天天气更新：{handleTime(data7dInfo.updateTime)}</View>}
-        <Button className="button" openType="share">
-          分享
-        </Button>
       </View>
-    );
-  }
+      {loading && <View className='loading'>加载中...</View>}
+      {error && (
+        <View className='loading' onClick={weather}>
+          {error}，点击重试
+        </View>
+      )}
+      <View className='list'>
+        <View className='list-item'>
+          <Text>相对湿度 {dataInfo?.humidity || '--'}%</Text>
+        </View>
+        <View className='list-item'>
+          <Text>能见度 {dataInfo?.vis || '--'}公里</Text>
+        </View>
+      </View>
+      {data7dInfo?.daily && data7dInfo.daily.length > 0 && (
+        <ScrollView className='scrollView' scrollX={true}>
+          <View className='card'>
+            {data7dInfo.daily.map((item, index) => {
+              return (
+                <View className='card-item' key={index}>
+                  <View className='title'>{item.fxDate}</View>
+                  <View className='desc'>温度：{item.tempMin}℃~{item.tempMax}℃</View>
+                  <View className='desc'>白天： {item.textDay}</View>
+                  <View className='desc'>夜间： {item.textNight}</View>
+                  <View className='desc'>日出： {item.sunrise}</View>
+                  <View className='desc'>日落： {item.sunset}</View>
+                </View>
+              )
+            })}
+          </View>
+        </ScrollView>
+      )}
+      {data7dInfo?.updateTime && (
+        <View className='updateTime7d'>7天天气更新：{handleTime(data7dInfo.updateTime)}</View>
+      )}
+      <Button className='button' openType='share'>
+        分享
+      </Button>
+    </View>
+  )
 }
 
-export default ForeCast as ComponentClass;
+export default ForeCast
