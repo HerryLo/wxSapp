@@ -1,6 +1,3 @@
-import { strict } from "assert";
-import { string, number } from "prop-types";
-
 export interface SelectedSort {
     name: string;
     des: string;

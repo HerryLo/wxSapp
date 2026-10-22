@@ -13,20 +13,18 @@
     "noUnusedParameters": true,
     "strictNullChecks": true,
     "sourceMap": true,
-    "baseUrl": "src",
     "rootDir": ".",
-    "jsx": "react",
-    "jsxFactory": "Taro.createElement",
+    "jsx": "react-jsx",
     "allowJs": true,
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "typeRoots": [
       "node_modules/@types"
     ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
-  "include": ["src"],
+  "include": ["./src", "./types", "./config"],
   "compileOnSave": false
 }
