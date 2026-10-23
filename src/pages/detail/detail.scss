@@ -9,18 +9,15 @@ page {
   color: $clay-text;
 
   & .inconImage {
-    width: 100%;
-    height: 300rpx;
+    width: 440rpx;
+    height: 440rpx;
     margin: 48rpx auto 40rpx auto;
-    border-radius: 52rpx;
-    background-color: $clay-surface;
+    border-radius: 40rpx;
+    background-color: transparent;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
-    box-shadow:
-      0 18rpx 32rpx rgba(106, 126, 168, 0.2),
-      inset 0 -8rpx 16rpx rgba(146, 160, 190, 0.14),
-      inset 0 8rpx 16rpx rgba(255, 255, 255, 0.9);
+    background-size: contain;
+    box-shadow: 0 8rpx 18rpx rgba(106, 126, 168, 0.1);
   }
 
   & .ico-3 {
