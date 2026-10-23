@@ -1,5 +1,6 @@
 export default definePageConfig({
-  navigationBarTitleText: '小测试',
-  navigationBarTextStyle: 'white',
-  navigationBarBackgroundColor: '#2c7cf7'
+  navigationBarTitleText: '测验',
+  navigationBarTextStyle: 'black',
+  navigationBarBackgroundColor: '#e8edf7',
+  usingComponents: {}
 })

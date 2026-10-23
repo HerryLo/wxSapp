@@ -1,52 +1,80 @@
+@import '../../styles/clay.scss';
+
+page {
+  background: $clay-bg;
+}
+
 .container {
-  margin:0rpx 65rpx;
+  padding: 0rpx 40rpx calc(60rpx + env(safe-area-inset-bottom));
+  color: $clay-text;
 
   & .inconImage {
-    width:100%;
-    height:200rpx;
-    margin:80rpx auto 40rpx auto;
-    text-align:center;
+    width: 100%;
+    height: 300rpx;
+    margin: 48rpx auto 40rpx auto;
+    border-radius: 52rpx;
+    background-color: $clay-surface;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    box-shadow:
+      0 18rpx 32rpx rgba(106, 126, 168, 0.2),
+      inset 0 -8rpx 16rpx rgba(146, 160, 190, 0.14),
+      inset 0 8rpx 16rpx rgba(255, 255, 255, 0.9);
   }
 
   & .ico-3 {
-    background: url('../../static/image/ico-3.jpg') no-repeat center center;
-    background-size:200rpx 200rpx;
+    background-image: url('../../static/image/ico-3.jpg');
   }
 
   & .ico-4 {
-    background: url('../../static/image/ico-4.jpg') no-repeat center center;
-    background-size:200rpx 200rpx;
+    background-image: url('../../static/image/ico-4.jpg');
   }
 
   & .ico-2 {
-    background: url('../../static/image/ico-2.jpg') no-repeat center center;
-    background-size:200rpx 200rpx;
+    background-image: url('../../static/image/ico-2.jpg');
   }
 
   & .ico-1 {
-    background: url('../../static/image/ico-1.jpg') no-repeat center center;
-    background-size:200rpx 200rpx;
+    background-image: url('../../static/image/ico-1.jpg');
   }
 
   & .title {
-    font-size: 30rpx;
+    padding: 28rpx 32rpx;
+    font-size: 28rpx;
+    line-height: 1.7;
+    color: $clay-muted;
+    @include clay-surface($clay-surface-soft, 32rpx);
 
     & text:first-child {
-      font-weight: 900;
-      padding-right:10rpx;
-      font-size:30rpx;
+      padding-right: 10rpx;
+      font-size: 30rpx;
+      font-weight: 800;
+      color: $clay-primary-deep;
     }
   }
 
   & .require {
-    font-weight:900;
-    padding-top:20rpx;
-    font-size: 30rpx;
+    margin: 36rpx 0rpx 0rpx 0rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    padding-left: 26rpx;
+    font-size: 26rpx;
+    font-weight: 700;
+    color: $clay-primary-deep;
+    border-radius: 999rpx;
+    background: #e3e9f4;
+    box-shadow:
+      inset 0 6rpx 12rpx rgba(120, 140, 178, 0.2),
+      inset 0 -6rpx 12rpx rgba(255, 255, 255, 0.8);
   }
 
   & .requireDesc {
-    font-size: 28rpx;
-    line-height:40rpx;
-    padding-top: 10rpx;
+    margin-top: 16rpx;
+    padding: 24rpx 30rpx;
+    font-size: 27rpx;
+    line-height: 1.7;
+    color: $clay-muted;
+    @include clay-surface($clay-surface-soft, 30rpx);
   }
 }

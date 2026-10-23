@@ -1,22 +1,41 @@
 import { useRef, useState } from 'react'
-import Taro, { useShareAppMessage } from '@tarojs/taro'
+import Taro, { useDidShow, useShareAppMessage } from '@tarojs/taro'
 import { View, Icon, Input, Button, Text, Ad } from '@tarojs/components'
 import { SearchGarbage } from '../../api/index'
 import IndexModel from '../../model/index/index'
 import { GarbageItem, SelectedSort } from '../../type/index'
+import { readStorage, writeStorage } from '../../utils/storage'
 import { ITouchEvent } from '@tarojs/components/types/common'
 
 import './index.scss'
 
 const IMG_LIST = ['ico-3', 'ico-4', 'ico-2', 'ico-1']
+const HOT_SEARCHES = ['电池', '塑料瓶', '剩菜剩饭', '快递纸箱', '口罩', '灯管', '旧衣服', '陶瓷碗']
+const HISTORY_KEY = 'garbage_search_history'
+const HISTORY_MAX = 10
+
+const categoryTone = (category: string) => {
+  if (category === '湿垃圾') return 'wet'
+  if (category === '干垃圾') return 'dry'
+  if (category === '可回收物') return 'recycle'
+  if (category === '有害垃圾') return 'harmful'
+  return 'other'
+}
 
 function Index() {
   const [search, setSearch] = useState('')
   const [garbageList, setGarbageList] = useState<GarbageItem[]>([])
   const [selectedSort, setSelectedSort] = useState<SelectedSort | null>(null)
+  const [history, setHistory] = useState<string[]>(() =>
+    readStorage<string[]>(HISTORY_KEY, [])
+  )
   const requestId = useRef(0)
 
   useShareAppMessage(() => ({ title: '垃圾分类助手' }))
+
+  useDidShow(() => {
+    Taro.eventCenter.trigger('sync-tabbar')
+  })
 
   const clear = () => {
     requestId.current += 1
@@ -24,16 +43,30 @@ function Index() {
     setSearch('')
   }
 
-  const seach = async (e: any) => {
-    const str: string = e.detail.value
-    setSearch(str)
-    if (!str.trim()) {
+  const pushHistory = (word: string) => {
+    const next = [word, ...history.filter(item => item !== word)].slice(0, HISTORY_MAX)
+    setHistory(next)
+    writeStorage(HISTORY_KEY, next)
+  }
+
+  const clearHistory = () => {
+    setHistory([])
+    writeStorage(HISTORY_KEY, [])
+  }
+
+  const runSearch = async (raw: string, record = false) => {
+    const str = raw.trim()
+    setSearch(raw)
+    if (!str) {
       clear()
       return
     }
+    if (record) {
+      pushHistory(str)
+    }
     const currentId = ++requestId.current
     try {
-      const list = await SearchGarbage(str.trim())
+      const list = await SearchGarbage(str)
       if (currentId === requestId.current) {
         setGarbageList(list)
       }
@@ -48,12 +81,21 @@ function Index() {
     }
   }
 
+  const seach = (e: any) => {
+    runSearch(e.detail.value)
+  }
+
+  const confirmSearch = () => {
+    runSearch(search, true)
+  }
+
   const searchSort = (e: ITouchEvent) => {
     const name = e.currentTarget.dataset.name as string
     const data = garbageList.find(item => item.name === name)
     if (!data) {
       return
     }
+    pushHistory(data.name)
     const index = IndexModel.handleCategory(data.category)
     if (index === undefined) {
       Taro.showToast({ title: '暂不支持该垃圾类型', icon: 'none' })
@@ -82,6 +124,7 @@ function Index() {
           placeholder='输入垃圾名称'
           confirmType='search'
           onInput={seach}
+          onConfirm={confirmSearch}
           value={search}
         />
         <View onClick={clear} className='icon'>
@@ -89,20 +132,65 @@ function Index() {
         </View>
       </View>
       {
-        garbageList.map((item, index) => {
-          return (
-            <View className='searchList' key={`${item.name}-${index}`}>
-              <View
-                className='searchCell'
-                onClick={searchSort}
-                data-name={item.name}
-              >
-                {item.name}
-              </View>
-              <View className='line'></View>
+        !search && history.length > 0 &&
+          <View className='search-history'>
+            <View className='chip-head'>
+              <Text className='chip-title'>最近搜索</Text>
+              <Text className='chip-clear' onClick={clearHistory}>清除</Text>
             </View>
-          )
-        })
+            <View className='chip-wrap'>
+              {history.map(word => (
+                <View
+                  className='chip'
+                  key={word}
+                  onClick={() => runSearch(word, true)}
+                >
+                  {word}
+                </View>
+              ))}
+            </View>
+          </View>
+      }
+      {
+        !search &&
+          <View className='search-history'>
+            <View className='chip-head'>
+              <Text className='chip-title'>热门搜索</Text>
+            </View>
+            <View className='chip-wrap'>
+              {HOT_SEARCHES.map(word => (
+                <View
+                  className='chip'
+                  key={word}
+                  onClick={() => runSearch(word, true)}
+                >
+                  {word}
+                </View>
+              ))}
+            </View>
+          </View>
+      }
+      {
+        garbageList.length > 0 &&
+          <View className='searchResults'>
+            {garbageList.map((item, index) => {
+              return (
+                <View className='searchList' key={`${item.name}-${index}`}>
+                  <View
+                    className='searchCell'
+                    onClick={searchSort}
+                    data-name={item.name}
+                  >
+                    <Text className='search-name'>{item.name}</Text>
+                    <Text className={'tag tag-' + categoryTone(item.category)}>
+                      {item.category}
+                    </Text>
+                  </View>
+                  <View className='line'></View>
+                </View>
+              )
+            })}
+          </View>
       }
       {
         search && garbageList.length === 0 &&
@@ -173,12 +261,14 @@ function Index() {
       <Button className='button' openType='share'>
         分享
       </Button>
-      <Ad
-        unitId='adunit-8f9c15536d079fb7'
-        onLoad={() => console.log('ad onLoad')}
-        onError={() => console.log('ad onError')}
-        onClose={() => console.log('ad onClose')}
-      />
+      <View className='ad-wrap'>
+        <Ad
+          unitId='adunit-8f9c15536d079fb7'
+          onLoad={() => console.log('ad onLoad')}
+          onError={() => console.log('ad onError')}
+          onClose={() => console.log('ad onClose')}
+        />
+      </View>
     </View>
   )
 }

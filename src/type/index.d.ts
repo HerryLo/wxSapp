@@ -19,6 +19,32 @@ export interface SelectedSort {
     iconClass: string;
 }
 
+export interface SavedCity {
+    name: string;
+    location: string;
+}
+
+export interface CityItem {
+    id: string;
+    name: string;
+    adm2?: string;
+    lat?: string;
+    lon?: string;
+}
+
+export interface WrongItem {
+    n: string;
+    c: string;
+    chosen: number;
+    ts: number;
+}
+
+export interface DailyStats {
+    lastDate: string;
+    streak: number;
+    total: number;
+}
+
 interface resultsItemType {
     currentCity: string;
     pm25: number;

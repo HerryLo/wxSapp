@@ -1,0 +1,46 @@
+// 粘土拟态（Claymorphism）共享变量与混入
+$clay-bg: #e8edf7;
+$clay-bg-deep: #dfe6f3;
+$clay-surface: #f4f7fd;
+$clay-surface-soft: #eef3fb;
+$clay-text: #35405c;
+$clay-muted: #7c88a6;
+$clay-primary: #4f7cff;
+$clay-primary-deep: #3a64dc;
+$clay-pink: #ff9eb5;
+$clay-mint: #86d9c4;
+$clay-peach: #ffbe8a;
+$clay-lilac: #b9a9ff;
+
+@mixin clay-surface($bg: $clay-surface, $radius: 36rpx) {
+  background: $bg;
+  border-radius: $radius;
+  box-shadow:
+    0 16rpx 32rpx rgba(106, 126, 168, 0.2),
+    inset 0 -8rpx 16rpx rgba(146, 160, 190, 0.14),
+    inset 0 8rpx 16rpx rgba(255, 255, 255, 0.9);
+}
+
+@mixin clay-inset($radius: 28rpx) {
+  border-radius: $radius;
+  background: #e3e9f4;
+  box-shadow:
+    inset 0 8rpx 18rpx rgba(120, 140, 178, 0.24),
+    inset 0 -8rpx 16rpx rgba(255, 255, 255, 0.85);
+}
+
+@mixin clay-button($bg: $clay-primary, $glow: rgba(79, 124, 255, 0.32)) {
+  background: $bg;
+  border-radius: 999rpx;
+  box-shadow:
+    0 14rpx 26rpx $glow,
+    inset 0 -8rpx 14rpx rgba(0, 0, 0, 0.12),
+    inset 0 8rpx 14rpx rgba(255, 255, 255, 0.35);
+}
+
+@mixin clay-pressed($radius: 28rpx) {
+  border-radius: $radius;
+  box-shadow:
+    inset 0 10rpx 18rpx rgba(120, 140, 178, 0.28),
+    inset 0 -8rpx 14rpx rgba(255, 255, 255, 0.7);
+}
