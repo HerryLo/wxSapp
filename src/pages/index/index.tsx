@@ -158,6 +158,10 @@ function Index() {
     })
   }
 
+  const goKnowledge = () => {
+    Taro.navigateTo({ url: '/pages/knowledge/index' })
+  }
+
   return (
     <View className='index-container' onClick={closeSearchPanel}>
       <View className='searchFiled' onClick={e => e.stopPropagation()}>
@@ -258,6 +262,17 @@ function Index() {
                 )
               })
             }
+          </View>
+      }
+      {
+        garbageList.length === 0 && !search && !focused &&
+          <View className='knowledge-entry' onClick={goKnowledge}>
+            <View className='knowledge-entry__icon'>📚</View>
+            <View className='knowledge-entry__body'>
+              <View className='knowledge-entry__title'>垃圾去哪了？</View>
+              <View className='knowledge-entry__desc'>环境风险 · 处理技术 · 减量行动</View>
+            </View>
+            <View className='knowledge-entry__arrow'>›</View>
           </View>
       }
       {

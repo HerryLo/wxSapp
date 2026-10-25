@@ -1,0 +1,117 @@
+@import '../../styles/clay.scss';
+
+.article-card {
+  display: flex;
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+  @include clay-surface($clay-surface, 40rpx);
+  transition: transform 0.15s ease;
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.article-card__icon {
+  width: 104rpx;
+  height: 104rpx;
+  flex-shrink: 0;
+  margin-right: 24rpx;
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  box-shadow: inset 0 6rpx 12rpx rgba(255, 255, 255, 0.65);
+}
+
+.article-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.article-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.article-card__tag {
+  padding: 4rpx 16rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.55);
+  color: $clay-text;
+}
+
+.article-card__bookmark {
+  width: 56rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: $clay-muted;
+}
+
+.article-card__bookmark.is-active {
+  color: $clay-primary;
+}
+
+.article-card__title {
+  margin-top: 8rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 1.45;
+  color: $clay-text;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.article-card__summary {
+  margin-top: 8rpx;
+  font-size: 25rpx;
+  line-height: 1.6;
+  color: $clay-muted;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.article-card__meta {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: $clay-muted;
+}
+
+.article-card--featured {
+  flex-direction: column;
+  padding: 32rpx;
+}
+
+.article-card--featured .article-card__icon {
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 0;
+  margin-bottom: 20rpx;
+  font-size: 64rpx;
+}
+
+.article-card--featured .article-card__title {
+  font-size: 38rpx;
+}
+
+.topic-risk {
+  background: linear-gradient(140deg, #ffbe8a, #ff9eb5);
+}
+
+.topic-tech {
+  background: linear-gradient(140deg, #c9d9ff, #e3d8ff);
+}
+
+.topic-action {
+  background: linear-gradient(140deg, #86d9c4, #c9f0e4);
+}

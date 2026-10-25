@@ -3,7 +3,9 @@ export default defineAppConfig({
     'pages/index/index',
     'pages/forecast/forecast',
     'pages/detail/detail',
-    'pages/test/test'
+    'pages/test/test',
+    'pages/knowledge/index',
+    'pages/knowledge/detail'
   ],
   window: {
     backgroundTextStyle: 'light',

@@ -74,4 +74,47 @@ page {
     color: $clay-muted;
     @include clay-surface($clay-surface-soft, 30rpx);
   }
+
+  .related {
+    display: flex;
+    align-items: center;
+    margin-top: 16rpx;
+    padding: 22rpx 26rpx;
+    @include clay-surface($clay-surface-soft, 30rpx);
+
+    &:active {
+      @include clay-pressed(30rpx);
+    }
+
+    &__emoji {
+      width: 72rpx;
+      height: 72rpx;
+      flex-shrink: 0;
+      margin-right: 18rpx;
+      border-radius: 22rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34rpx;
+      background: linear-gradient(140deg, #c9d9ff, #e3d8ff);
+    }
+
+    &__body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    &__title {
+      font-size: 27rpx;
+      font-weight: 700;
+      line-height: 1.5;
+      color: $clay-text;
+    }
+
+    &__meta {
+      margin-top: 6rpx;
+      font-size: 22rpx;
+      color: $clay-muted;
+    }
+  }
 }

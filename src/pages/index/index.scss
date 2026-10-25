@@ -65,6 +65,56 @@ page {
     }
   }
 
+  .knowledge-entry {
+    display: flex;
+    align-items: center;
+    margin-top: 28rpx;
+    padding: 26rpx 28rpx;
+    @include clay-surface($clay-surface, 40rpx);
+    transition: transform 0.15s ease;
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &__icon {
+      width: 88rpx;
+      height: 88rpx;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42rpx;
+      border-radius: 28rpx;
+      background: linear-gradient(140deg, #c9d9ff, #e3d8ff);
+      box-shadow: inset 0 6rpx 12rpx rgba(255, 255, 255, 0.7);
+    }
+
+    &__body {
+      flex: 1;
+      margin-left: 22rpx;
+      min-width: 0;
+    }
+
+    &__title {
+      font-size: 30rpx;
+      font-weight: 800;
+      color: $clay-text;
+    }
+
+    &__desc {
+      margin-top: 6rpx;
+      font-size: 23rpx;
+      color: $clay-muted;
+    }
+
+    &__arrow {
+      font-size: 40rpx;
+      color: $clay-muted;
+      padding-left: 12rpx;
+    }
+  }
+
   .ad-wrap {
     margin-top: 64rpx;
   }
