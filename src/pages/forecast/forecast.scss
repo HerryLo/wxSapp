@@ -1,14 +1,14 @@
-@import '../../styles/clay.scss';
+@import '../../styles/tech.scss';
 
 page {
-  background: $clay-bg;
+  background: $tech-bg;
 }
 
 .forecast {
   min-height: 100vh;
   box-sizing: border-box;
   padding: 28rpx 28rpx calc(190rpx + env(safe-area-inset-bottom));
-  color: $clay-text;
+  color: $tech-text;
   background: transparent;
 }
 
@@ -16,84 +16,44 @@ page {
   margin-bottom: 22rpx;
   padding: 20rpx 24rpx;
   border-radius: 26rpx;
-  background: #fdeee1;
-  color: #b96a2a;
+  background: #ffffff;
+  border: 1rpx solid $tech-border;
+  color: $tech-danger;
   font-size: 24rpx;
   text-align: center;
-  box-shadow:
-    inset 0 6rpx 12rpx rgba(196, 136, 78, 0.14),
-    inset 0 -6rpx 12rpx rgba(255, 255, 255, 0.85);
 }
 
 .state-card {
   margin-top: 240rpx;
-  color: $clay-muted;
+  color: $tech-muted;
   font-size: 28rpx;
   text-align: center;
+  @include tech-card(20rpx);
 }
 
 /* 顶部天气卡片 */
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 34rpx;
-  border-radius: 48rpx;
-  color: #ffffff;
-  background: linear-gradient(160deg, #5aa4f8, #3a7fe0 55%, #2a63c0);
-  box-shadow:
-    0 24rpx 44rpx rgba(50, 100, 180, 0.3),
-    inset 0 -10rpx 20rpx rgba(20, 50, 110, 0.22),
-    inset 0 10rpx 20rpx rgba(255, 255, 255, 0.26);
+  padding: 28rpx;
+  border: 1rpx solid $tech-border;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, #eef4ff, #e6fbff);
+  box-shadow: 0 8rpx 24rpx rgba(16, 24, 40, 0.06);
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -180rpx;
-  right: -140rpx;
-  width: 420rpx;
-  height: 420rpx;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
-}
-
+.hero::before,
 .hero::after {
-  content: '';
-  position: absolute;
-  bottom: -140rpx;
-  left: -80rpx;
-  width: 260rpx;
-  height: 260rpx;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  display: none;
 }
 
-.hero-clear {
-  background: linear-gradient(160deg, #63a9f7, #356fd6 55%, #2458ab);
-}
-
-.hero-cloudy {
-  background: linear-gradient(160deg, #93aecb, #6a87a6 55%, #4f6a88);
-}
-
-.hero-rain {
-  background: linear-gradient(160deg, #5d7cc4, #3b568c 55%, #293c66);
-}
-
-.hero-snow {
-  background: linear-gradient(160deg, #a3c6dc, #7799b6 55%, #5b7b98);
-}
-
+.hero-clear,
+.hero-cloudy,
+.hero-rain,
+.hero-snow,
 .hero-night {
-  background: linear-gradient(160deg, #3a5490, #233663 55%, #16223f);
-}
-
-.hero-top,
-.hero-date,
-.hero-main,
-.hero-foot {
-  position: relative;
-  z-index: 1;
+  background: linear-gradient(135deg, #eef4ff, #e6fbff);
+  color: $tech-text;
 }
 
 .hero-top {
@@ -120,7 +80,6 @@ page {
 .location-arrow {
   margin-left: 8rpx;
   font-size: 24rpx;
-  opacity: 0.85;
 }
 
 .share-btn {
@@ -131,12 +90,9 @@ page {
   line-height: 60rpx;
   border: 0rpx;
   border-radius: 999rpx;
-  background: rgba(255, 255, 255, 0.22);
-  box-shadow:
-    inset 0 4rpx 8rpx rgba(255, 255, 255, 0.35),
-    inset 0 -4rpx 8rpx rgba(20, 50, 110, 0.18);
   color: #ffffff;
   font-size: 24rpx;
+  @include tech-button();
 }
 
 .share-btn::after {
@@ -146,7 +102,6 @@ page {
 .hero-date {
   margin-top: 18rpx;
   font-size: 22rpx;
-  opacity: 0.78;
 }
 
 .hero-main {
@@ -156,16 +111,19 @@ page {
 }
 
 .temp {
-  font-size: 132rpx;
-  font-weight: 200;
+  font-size: 108rpx;
+  font-weight: 800;
   line-height: 0.9;
   letter-spacing: -4rpx;
+  color: $tech-text;
+  font-variant-numeric: tabular-nums;
 }
 
 .degree {
   margin-left: 4rpx;
   font-size: 56rpx;
   vertical-align: top;
+  color: $tech-primary;
 }
 
 .summary {
@@ -181,7 +139,6 @@ page {
 .range {
   margin-top: 8rpx;
   font-size: 24rpx;
-  opacity: 0.82;
 }
 
 .hero-foot {
@@ -190,7 +147,26 @@ page {
   justify-content: space-between;
   margin-top: 34rpx;
   font-size: 22rpx;
-  opacity: 0.86;
+}
+
+.hero-top,
+.hero-foot,
+.hero-date,
+.hero-main,
+.condition,
+.feels,
+.range,
+.city,
+.location-pin,
+.location-arrow {
+  color: $tech-text;
+}
+
+.hero-date,
+.hero-foot,
+.feels,
+.range {
+  color: $tech-muted;
 }
 
 /* 通用区块 */
@@ -204,7 +180,7 @@ page {
   margin: 0rpx 10rpx 18rpx;
   font-size: 30rpx;
   font-weight: 700;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .section-title::before {
@@ -213,8 +189,7 @@ page {
   height: 30rpx;
   margin-right: 14rpx;
   border-radius: 999rpx;
-  background: linear-gradient(180deg, #7aa6ff, $clay-primary);
-  box-shadow: 0 4rpx 8rpx rgba(79, 124, 255, 0.32);
+  background: $tech-primary;
 }
 
 /* 24 小时预报 */
@@ -223,7 +198,7 @@ page {
   padding: 22rpx 10rpx;
   box-sizing: border-box;
   white-space: nowrap;
-  @include clay-surface(#f7f9ff, 36rpx);
+  @include tech-card(36rpx);
 }
 
 .hour-item {
@@ -234,11 +209,12 @@ page {
   width: 108rpx;
   height: 140rpx;
   border-radius: 28rpx;
+  @include tech-inset(28rpx);
 }
 
 .hour-time {
   font-size: 22rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .hour-icon {
@@ -253,15 +229,13 @@ page {
 }
 
 .hour-item.is-now {
-  background: #e3e9f4;
-  box-shadow:
-    inset 0 6rpx 12rpx rgba(120, 140, 178, 0.22),
-    inset 0 -6rpx 12rpx rgba(255, 255, 255, 0.85);
+  background: #eff4ff;
+  border-color: $tech-primary;
 }
 
 .hour-item.is-now .hour-time,
 .hour-item.is-now .hour-temp {
-  color: $clay-primary-deep;
+  color: $tech-primary-deep;
 }
 
 /* 当前详情 */
@@ -276,12 +250,12 @@ page {
   margin: 10rpx;
   padding: 24rpx 18rpx;
   box-sizing: border-box;
-  @include clay-surface(#f7f9ff, 30rpx);
+  @include tech-inset(30rpx);
 }
 
 .metric-label {
   font-size: 22rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .metric-value {
@@ -294,14 +268,14 @@ page {
 /* 7 天预报 */
 .daily {
   padding: 4rpx 26rpx;
-  @include clay-surface(#f7f9ff, 36rpx);
+  @include tech-card(36rpx);
 }
 
 .day-row {
   display: flex;
   align-items: center;
   padding: 24rpx 0rpx;
-  border-bottom: 1rpx solid rgba(124, 136, 166, 0.16);
+  border-bottom: 1rpx solid $tech-border;
 }
 
 .day-row:last-child {
@@ -322,7 +296,7 @@ page {
 .day-date {
   margin-top: 4rpx;
   font-size: 20rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .day-icon {
@@ -347,7 +321,7 @@ page {
 .day-wind {
   margin-top: 4rpx;
   font-size: 20rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .day-temp {
@@ -360,12 +334,12 @@ page {
 .temp-max {
   width: 58rpx;
   font-size: 24rpx;
-  color: $clay-muted;
+  color: $tech-muted;
   text-align: center;
 }
 
 .temp-max {
-  color: $clay-text;
+  color: $tech-text;
   font-weight: 600;
 }
 
@@ -375,10 +349,7 @@ page {
   height: 10rpx;
   margin: 0rpx 8rpx;
   border-radius: 999rpx;
-  background: #e3e9f4;
-  box-shadow:
-    inset 0 4rpx 8rpx rgba(120, 140, 178, 0.2),
-    inset 0 -4rpx 8rpx rgba(255, 255, 255, 0.8);
+  background: $tech-border;
 }
 
 .temp-bar {
@@ -386,7 +357,7 @@ page {
   top: 0rpx;
   height: 10rpx;
   border-radius: 999rpx;
-  background: linear-gradient(90deg, #6fb6ff, #ffb15c);
+  background: linear-gradient(90deg, $tech-accent, $tech-primary);
 }
 
 /* 今日概览 */
@@ -394,7 +365,8 @@ page {
   display: flex;
   flex-wrap: wrap;
   padding: 10rpx 0rpx;
-  @include clay-surface(#f7f9ff, 36rpx);
+  overflow: hidden;
+  @include tech-card(36rpx);
 }
 
 .overview-item {
@@ -403,6 +375,8 @@ page {
   width: 50%;
   padding: 22rpx 28rpx;
   box-sizing: border-box;
+  background: #f9fafb;
+  border: 1rpx solid $tech-border;
 }
 
 .overview-icon {
@@ -412,7 +386,7 @@ page {
 
 .overview-label {
   font-size: 22rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .overview-value {
@@ -424,7 +398,7 @@ page {
 .update-time {
   margin-top: 30rpx;
   font-size: 20rpx;
-  color: $clay-muted;
+  color: $tech-muted;
   text-align: center;
 }
 
@@ -438,7 +412,7 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(76, 90, 120, 0.45);
+  background: rgba(16, 24, 40, 0.45);
 }
 
 .city-panel {
@@ -446,13 +420,13 @@ page {
   max-height: 76vh;
   overflow-y: auto;
   padding: 30rpx 30rpx 34rpx;
-  @include clay-surface(#f7f9ff, 44rpx);
+  @include tech-card(24rpx);
 }
 
 .city-head {
   font-size: 36rpx;
   font-weight: 800;
-  color: $clay-text;
+  color: $tech-text;
   text-align: center;
 }
 
@@ -469,12 +443,12 @@ page {
 .city-recent-title {
   font-size: 25rpx;
   font-weight: 700;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .city-recent-clear {
   font-size: 23rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .city-chips {
@@ -487,15 +461,11 @@ page {
   margin: 10rpx 16rpx 0rpx 0rpx;
   padding: 10rpx 26rpx;
   font-size: 25rpx;
-  color: $clay-text;
-  border-radius: 999rpx;
-  background: $clay-surface;
-  box-shadow:
-    0 6rpx 12rpx rgba(106, 126, 168, 0.14),
-    inset 0 4rpx 8rpx rgba(255, 255, 255, 0.8);
+  color: $tech-text;
+  @include tech-inset(999rpx);
 
   &:active {
-    @include clay-pressed(999rpx);
+    @include tech-pressed(999rpx);
   }
 }
 
@@ -504,14 +474,14 @@ page {
   height: 84rpx;
   padding: 0rpx 28rpx;
   font-size: 28rpx;
-  color: $clay-text;
-  @include clay-inset(999rpx);
+  color: $tech-text;
+  @include tech-inset(999rpx);
 }
 
 .city-empty {
   padding: 30rpx 0rpx;
   font-size: 25rpx;
-  color: $clay-muted;
+  color: $tech-muted;
   text-align: center;
 }
 
@@ -520,18 +490,23 @@ page {
   align-items: baseline;
   justify-content: space-between;
   padding: 24rpx 12rpx;
-  border-bottom: 1rpx solid rgba(124, 136, 166, 0.16);
+  border-bottom: 1rpx solid $tech-border;
+
+  &:active {
+    background: #eff4ff;
+    color: $tech-primary;
+  }
 }
 
 .city-name {
   font-size: 30rpx;
   font-weight: 600;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .city-sub {
   font-size: 24rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .city-current {
@@ -542,5 +517,5 @@ page {
   font-size: 28rpx;
   font-weight: 600;
   color: #ffffff;
-  @include clay-button();
+  @include tech-button();
 }
