@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import Taro, { useRouter } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
+import { getArticle } from '../../content/knowledge'
+import { TOPICS } from '../../content/knowledge/topics'
 
 import './detail.scss'
 
@@ -26,6 +28,12 @@ const REQS = [
   '轻投轻放、清洁干燥，避免污染。废纸尽量平整。立体包装物请清空内容物，清洁后压扁投放。有尖锐边角的，应包裹后投放。',
   '投放时请注意轻放。易破损的请连带包装或包裹后轻放，如易挥发，请密封后投放。'
 ]
+const RELATED: string[][] = [
+  ['kitchen-waste', 'three-r'],
+  ['waste-to-energy', 'landfill'],
+  ['chemical-recycling', 'old-clothes'],
+  ['e-waste', 'waste-to-energy']
+]
 
 function Detail() {
   const router = useRouter()
@@ -48,6 +56,34 @@ function Detail() {
         <View className='requireDesc'>💡 {INCS[index]}</View>
         <View className='require'>投放要求:</View>
         <View className='requireDesc'>💡 {REQS[index]}</View>
+        {(RELATED[index] || []).length > 0 && (
+          <View className='require'>延伸阅读</View>
+        )}
+        {(RELATED[index] || []).map(articleId => {
+          const item = getArticle(articleId)
+          if (!item) {
+            return null
+          }
+          return (
+            <View
+              className='related'
+              key={item.id}
+              onClick={() => {
+                Taro.navigateTo({
+                  url: `/pages/knowledge/detail?id=${item.id}`
+                })
+              }}
+            >
+              <View className='related__emoji'>{item.emoji}</View>
+              <View className='related__body'>
+                <View className='related__title'>{item.title}</View>
+                <View className='related__meta'>
+                  {TOPICS[item.topic].label} · {item.readMinutes} 分钟
+                </View>
+              </View>
+            </View>
+          )
+        })}
       </View>
     </View>
   )
