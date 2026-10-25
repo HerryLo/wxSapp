@@ -68,7 +68,7 @@ page {
   .knowledge-entry {
     display: flex;
     align-items: center;
-    margin: 28rpx 36rpx 0;
+    margin-top: 28rpx;
     padding: 26rpx 28rpx;
     @include clay-surface($clay-surface, 40rpx);
     transition: transform 0.15s ease;
