@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import Taro, { useDidHide, useDidShow, useShareAppMessage } from '@tarojs/taro'
+import Taro, { useDidHide, useShareAppMessage } from '@tarojs/taro'
 import { View, Icon, Input, Button, Text, Ad } from '@tarojs/components'
 import { SearchGarbage } from '../../api/index'
 import IndexModel from '../../model/index/index'
@@ -66,10 +66,6 @@ function Index() {
     setFocused(false)
     Taro.hideKeyboard()
   }
-
-  useDidShow(() => {
-    Taro.eventCenter.trigger('sync-tabbar')
-  })
 
   // 离开页面（如切换 tab）时重置搜索面板，避免广告等元素残留展示
   useDidHide(() => {

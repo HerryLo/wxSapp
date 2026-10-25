@@ -6,7 +6,7 @@ page {
 
 .index-container {
   min-height: 100vh;
-  padding: 36rpx 36rpx calc(200rpx + env(safe-area-inset-bottom));
+  padding: 36rpx 36rpx calc(120rpx + env(safe-area-inset-bottom));
   background: transparent;
   color: $clay-text;
 
@@ -126,7 +126,7 @@ page {
     line-height: 104rpx;
     position: fixed;
     right: 40rpx;
-    bottom: calc(190rpx + env(safe-area-inset-bottom));
+    bottom: calc(60rpx + env(safe-area-inset-bottom));
     color: #ffffff;
     font-size: 24rpx;
     padding: 0rpx;

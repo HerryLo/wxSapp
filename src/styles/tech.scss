@@ -1,0 +1,63 @@
+// 简约科技风共享变量与混入
+$tech-bg: #f5f7fb;
+$tech-surface: #ffffff;
+$tech-surface-soft: #f0f4ff;
+$tech-border: #e4e7ec;
+$tech-border-strong: #d0d5dd;
+$tech-text: #101828;
+$tech-muted: #667085;
+$tech-primary: #2563eb;
+$tech-primary-deep: #1d4ed8;
+$tech-accent: #06b6d4;
+$tech-success: #12b76a;
+$tech-danger: #f04438;
+
+@mixin tech-card($radius: 20rpx) {
+  background: $tech-surface;
+  border: 1rpx solid $tech-border;
+  border-radius: $radius;
+  box-shadow: 0 8rpx 24rpx rgba(16, 24, 40, 0.06);
+}
+
+@mixin tech-inset($radius: 16rpx) {
+  background: #f9fafb;
+  border: 1rpx solid $tech-border;
+  border-radius: $radius;
+}
+
+@mixin tech-button($bg: $tech-primary, $glow: rgba(37, 99, 235, 0.22)) {
+  background: $bg;
+  border-radius: 999rpx;
+  box-shadow: 0 8rpx 18rpx $glow;
+}
+
+@mixin tech-pressed($radius: 16rpx) {
+  border-radius: $radius;
+  background: #f2f4f7;
+}
+
+@mixin tech-label {
+  font-size: 20rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  color: $tech-accent;
+}
+
+.tech-label {
+  @include tech-label;
+}
+
+.topic-risk {
+  background: #fff4ed;
+  color: #b54708;
+}
+
+.topic-tech {
+  background: #eff4ff;
+  color: $tech-primary-deep;
+}
+
+.topic-action {
+  background: #ecfdf3;
+  color: #067647;
+}

@@ -9,15 +9,15 @@ export default defineAppConfig({
   ],
   window: {
     backgroundTextStyle: 'light',
-    navigationBarBackgroundColor: '#e8edf7',
+    navigationBarBackgroundColor: '#f5f7fb',
     navigationBarTitleText: '垃圾分类助手',
     navigationBarTextStyle: 'black'
   },
   tabBar: {
-    custom: true,
-    color: '#7c88a6',
-    selectedColor: '#4f7cff',
-    backgroundColor: '#e8edf7',
+    color: '#667085',
+    selectedColor: '#2563eb',
+    backgroundColor: '#ffffff',
+    borderStyle: 'white',
     list: [
       {
         text: '首页',
