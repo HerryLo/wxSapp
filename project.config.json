@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "./dist",
   "projectname": "WxSapp",
-  "description": "垃圾分类小程序工具",
+  "description": "垃圾分类查询与垃圾知识科普工具",
   "appid": "wx6a0b834a3839e80d",
   "setting": {
     "urlCheck": true,

@@ -1,8 +1,8 @@
 {
   "name": "wxSapp",
-  "version": "1.0.0",
+  "version": "1.3.0",
   "private": true,
-  "description": "垃圾分类小程序工具",
+  "description": "垃圾分类查询与垃圾知识科普工具",
   "templateInfo": {
     "name": "default",
     "typescript": true,
