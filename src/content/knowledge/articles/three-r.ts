@@ -21,7 +21,7 @@ export const threeR: KnowledgeArticle = {
     },
     {
       type: 'paragraph',
-      text: '源头减量也是门槛最低的一步。它不需要分拣，也不需要回收设施，只需要在消费之前多想一下。'
+      text: '源头减量也是门槛较低的一步。它不需要分拣，也不需要回收设施，只需要在消费之前多想一下。'
     },
     { type: 'heading', text: 'Reuse：再用一次' },
     {

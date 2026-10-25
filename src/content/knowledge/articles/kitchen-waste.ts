@@ -13,7 +13,7 @@ export const kitchenWaste: KnowledgeArticle = {
     { type: 'heading', text: '厨余为什么不能混' },
     {
       type: 'paragraph',
-      text: '厨余垃圾主要指剩饭剩菜、瓜皮果核等易腐有机物。它水分大、易腐烂，约占城市生活垃圾的一半，是垃圾中含水率较高的一类。'
+      text: '厨余垃圾主要指剩饭剩菜、瓜皮果核等易腐有机物。它水分大、易腐烂，约占城市生活垃圾的一半。'
     },
     {
       type: 'paragraph',

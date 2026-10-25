@@ -34,7 +34,7 @@ export const oldClothes: KnowledgeArticle = {
     },
     {
       type: 'paragraph',
-      text: '真正无法利用的部分，才会被送去能源化或填埋。二手复用、再生纤维和擦拭布，是旧衣最主要的三条再利用路径。'
+      text: '真正无法利用的部分，才会被送去能源化或填埋。二手复用、再生纤维和擦拭布，是旧衣的主要再利用路径。'
     },
     { type: 'heading', text: '再生纤维的难点' },
     {

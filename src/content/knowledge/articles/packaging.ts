@@ -17,7 +17,7 @@ export const packaging: KnowledgeArticle = {
     },
     {
       type: 'paragraph',
-      text: '包装废弃物在城市生活垃圾中占比不低。据公开统计，我国快递行业每年消耗的纸类废弃物超过 800 万吨、塑料废弃物约 180 万吨，包装废弃物占城市生活垃圾的三到四成。'
+      text: '据国家邮政局相关报告，我国快递行业每年产生的纸类包装废弃物超过 800 万吨、塑料包装废弃物约 180 万吨。'
     },
     {
       type: 'paragraph',
@@ -39,7 +39,7 @@ export const packaging: KnowledgeArticle = {
     { type: 'heading', text: '点外卖时的减量选择' },
     {
       type: 'paragraph',
-      text: '点外卖时，最直接的减量是选择“无需餐具”。少要一双筷子、一个勺子和一张纸巾，就少了一套一次性用品进入垃圾流。'
+      text: '点外卖时，一个直接的减量做法是选择“无需餐具”。少要一双筷子、一个勺子和一张纸巾，就少了一套一次性用品进入垃圾流。'
     },
     {
       type: 'paragraph',
@@ -57,8 +57,16 @@ export const packaging: KnowledgeArticle = {
     {
       type: 'stats',
       items: [
-        { label: '快递行业年消耗纸类', value: '超过 800 万吨' },
-        { label: '包装占城市生活垃圾', value: '约 30%–40%' }
+        {
+          label: '快递纸类包装废弃物',
+          value: '超过 800 万吨',
+          note: '国家邮政局相关报告'
+        },
+        {
+          label: '快递塑料包装废弃物',
+          value: '约 180 万吨',
+          note: '国家邮政局相关报告'
+        }
       ]
     },
     {
