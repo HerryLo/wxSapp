@@ -1,95 +1,87 @@
-## 垃圾分类小程序
-![taro](https://img.shields.io/badge/-taro%40v2.2.17-orange)
-![typescript](https://img.shields.io/badge/-typescript-brightgreen)
-![scss](https://img.shields.io/badge/-scss-brightgreen)
-![yarn](https://img.shields.io/badge/-yarn%401.12.3-brightgreen)
+# 垃圾分类助手
 
-> 垃圾分类查询、垃圾分类小测验、天气预报等功能，后续会开启更多功能。
+![version](https://img.shields.io/badge/version-1.3.0-orange)
+![taro](https://img.shields.io/badge/taro-4.3.0-blue)
+![react](https://img.shields.io/badge/react-18-61dafb)
+![typescript](https://img.shields.io/badge/typescript-5.4-blue)
+![scss](https://img.shields.io/badge/scss-1.75-pink)
 
-🚮垃圾分类查询API是调取的别人的，目前支持微信小程序和支付宝小程序。欢迎 👏👏Star！！
+> 垃圾分类查询与垃圾知识科普工具：查分类、做测验、读科普、看天气。
 
-如果你之前没有开发过小程序，可以看看我的 [个人小程序开发指南](https://juejin.im/post/5d34888b6fb9a07ef90cd68c) 这篇文章，欢迎交流！！
+## 功能
 
-目前支持了微信小程序CI工具，一键发布，非常的舒适！！[我的微信小程序CI工具配置](https://github.com/HerryLo/wxSapp/blob/master/config/upload.wx.js)。可以看看这篇文章介绍：[微信小程序CI工具](https://zhuanlan.zhihu.com/p/147839106)
+- **垃圾分类查询**：按名称查询垃圾所属类别，支持搜索历史与热门搜索，覆盖上海四分类标准。
+- **分类详情**：湿垃圾、干垃圾、可回收物、有害垃圾的包含物、投放要求与延伸阅读。
+- **知识科普**：12 篇本地科普文章，覆盖环境风险、处理技术、减量行动三个主题；支持收藏、文末小测与相关阅读。
+- **每日内容**：今日一题、今日贴士、数据速览与热门搜索。
+- **垃圾分类测验**：每轮 10 题，包含错题本、连续打卡、成绩单与分享。
+- **天气预报**：实时、24 小时、7 天预报与城市搜索。
+- **分享**：支持好友转发；首页支持分享到朋友圈。
 
-### 运行开发
+## 设计
+
+- 简约科技风 + 奶油粉主题，白色卡片搭配柔和彩色背景光斑。
+- 颜色、圆角与阴影统一由 `src/styles/tech.scss` 设计令牌层提供，页面不另造令牌。
+- 使用微信小程序原生 tabBar，选中态为玫瑰粉图标与文字。
+
+## 技术栈
+
+- Taro 4.3.0、React 18、TypeScript 5.4、SCSS
+- 微信小程序原生 tabBar、微信小程序 CI（miniprogram-ci）
+- 第三方垃圾分类查询接口、和风天气 API
+
+## 目录结构
+
 ```
+src/
+├─ api/            # 垃圾分类、天气接口
+├─ components/     # 首页与知识模块组件
+├─ content/        # 知识文章与主题定义
+├─ model/          # 查询与首页数据模型
+├─ pages/          # 首页、分类详情、测验、天气、知识列表/详情
+├─ static/         # 图片与 tabBar 图标
+├─ styles/         # tech.scss 设计令牌层
+└─ utils/          # 本地存储等工具
+```
+
+## 运行开发
+
+```bash
 npm install
 
-// 小程序运行
+# 微信小程序开发（监听构建）
 npm run dev:weapp
 
-// 小程序发布
+# 类型检查
+npm run typecheck
+
+# 生产构建
+npm run build:weapp
+
+# 构建并调用微信小程序 CI 上传
 npm run upload-wx
 ```
 
-### 小程序二维码
+上传使用的版本号与描述读取 `package.json` 的 `wx.wxVersion` / `wx.wxDesc`，当前版本为 `1.3.0`。
+
+## 小程序二维码
 
 ![img](https://raw.githubusercontent.com/HerryLo/wxSapp/master/img/gh_75d5a8e03369_258.jpg "二维码")
 
 [](./img/s6x01351xerl2wqeqhpfn56_55388962.jpg)
 
-### Tips
-* Node.js
-* Taro-cli
-* React
-* TypeScript
-* Yarn
-* 微信小程序CI
-* 更多方案持续更新。。。
+## 说明
 
-### 项目
+- 分类结果以《上海市生活垃圾管理条例》及当地规定为准，仅供参考。
+- 垃圾分类查询使用第三方公开接口，天气数据来自和风天气。
+- 个人主体小程序：当前不含评论、投稿、UGC、视频、直播与付费功能。
 
-#### ts+react语法
-```JavaScript
-// page/index.tsx
-import { ComponentClass, TouchEvent } from 'react'
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Icon, Input, Button } from '@tarojs/components'
+## 相关链接
 
-import './index.scss'
+- [个人小程序开发指南](https://juejin.im/post/5d34888b6fb9a07ef90cd68c)
+- [微信小程序 CI 工具配置](https://github.com/HerryLo/wxSapp/blob/master/config/upload.wx.js)
+- [微信小程序 CI 工具介绍](https://zhuanlan.zhihu.com/p/147839106)
 
-interface Props {}
-interface State {
-    search: string,
-    keywords: Array<string>,
-    imgList: Array<string>,
-    selectedSort: SelectedSort | null,
-}
+## License
 
-class Index extends Component <Props,State>   {
-  config: Config = {
-    navigationBarTitleText: '垃圾分类助手',
-    navigationBarTextStyle: 'white',
-    navigationBarBackgroundColor: '#2c7cf7'
-  }
-
-  constructor (props) {
-    super(props)
-    ......
-```
-
-#### scss语法
-
-```scss
-.index-container {
-    padding: 50rpx 50rpx;
-    background: #fff;
-
-    & .img-container {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        margin-top: 40rpx;
-    }
-
-    & .inconImage {
-        width: 220rpx;
-        height: 220rpx;
-        margin: 20rpx 40rpx 20rpx 40rpx;
-    }
-    ......
-```
-
-
+MIT
