@@ -8,6 +8,9 @@ import { kitchenWaste } from './articles/kitchen-waste'
 import { chemicalRecycling } from './articles/chemical-recycling'
 import { aiSorting } from './articles/ai-sorting'
 import { biodegradable } from './articles/biodegradable'
+import { threeR } from './articles/three-r'
+import { packaging } from './articles/packaging'
+import { oldClothes } from './articles/old-clothes'
 
 export type {
   KnowledgeArticle,
@@ -27,7 +30,10 @@ export const articles: KnowledgeArticle[] = [
   kitchenWaste,
   chemicalRecycling,
   aiSorting,
-  biodegradable
+  biodegradable,
+  threeR,
+  packaging,
+  oldClothes
 ]
 
 export const articleMap: Record<string, KnowledgeArticle> = articles.reduce(
