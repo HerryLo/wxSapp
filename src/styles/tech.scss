@@ -1,5 +1,5 @@
 // 简约科技风共享变量与混入
-$tech-bg: #f5f7fb;
+$tech-bg: #fdf6f3;
 $tech-surface: #ffffff;
 $tech-surface-soft: #f0f4ff;
 $tech-border: #e4e7ec;
@@ -11,6 +11,12 @@ $tech-primary-deep: #1d4ed8;
 $tech-accent: #06b6d4;
 $tech-success: #12b76a;
 $tech-danger: #f04438;
+$tech-rose: #d96c82;
+$tech-rose-deep: #c25a70;
+$tech-peach: #ffd6bd;
+$tech-mint: #d6ebe3;
+$tech-sky: #dfe9ff;
+$tech-cream: #fff1cc;
 
 @mixin tech-card($radius: 20rpx) {
   background: $tech-surface;

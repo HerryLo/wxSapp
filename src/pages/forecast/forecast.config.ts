@@ -1,8 +1,8 @@
 export default definePageConfig({
   navigationBarTitleText: '天气预报',
   navigationBarTextStyle: 'black',
-  navigationBarBackgroundColor: '#f5f7fb',
-  backgroundColor: '#f5f7fb',
+  navigationBarBackgroundColor: '#fdf6f3',
+  backgroundColor: '#fdf6f3',
   backgroundTextStyle: 'dark',
   enablePullDownRefresh: true,
   usingComponents: {}

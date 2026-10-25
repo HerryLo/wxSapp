@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import Taro, { useDidHide, useShareAppMessage } from '@tarojs/taro'
+import Taro, {
+  useDidHide,
+  useDidShow,
+  useShareAppMessage,
+  useShareTimeline
+} from '@tarojs/taro'
 import { View, Icon, Input, Button, Text } from '@tarojs/components'
 import { SearchGarbage } from '../../api/index'
 import IndexModel from '../../model/index/index'
@@ -58,6 +63,14 @@ function Index() {
   ]
 
   useShareAppMessage(() => ({ title: '垃圾分类助手' }))
+
+  useShareTimeline(() => ({ title: '垃圾分类助手' }))
+
+  useDidShow(() => {
+    Taro.showShareMenu({
+      showShareItems: ['wechatFriends', 'wechatMoment']
+    })
+  })
 
   useEffect(() => () => {
     if (blurTimer.current) {

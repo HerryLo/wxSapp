@@ -1,7 +1,24 @@
 @import '../../styles/tech.scss';
 
 page {
-  background: $tech-bg;
+  background-color: $tech-bg;
+  background-image:
+    radial-gradient(
+      circle at 10% 4%,
+      rgba($tech-peach, 0.55),
+      rgba($tech-peach, 0) 34%
+    ),
+    radial-gradient(
+      circle at 94% 12%,
+      rgba($tech-mint, 0.5),
+      rgba($tech-mint, 0) 30%
+    ),
+    radial-gradient(
+      circle at 78% 86%,
+      rgba($tech-sky, 0.45),
+      rgba($tech-sky, 0) 34%
+    );
+  background-repeat: no-repeat;
 }
 
 .index-container {
@@ -433,7 +450,7 @@ page {
 }
 
 .button {
-  @include tech-button();
+  @include tech-button($tech-rose, rgba($tech-rose, 0.28));
   position: fixed;
   right: 36rpx;
   bottom: calc(60rpx + env(safe-area-inset-bottom));
