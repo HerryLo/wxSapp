@@ -1,0 +1,80 @@
+@import '../../styles/clay.scss';
+
+page {
+  background: $clay-bg;
+}
+
+.knowledge-page {
+  min-height: 100vh;
+  padding: 48rpx 36rpx calc(60rpx + env(safe-area-inset-bottom));
+  color: $clay-text;
+}
+
+.knowledge-head {
+  padding: 8rpx 4rpx 32rpx;
+}
+
+.knowledge-title {
+  font-size: 52rpx;
+  font-weight: 800;
+  color: $clay-text;
+}
+
+.knowledge-subtitle {
+  margin-top: 10rpx;
+  font-size: 27rpx;
+  color: $clay-muted;
+}
+
+.knowledge-filters {
+  width: 100%;
+  margin-bottom: 26rpx;
+  white-space: nowrap;
+}
+
+.knowledge-filter {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 16rpx;
+  padding: 14rpx 28rpx;
+  font-size: 25rpx;
+  font-weight: 600;
+  color: $clay-muted;
+  border-radius: 999rpx;
+  background: $clay-surface;
+  box-shadow:
+    0 6rpx 12rpx rgba(106, 126, 168, 0.14),
+    inset 0 4rpx 8rpx rgba(255, 255, 255, 0.8);
+
+  &.is-active {
+    color: #ffffff;
+    background: $clay-primary;
+    box-shadow:
+      0 8rpx 16rpx rgba(79, 124, 255, 0.28),
+      inset 0 -6rpx 12rpx rgba(0, 0, 0, 0.12),
+      inset 0 6rpx 12rpx rgba(255, 255, 255, 0.3);
+  }
+}
+
+.knowledge-filter__count {
+  margin-left: 8rpx;
+  font-size: 22rpx;
+  opacity: 0.8;
+}
+
+.knowledge-empty {
+  margin-top: 40rpx;
+  padding: 72rpx 24rpx;
+  text-align: center;
+  font-size: 27rpx;
+  color: $clay-muted;
+  @include clay-surface($clay-surface-soft, 36rpx);
+}
+
+.knowledge-note {
+  margin-top: 40rpx;
+  font-size: 22rpx;
+  line-height: 1.6;
+  color: $clay-muted;
+  text-align: center;
+}
