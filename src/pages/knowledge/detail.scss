@@ -1,13 +1,13 @@
-@import '../../styles/clay.scss';
+@import '../../styles/tech.scss';
 
 page {
-  background: $clay-bg;
+  background: $tech-bg;
 }
 
 .knowledge-detail {
   min-height: 100vh;
   padding: 40rpx 36rpx calc(160rpx + env(safe-area-inset-bottom));
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .detail-head {
@@ -20,7 +20,6 @@ page {
   font-size: 23rpx;
   font-weight: 600;
   border-radius: 999rpx;
-  color: $clay-text;
 }
 
 .detail-title {
@@ -28,25 +27,25 @@ page {
   font-size: 44rpx;
   font-weight: 800;
   line-height: 1.4;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .detail-meta {
   margin-top: 12rpx;
   font-size: 23rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .detail-takeaway {
   margin: 36rpx 0 20rpx;
   padding: 28rpx 30rpx;
-  @include clay-surface($clay-surface, 36rpx);
+  @include tech-card(20rpx);
 }
 
 .detail-takeaway__label {
   font-size: 23rpx;
   font-weight: 700;
-  color: $clay-primary-deep;
+  color: $tech-primary-deep;
 }
 
 .detail-takeaway__text {
@@ -54,7 +53,7 @@ page {
   font-size: 28rpx;
   font-weight: 600;
   line-height: 1.7;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .detail-section {
@@ -63,19 +62,21 @@ page {
 
 .detail-section__title {
   margin-bottom: 20rpx;
+  padding-left: 16rpx;
+  border-left: 6rpx solid $tech-primary;
   font-size: 30rpx;
   font-weight: 800;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .quiz {
   padding: 28rpx;
-  @include clay-surface($clay-surface, 36rpx);
+  @include tech-card(20rpx);
 }
 
 .quiz__progress {
   font-size: 23rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .quiz__question {
@@ -83,7 +84,7 @@ page {
   font-size: 29rpx;
   font-weight: 700;
   line-height: 1.6;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .quiz-option {
@@ -91,32 +92,28 @@ page {
   padding: 22rpx 26rpx;
   font-size: 27rpx;
   line-height: 1.5;
-  color: $clay-text;
-  border-radius: 999rpx;
-  background: $clay-surface-soft;
-  box-shadow:
-    0 6rpx 12rpx rgba(106, 126, 168, 0.12),
-    inset 0 4rpx 8rpx rgba(255, 255, 255, 0.8);
+  color: $tech-text;
+  @include tech-inset(14rpx);
 
   &:active {
-    @include clay-pressed(999rpx);
+    @include tech-pressed(14rpx);
   }
 }
 
 .quiz-option.is-correct {
-  color: #2f8a7b;
-  background: rgba(72, 209, 204, 0.2);
-  box-shadow: inset 0 6rpx 14rpx rgba(72, 209, 204, 0.24);
+  color: #067647;
+  background: #ecfdf3;
+  border-color: #abefc6;
 }
 
 .quiz-option.is-wrong {
-  color: #d84b58;
-  background: rgba(239, 95, 107, 0.16);
-  box-shadow: inset 0 6rpx 14rpx rgba(239, 95, 107, 0.2);
+  color: #b42318;
+  background: #fef3f2;
+  border-color: #fecdca;
 }
 
 .quiz-option.is-muted {
-  color: $clay-muted;
+  color: $tech-muted;
   opacity: 0.7;
 }
 
@@ -125,9 +122,9 @@ page {
   padding: 22rpx 26rpx;
   font-size: 25rpx;
   line-height: 1.7;
-  color: $clay-muted;
-  border-radius: 28rpx;
-  background: rgba(79, 124, 255, 0.1);
+  color: $tech-muted;
+  border-radius: 14rpx;
+  background: #f9fafb;
 }
 
 .quiz__next {
@@ -137,7 +134,7 @@ page {
   font-size: 28rpx;
   font-weight: 700;
   color: #ffffff;
-  @include clay-button();
+  @include tech-button();
 
   &.is-disabled {
     opacity: 0.45;
@@ -147,25 +144,25 @@ page {
 .quiz-result {
   padding: 36rpx 28rpx;
   text-align: center;
-  @include clay-surface($clay-surface, 36rpx);
+  @include tech-card(20rpx);
 }
 
 .quiz-result__score {
   font-size: 64rpx;
   font-weight: 800;
-  color: $clay-primary-deep;
+  color: $tech-primary-deep;
 }
 
 .quiz-result__text {
   margin-top: 10rpx;
   font-size: 27rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .quiz-result__best {
   margin-top: 12rpx;
   font-size: 24rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .quiz-result__again {
@@ -175,7 +172,7 @@ page {
   font-size: 27rpx;
   font-weight: 700;
   color: #ffffff;
-  @include clay-button();
+  @include tech-button();
 }
 
 .related-item {
@@ -183,10 +180,10 @@ page {
   align-items: center;
   margin-bottom: 16rpx;
   padding: 22rpx 26rpx;
-  @include clay-surface($clay-surface-soft, 32rpx);
+  @include tech-card(18rpx);
 
   &:active {
-    @include clay-pressed(32rpx);
+    @include tech-pressed(18rpx);
   }
 }
 
@@ -195,12 +192,12 @@ page {
   height: 76rpx;
   margin-right: 20rpx;
   flex-shrink: 0;
-  border-radius: 24rpx;
+  border-radius: 18rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 36rpx;
-  background: linear-gradient(140deg, #c9d9ff, #e3d8ff);
+  background: linear-gradient(135deg, #eff4ff, #e6fbff);
 }
 
 .related-item__body {
@@ -212,27 +209,27 @@ page {
   font-size: 28rpx;
   font-weight: 700;
   line-height: 1.5;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .related-item__meta {
   margin-top: 6rpx;
   font-size: 22rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .detail-source {
   margin-bottom: 10rpx;
   font-size: 23rpx;
   line-height: 1.6;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .detail-note {
   margin-top: 36rpx;
   font-size: 22rpx;
   line-height: 1.6;
-  color: $clay-muted;
+  color: $tech-muted;
   text-align: center;
 }
 
@@ -243,7 +240,7 @@ page {
   font-size: 28rpx;
   font-weight: 700;
   color: #ffffff;
-  @include clay-button();
+  @include tech-button();
 }
 
 .detail-fav {
@@ -257,7 +254,7 @@ page {
   font-size: 25rpx;
   font-weight: 700;
   color: #ffffff;
-  @include clay-button();
+  @include tech-button();
 }
 
 .knowledge-detail--missing {
@@ -271,7 +268,7 @@ page {
 .detail-missing {
   font-size: 32rpx;
   font-weight: 700;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .detail-back {
@@ -279,5 +276,5 @@ page {
   padding: 16rpx 56rpx;
   font-size: 27rpx;
   color: #ffffff;
-  @include clay-button();
+  @include tech-button();
 }

@@ -1,10 +1,10 @@
-@import '../../styles/clay.scss';
+@import '../../styles/tech.scss';
 
 .article-card {
   display: flex;
-  padding: 28rpx;
-  margin-bottom: 24rpx;
-  @include clay-surface($clay-surface, 40rpx);
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  @include tech-card(20rpx);
   transition: transform 0.15s ease;
 
   &:active {
@@ -13,16 +13,15 @@
 }
 
 .article-card__icon {
-  width: 104rpx;
-  height: 104rpx;
+  width: 88rpx;
+  height: 88rpx;
   flex-shrink: 0;
-  margin-right: 24rpx;
-  border-radius: 32rpx;
+  margin-right: 20rpx;
+  border-radius: 18rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48rpx;
-  box-shadow: inset 0 6rpx 12rpx rgba(255, 255, 255, 0.65);
+  font-size: 40rpx;
 }
 
 .article-card__body {
@@ -37,12 +36,11 @@
 }
 
 .article-card__tag {
-  padding: 4rpx 16rpx;
-  font-size: 22rpx;
+  padding: 3rpx 12rpx;
+  font-size: 20rpx;
   font-weight: 600;
   border-radius: 999rpx;
-  background: rgba(255, 255, 255, 0.55);
-  color: $clay-text;
+  background: transparent;
 }
 
 .article-card__bookmark {
@@ -51,11 +49,11 @@
   line-height: 56rpx;
   text-align: center;
   font-size: 34rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .article-card__bookmark.is-active {
-  color: $clay-primary;
+  color: $tech-primary;
 }
 
 .article-card__title {
@@ -63,7 +61,7 @@
   font-size: 32rpx;
   font-weight: 700;
   line-height: 1.45;
-  color: $clay-text;
+  color: $tech-text;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -74,7 +72,7 @@
   margin-top: 8rpx;
   font-size: 25rpx;
   line-height: 1.6;
-  color: $clay-muted;
+  color: $tech-muted;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -84,34 +82,22 @@
 .article-card__meta {
   margin-top: 12rpx;
   font-size: 22rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .article-card--featured {
   flex-direction: column;
-  padding: 32rpx;
+  padding: 28rpx;
 }
 
 .article-card--featured .article-card__icon {
-  width: 140rpx;
-  height: 140rpx;
+  width: 112rpx;
+  height: 112rpx;
   margin-right: 0;
   margin-bottom: 20rpx;
-  font-size: 64rpx;
+  font-size: 52rpx;
 }
 
 .article-card--featured .article-card__title {
-  font-size: 38rpx;
-}
-
-.topic-risk {
-  background: linear-gradient(140deg, #ffbe8a, #ff9eb5);
-}
-
-.topic-tech {
-  background: linear-gradient(140deg, #c9d9ff, #e3d8ff);
-}
-
-.topic-action {
-  background: linear-gradient(140deg, #86d9c4, #c9f0e4);
+  font-size: 34rpx;
 }

@@ -1,13 +1,13 @@
-@import '../../styles/clay.scss';
+@import '../../styles/tech.scss';
 
 page {
-  background: $clay-bg;
+  background: $tech-bg;
 }
 
 .knowledge-page {
   min-height: 100vh;
   padding: 48rpx 36rpx calc(60rpx + env(safe-area-inset-bottom));
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .knowledge-head {
@@ -17,13 +17,13 @@ page {
 .knowledge-title {
   font-size: 52rpx;
   font-weight: 800;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .knowledge-subtitle {
   margin-top: 10rpx;
   font-size: 27rpx;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .knowledge-filters {
@@ -39,20 +39,13 @@ page {
   padding: 14rpx 28rpx;
   font-size: 25rpx;
   font-weight: 600;
-  color: $clay-muted;
-  border-radius: 999rpx;
-  background: $clay-surface;
-  box-shadow:
-    0 6rpx 12rpx rgba(106, 126, 168, 0.14),
-    inset 0 4rpx 8rpx rgba(255, 255, 255, 0.8);
+  color: $tech-muted;
+  @include tech-inset(999rpx);
 
   &.is-active {
     color: #ffffff;
-    background: $clay-primary;
-    box-shadow:
-      0 8rpx 16rpx rgba(79, 124, 255, 0.28),
-      inset 0 -6rpx 12rpx rgba(0, 0, 0, 0.12),
-      inset 0 6rpx 12rpx rgba(255, 255, 255, 0.3);
+    background: $tech-primary;
+    border-color: $tech-primary;
   }
 }
 
@@ -67,14 +60,14 @@ page {
   padding: 72rpx 24rpx;
   text-align: center;
   font-size: 27rpx;
-  color: $clay-muted;
-  @include clay-surface($clay-surface-soft, 36rpx);
+  color: $tech-muted;
+  @include tech-card(20rpx);
 }
 
 .knowledge-note {
   margin-top: 40rpx;
   font-size: 22rpx;
   line-height: 1.6;
-  color: $clay-muted;
+  color: $tech-muted;
   text-align: center;
 }

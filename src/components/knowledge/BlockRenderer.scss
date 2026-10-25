@@ -1,4 +1,4 @@
-@import '../../styles/clay.scss';
+@import '../../styles/tech.scss';
 
 .block-list {
   margin-top: 8rpx;
@@ -6,23 +6,25 @@
 
 .block-heading {
   margin: 40rpx 0 16rpx;
+  padding-left: 16rpx;
+  border-left: 6rpx solid $tech-primary;
   font-size: 32rpx;
   font-weight: 800;
   line-height: 1.5;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .block-paragraph {
   margin-bottom: 20rpx;
   font-size: 28rpx;
   line-height: 1.8;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .block-list-items {
   margin: 8rpx 0 24rpx;
   padding: 24rpx 28rpx;
-  @include clay-surface($clay-surface-soft, 32rpx);
+  @include tech-inset(16rpx);
 }
 
 .block-list-item {
@@ -41,14 +43,14 @@
   margin: 14rpx 16rpx 0 0;
   flex-shrink: 0;
   border-radius: 50%;
-  background: $clay-primary;
+  background: $tech-primary;
 }
 
 .block-list-text {
   flex: 1;
   font-size: 27rpx;
   line-height: 1.75;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .block-stats {
@@ -62,7 +64,7 @@
   min-width: 40%;
   margin: 0 12rpx 16rpx 0;
   padding: 24rpx 22rpx;
-  @include clay-surface($clay-surface, 32rpx);
+  @include tech-card(16rpx);
 
   &:nth-child(2n) {
     margin-right: 0;
@@ -76,67 +78,59 @@
 }
 
 .block-stat__value--risk {
-  color: #c06a3c;
+  color: #b54708;
 }
 
 .block-stat__value--tech {
-  color: $clay-primary-deep;
+  color: $tech-primary-deep;
 }
 
 .block-stat__value--action {
-  color: #2f8a7b;
+  color: #067647;
 }
 
 .block-stat__label {
   margin-top: 8rpx;
   font-size: 24rpx;
   font-weight: 600;
-  color: $clay-text;
+  color: $tech-text;
 }
 
 .block-stat__note {
   margin-top: 6rpx;
   font-size: 21rpx;
   line-height: 1.5;
-  color: $clay-muted;
+  color: $tech-muted;
 }
 
 .block-tip {
   margin: 20rpx 0 28rpx;
   padding: 26rpx 30rpx;
-  border-radius: 32rpx;
+  border: 1rpx solid $tech-border;
+  border-radius: 16rpx;
 }
 
 .block-tip--risk {
-  background: rgba(255, 190, 138, 0.2);
-  box-shadow:
-    inset 0 6rpx 14rpx rgba(255, 190, 138, 0.22),
-    inset 0 -6rpx 12rpx rgba(255, 255, 255, 0.7);
+  background: #fff4ed;
 }
 
 .block-tip--tech {
-  background: rgba(79, 124, 255, 0.12);
-  box-shadow:
-    inset 0 6rpx 14rpx rgba(79, 124, 255, 0.12),
-    inset 0 -6rpx 12rpx rgba(255, 255, 255, 0.7);
+  background: #eff4ff;
 }
 
 .block-tip--action {
-  background: rgba(134, 217, 196, 0.22);
-  box-shadow:
-    inset 0 6rpx 14rpx rgba(134, 217, 196, 0.2),
-    inset 0 -6rpx 12rpx rgba(255, 255, 255, 0.7);
+  background: #ecfdf3;
 }
 
 .block-tip__title {
   margin-bottom: 8rpx;
   font-size: 25rpx;
   font-weight: 700;
-  color: $clay-primary-deep;
+  color: $tech-primary-deep;
 }
 
 .block-tip__text {
   font-size: 26rpx;
   line-height: 1.7;
-  color: $clay-muted;
+  color: $tech-muted;
 }
