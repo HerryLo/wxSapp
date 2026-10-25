@@ -3,6 +3,11 @@ import { plasticBottle } from './articles/plastic-bottle'
 import { landfill } from './articles/landfill'
 import { microplastics } from './articles/microplastics'
 import { eWaste } from './articles/e-waste'
+import { wasteToEnergy } from './articles/waste-to-energy'
+import { kitchenWaste } from './articles/kitchen-waste'
+import { chemicalRecycling } from './articles/chemical-recycling'
+import { aiSorting } from './articles/ai-sorting'
+import { biodegradable } from './articles/biodegradable'
 
 export type {
   KnowledgeArticle,
@@ -17,7 +22,12 @@ export const articles: KnowledgeArticle[] = [
   plasticBottle,
   landfill,
   microplastics,
-  eWaste
+  eWaste,
+  wasteToEnergy,
+  kitchenWaste,
+  chemicalRecycling,
+  aiSorting,
+  biodegradable
 ]
 
 export const articleMap: Record<string, KnowledgeArticle> = articles.reduce(
