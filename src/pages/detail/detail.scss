@@ -65,8 +65,8 @@ page {
 .detail-block {
   margin-top: 20rpx;
   padding: 24rpx 26rpx;
-  border-left: 6rpx solid $tech-primary;
   @include tech-card(18rpx);
+  border-left: 6rpx solid $tech-primary;
 }
 
 .detail-block__label {
