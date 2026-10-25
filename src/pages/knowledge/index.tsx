@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import Taro, { useShareAppMessage } from '@tarojs/taro'
+import Taro, { useDidShow, useShareAppMessage } from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import ArticleCard from '../../components/knowledge/ArticleCard'
 import { articles, getArticlesByTopic } from '../../content/knowledge'
@@ -24,6 +24,11 @@ function KnowledgeList() {
     title: '垃圾分类知识',
     path: '/pages/knowledge/index'
   }))
+
+  useDidShow(() => {
+    const saved = readStorage<string[]>(FAVORITES_KEY, [])
+    setFavorites(Array.isArray(saved) ? saved : [])
+  })
 
   const list = useMemo(() => {
     if (filter === 'all') {

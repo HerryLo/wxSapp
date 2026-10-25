@@ -39,7 +39,7 @@ export const oldClothes: KnowledgeArticle = {
     { type: 'heading', text: '再生纤维的难点' },
     {
       type: 'paragraph',
-      text: '再生最大的难点在混纺。涤棉混纺等面料把不同纤维交织在一起，成分复杂，分离起来费时费力，成本和能耗都不低。'
+      text: '再生的主要难点在混纺。涤棉混纺等面料把不同纤维交织在一起，成分复杂，分离起来费时费力，成本和能耗都不低。'
     },
     {
       type: 'paragraph',

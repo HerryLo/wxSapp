@@ -82,7 +82,11 @@ function KnowledgeDetail() {
       if (nextScore > best) {
         setBest(nextScore)
         const saved = readStorage<Record<string, number>>(QUIZ_KEY, {})
-        writeStorage(QUIZ_KEY, { ...saved, [id]: nextScore })
+        const base =
+          saved && typeof saved === 'object' && !Array.isArray(saved)
+            ? saved
+            : {}
+        writeStorage(QUIZ_KEY, { ...base, [id]: nextScore })
       }
       return
     }

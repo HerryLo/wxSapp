@@ -96,7 +96,7 @@ export const packaging: KnowledgeArticle = {
       question: '点外卖时最直接的减量做法？',
       options: ['选择无需餐具', '多要包装', '多点一份', '扔掉'],
       answer: 0,
-      explanation: '选择“无需餐具”能直接少掉一套一次性用品，是点外卖时最直接的减量。'
+      explanation: '选择“无需餐具”能直接少掉一套一次性用品，是点外卖时较直接的减量。'
     }
   ],
   sources: [
