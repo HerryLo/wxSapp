@@ -1,0 +1,40 @@
+@import '../../styles/tech.scss';
+
+.hot-searches {
+  margin-top: 24rpx;
+  padding: 24rpx 26rpx 16rpx;
+  @include tech-card(20rpx);
+}
+
+.hot-searches__head {
+  display: flex;
+  align-items: center;
+}
+
+.hot-searches__title {
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  color: $tech-text;
+}
+
+.hot-searches__chips {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 14rpx;
+}
+
+.hot-searches__chip {
+  margin: 0 14rpx 14rpx 0;
+  padding: 10rpx 22rpx;
+  font-size: 24rpx;
+  color: $tech-text;
+  background: #f9fafb;
+  border: 1rpx solid $tech-border;
+  border-radius: 999rpx;
+
+  &:active {
+    background: #eff4ff;
+    border-color: #b2ccff;
+  }
+}

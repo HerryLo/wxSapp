@@ -1,0 +1,31 @@
+@import '../../styles/tech.scss';
+
+.data-strip {
+  display: flex;
+  margin-top: 24rpx;
+  padding: 24rpx 12rpx;
+  @include tech-card(20rpx);
+}
+
+.data-strip__item {
+  flex: 1;
+  text-align: center;
+  border-right: 1rpx solid $tech-border;
+
+  &:last-child {
+    border-right: 0;
+  }
+}
+
+.data-strip__value {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: $tech-text;
+  font-variant-numeric: tabular-nums;
+}
+
+.data-strip__label {
+  margin-top: 6rpx;
+  font-size: 21rpx;
+  color: $tech-muted;
+}

@@ -1,0 +1,59 @@
+@import '../../styles/tech.scss';
+
+.daily-tip {
+  margin-top: 24rpx;
+  padding: 28rpx;
+  @include tech-card(24rpx);
+  transition: transform 0.15s ease;
+
+  &:active {
+    transform: scale(0.99);
+  }
+}
+
+.daily-tip__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.daily-tip__tag {
+  padding: 4rpx 14rpx;
+  font-size: 21rpx;
+  font-weight: 600;
+  border-radius: 999rpx;
+}
+
+.daily-tip__text {
+  margin-top: 16rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 1.65;
+  color: $tech-text;
+}
+
+.daily-tip__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid $tech-border;
+}
+
+.daily-tip__title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 23rpx;
+  color: $tech-muted;
+}
+
+.daily-tip__link {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+  font-size: 23rpx;
+  color: $tech-primary;
+}
