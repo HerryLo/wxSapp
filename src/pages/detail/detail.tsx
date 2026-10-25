@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Taro, { useRouter } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { getArticle } from '../../content/knowledge'
 import { TOPICS } from '../../content/knowledge/topics'
 
@@ -48,16 +48,23 @@ function Detail() {
   return (
     <View>
       <View className='container'>
-        <View className={ICON_CLASS[index] + ' inconImage'}></View>
-        <View className='title'>
-          <Text>{NAMES[index]}</Text>{DES[index]}
+        <View className='detail-hero'>
+          <View className={ICON_CLASS[index] + ' detail-hero__icon'}></View>
+          <View className='detail-hero__body'>
+            <View className='detail-hero__name'>{NAMES[index]}</View>
+            <View className='detail-hero__desc'>{DES[index]}</View>
+          </View>
         </View>
-        <View className='require'>主要内容:</View>
-        <View className='requireDesc'>💡 {INCS[index]}</View>
-        <View className='require'>投放要求:</View>
-        <View className='requireDesc'>💡 {REQS[index]}</View>
+        <View className='detail-block'>
+          <View className='detail-block__label'>主要内容</View>
+          <View className='detail-block__text'>{INCS[index]}</View>
+        </View>
+        <View className='detail-block'>
+          <View className='detail-block__label'>投放要求</View>
+          <View className='detail-block__text'>{REQS[index]}</View>
+        </View>
         {(RELATED[index] || []).length > 0 && (
-          <View className='require'>延伸阅读</View>
+          <View className='detail-related-title'>延伸阅读</View>
         )}
         {(RELATED[index] || []).map(articleId => {
           const item = getArticle(articleId)
@@ -81,6 +88,7 @@ function Detail() {
                   {TOPICS[item.topic].label} · {item.readMinutes} 分钟
                 </View>
               </View>
+              <View className='related__arrow'>›</View>
             </View>
           )
         })}
