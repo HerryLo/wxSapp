@@ -307,8 +307,6 @@ function ForeCast() {
   })
 
   useDidShow(() => {
-    Taro.eventCenter.trigger('sync-tabbar')
-
     if ((Taro as any).createInterstitialAd && !interstitialAd.current) {
       const ad = Taro.createInterstitialAd({
         adUnitId: 'adunit-e3b0b4a6854a07e2'

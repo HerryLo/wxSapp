@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import Taro, { useDidShow, useShareAppMessage } from '@tarojs/taro'
+import Taro, { useShareAppMessage } from '@tarojs/taro'
 import { View, Text, Button, Ad } from '@tarojs/components'
 import { ITouchEvent } from '@tarojs/components/types/common'
 import { randomArray } from '../../utils/util'
@@ -49,10 +49,6 @@ function Test() {
   const [showWrong, setShowWrong] = useState(false)
 
   useShareAppMessage(() => ({ title: '垃圾分类统一考试' }))
-
-  useDidShow(() => {
-    Taro.eventCenter.trigger('sync-tabbar')
-  })
 
   const dataInit = () => {
     const { data } = result
