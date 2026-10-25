@@ -152,7 +152,7 @@ import type { KnowledgeArticle } from '../types'
 
 - [ ] **Step 2: 写 `plastic-bottle.ts`**
 
-写作规范：4 个小节，每节 2–3 段，全文 800–1200 字；`blocks` 至少包含 4 个 `heading`、1 个 `list`、1 个 `stats`、1 个 `tip`。
+写作规范：4 个小节，每节 1–2 段，正文约 600 字（550–700 字，不含小测与来源）；`blocks` 至少包含 4 个 `heading`、1 个 `list`、1 个 `stats`、1 个 `tip`。
 
 - 元数据：id `plastic-bottle`，标题“一个塑料瓶的 450 年”，summary“从货架到海洋，一个 PET 瓶要经历什么？450 年不是精确数字，但足以说明塑料的持久性。”，takeaway“少用一个瓶子，比回收一个瓶子更直接。”，topic `risk`，emoji `🧴`，readMinutes 4，featured `true`，relatedIds `['microplastics', 'chemical-recycling']`
 - 小节：`从货架到环境` / `450 年是怎么算出来的` / `碎裂之后：微塑料` / `回收为什么没跟上`
