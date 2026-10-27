@@ -8,6 +8,7 @@ import { View, Text, Button, ScrollView, Input } from '@tarojs/components'
 import { RealTimeWeather, SearchCity, WeatherV24h, WeatherV7d } from '../../api/index'
 import { CityItem, SavedCity } from '../../type/index'
 import { readStorage, writeStorage } from '../../utils/storage'
+import { SHARE_TITLE } from '../../utils/util'
 
 import './forecast.scss'
 
@@ -175,7 +176,7 @@ function ForeCast() {
   )
   const interstitialAd = useRef<any>(null)
 
-  useShareAppMessage(() => ({ title: '天气预报' }))
+  useShareAppMessage(() => ({ title: SHARE_TITLE }))
 
   const weather = async (target?: SavedCity | null) => {
     setLoading(true)

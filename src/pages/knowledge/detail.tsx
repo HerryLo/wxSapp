@@ -5,6 +5,7 @@ import BlockRenderer from '../../components/knowledge/BlockRenderer'
 import { getArticle, getRelatedArticles } from '../../content/knowledge'
 import { TOPICS } from '../../content/knowledge/topics'
 import { readStorage, writeStorage } from '../../utils/storage'
+import { SHARE_TITLE } from '../../utils/util'
 
 import './detail.scss'
 
@@ -31,7 +32,7 @@ function KnowledgeDetail() {
   })
 
   useShareAppMessage(() => ({
-    title: article ? article.title : '垃圾分类知识',
+    title: SHARE_TITLE,
     path: `/pages/knowledge/detail?id=${id}`
   }))
 

@@ -1,3 +1,5 @@
+export const SHARE_TITLE = '垃圾分类查询与垃圾知识科普'
+
 /**
  * 随机获取数组 下标
  * @param len 数组长度

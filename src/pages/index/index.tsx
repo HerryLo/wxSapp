@@ -10,6 +10,7 @@ import { SearchGarbage } from '../../api/index'
 import IndexModel from '../../model/index/index'
 import { GarbageItem, SelectedSort } from '../../type/index'
 import { readStorage, writeStorage } from '../../utils/storage'
+import { SHARE_TITLE } from '../../utils/util'
 import { articles } from '../../content/knowledge'
 import { getDailyTip, getQuizCount } from '../../model/home/homeData'
 import DailyQuiz from '../../components/home/DailyQuiz'
@@ -32,8 +33,8 @@ const HISTORY_KEY = 'garbage_search_history'
 const HISTORY_MAX = 10
 
 const categoryTone = (category: string) => {
-  if (category === '湿垃圾') return 'wet'
-  if (category === '干垃圾') return 'dry'
+  if (category === '湿垃圾' || category === '厨余垃圾') return 'wet'
+  if (category === '干垃圾' || category === '其他垃圾') return 'dry'
   if (category === '可回收物') return 'recycle'
   if (category === '有害垃圾') return 'harmful'
   return 'other'
@@ -62,9 +63,9 @@ function Index() {
     { label: '分类标准', value: '4 类' }
   ]
 
-  useShareAppMessage(() => ({ title: '垃圾分类助手' }))
+  useShareAppMessage(() => ({ title: SHARE_TITLE }))
 
-  useShareTimeline(() => ({ title: '垃圾分类助手' }))
+  useShareTimeline(() => ({ title: SHARE_TITLE }))
 
   useDidShow(() => {
     Taro.showShareMenu({
@@ -340,9 +341,7 @@ function Index() {
           </View>
 
           <View className='desc'>
-            工具说明: 上海垃圾分类查询小工具，2019年7月1日,《上海市生活垃圾管理条例》正式实施，生活垃圾按照
-            <Text>"可回收物"、"有害垃圾"、"湿垃圾"、"干垃圾"</Text>
-            的分类标准。
+            工具说明: 上海垃圾分类查询小工具，依据《上海市生活垃圾管理条例》和《上海市生活垃圾分类投放指引（2024版）》。湿垃圾即厨余垃圾，干垃圾即其他垃圾。大件垃圾（家具、家电）请联系物业预约清运；装修垃圾（砖块、瓷砖等）请投放到小区指定堆放点。
           </View>
         </>
       )}

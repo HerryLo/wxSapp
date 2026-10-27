@@ -6,6 +6,7 @@ import { articles, getArticlesByTopic } from '../../content/knowledge'
 import { TOPICS, TOPIC_ORDER } from '../../content/knowledge/topics'
 import type { KnowledgeTopic } from '../../content/knowledge/types'
 import { readStorage, writeStorage } from '../../utils/storage'
+import { SHARE_TITLE } from '../../utils/util'
 
 import './index.scss'
 
@@ -21,7 +22,7 @@ function KnowledgeList() {
   })
 
   useShareAppMessage(() => ({
-    title: '垃圾分类知识',
+    title: SHARE_TITLE,
     path: '/pages/knowledge/index'
   }))
 

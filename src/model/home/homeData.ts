@@ -16,11 +16,14 @@ interface RawQuizItem {
   c: string
 }
 
+// 只取四分类数据；装修垃圾、大件垃圾等专门渠道不进入四选一测验
 const getQuizItems = (): RawQuizItem[] =>
-  Object.values(result.data).reduce<RawQuizItem[]>(
-    (list, group) => list.concat(group),
-    []
-  )
+  Object.entries(result.data)
+    .filter(([key]) => {
+      const code = Number(key)
+      return code >= 1 && code <= CATEGORY_NAMES.length
+    })
+    .reduce<RawQuizItem[]>((list, [, group]) => list.concat(group), [])
 
 export const getQuizCount = (): number => getQuizItems().length
 
