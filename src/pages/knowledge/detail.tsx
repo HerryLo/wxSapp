@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Taro, { useRouter, useShareAppMessage } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import BlockRenderer from '../../components/knowledge/BlockRenderer'
 import { getArticle, getRelatedArticles } from '../../content/knowledge'
 import { TOPICS } from '../../content/knowledge/topics'
 import { readStorage, writeStorage } from '../../utils/storage'
-import { SHARE_TITLE } from '../../utils/util'
+import { articleShareTitle } from '../../utils/share'
 import { plantCityNames, plantTotal } from '../../data/plants'
 
 import './detail.scss'
@@ -32,8 +32,14 @@ function KnowledgeDetail() {
     return typeof value === 'number' ? value : 0
   })
 
+  useEffect(() => {
+    if (article) {
+      Taro.setNavigationBarTitle({ title: article.title })
+    }
+  }, [article])
+
   useShareAppMessage(() => ({
-    title: SHARE_TITLE,
+    title: articleShareTitle(article?.title),
     path: `/pages/knowledge/detail?id=${id}`
   }))
 

@@ -1,5 +1,5 @@
 export default definePageConfig({
-  navigationBarTitleText: '知识科普',
+  navigationBarTitleText: '垃圾分类科普',
   navigationBarTextStyle: 'black',
   navigationBarBackgroundColor: '#fdf6f3'
 })

@@ -6,7 +6,9 @@ export default defineAppConfig({
     'pages/test/test',
     'pages/knowledge/index',
     'pages/knowledge/detail',
-    'pages/map/index'
+    'pages/map/index',
+    'pages/quickref/index',
+    'pages/result/result'
   ],
   window: {
     backgroundTextStyle: 'light',

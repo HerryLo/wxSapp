@@ -10,7 +10,7 @@ import { SearchGarbage } from '../../api/index'
 import IndexModel from '../../model/index/index'
 import { GarbageItem, SelectedSort } from '../../type/index'
 import { readStorage, writeStorage } from '../../utils/storage'
-import { SHARE_TITLE } from '../../utils/util'
+import { garbageShareTitle, HOME_SHARE_TITLE } from '../../utils/share'
 import { articles } from '../../content/knowledge'
 import { getDailyTip, getQuizCount } from '../../model/home/homeData'
 import { plantCityNames, plantTotal } from '../../data/plants'
@@ -51,6 +51,8 @@ function Index() {
   )
   const requestId = useRef(0)
   const blurTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  // 记录当前查看的分类结果，分享时带上具体物品
+  const shareItemRef = useRef<{ name: string; category: string } | null>(null)
 
   const now = new Date()
   const dateLabel = `${now.getMonth() + 1}月${now.getDate()}日 周${
@@ -64,9 +66,20 @@ function Index() {
     { label: '分类标准', value: '4 类' }
   ]
 
-  useShareAppMessage(() => ({ title: SHARE_TITLE }))
+  useShareAppMessage(() => {
+    const item = shareItemRef.current
+    if (!item) {
+      return { title: HOME_SHARE_TITLE }
+    }
+    return {
+      title: garbageShareTitle(item.name, item.category),
+      path: `/pages/result/result?name=${encodeURIComponent(
+        item.name
+      )}&category=${encodeURIComponent(item.category)}`
+    }
+  })
 
-  useShareTimeline(() => ({ title: SHARE_TITLE }))
+  useShareTimeline(() => ({ title: HOME_SHARE_TITLE }))
 
   useDidShow(() => {
     Taro.showShareMenu({
@@ -176,6 +189,7 @@ function Index() {
       return
     }
     pushHistory(data.name)
+    shareItemRef.current = { name: data.name, category: data.category }
     const index = IndexModel.handleCategory(data.category)
     if (index === undefined) {
       Taro.showToast({ title: '暂不支持该垃圾类型', icon: 'none' })
@@ -186,6 +200,7 @@ function Index() {
 
   const dismiss = () => {
     setSelectedSort(null)
+    shareItemRef.current = null
   }
 
   const routeGo = (index: number) => {
@@ -194,6 +209,10 @@ function Index() {
 
   const goKnowledge = () => {
     Taro.navigateTo({ url: '/pages/knowledge/index' })
+  }
+
+  const goQuickRef = () => {
+    Taro.navigateTo({ url: '/pages/quickref/index' })
   }
 
   const goPlantMap = () => {
@@ -325,6 +344,18 @@ function Index() {
             ))}
           </View>
 
+          <View className='knowledge-entry quickref-entry' onClick={goQuickRef}>
+            <View className='knowledge-entry__icon'>🔎</View>
+            <View className='knowledge-entry__body'>
+              <Text className='knowledge-entry__label'>QUICK REFERENCE</Text>
+              <View className='knowledge-entry__title'>常见物品速查表</View>
+              <View className='knowledge-entry__desc'>
+                奶茶杯 · 口罩 · 电池 · 外卖盒
+              </View>
+            </View>
+            <View className='knowledge-entry__arrow'>›</View>
+          </View>
+
           <DailyQuiz />
 
           {dailyTip && <DailyTip article={dailyTip} onOpen={openArticle} />}
@@ -367,7 +398,7 @@ function Index() {
 
       {selectedSort !== null && (
         <View className='resultback' onClick={dismiss}>
-          <View className='resultView'>
+          <View className='resultView' onClick={e => e.stopPropagation()}>
             <View className='resultHead'>{selectedSort.name}</View>
             <View className='desView'>
               <View
@@ -384,6 +415,17 @@ function Index() {
               <View className='title'>{selectedSort.name}投放要求</View>
             )}
             <View className='des'>{selectedSort.req}</View>
+            <View className='resultShare'>
+              <Button
+                className='resultShareBtn resultShareBtn--primary'
+                openType='share'
+              >
+                分享这个结果
+              </Button>
+              <Button className='resultShareBtn' onClick={dismiss}>
+                关闭
+              </Button>
+            </View>
           </View>
         </View>
       )}

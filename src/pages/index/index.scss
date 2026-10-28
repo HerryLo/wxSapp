@@ -405,7 +405,8 @@ page {
 .resultView {
   width: 84%;
   max-height: 82vh;
-  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   color: $tech-text;
   @include tech-card(24rpx);
 }
@@ -459,6 +460,35 @@ page {
   font-size: 26rpx;
   line-height: 1.7;
   color: $tech-muted;
+}
+
+.resultShare {
+  display: flex;
+  gap: 16rpx;
+  padding: 0 32rpx 32rpx;
+}
+
+.resultShareBtn {
+  flex: 1;
+  margin: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 16rpx;
+  border: 1rpx solid $tech-border;
+  border-radius: 999rpx;
+  background: #ffffff;
+  color: $tech-text;
+  font-size: 26rpx;
+
+  &::after {
+    border: none;
+  }
+}
+
+.resultShareBtn--primary {
+  border-color: $tech-rose;
+  background: $tech-rose;
+  color: #ffffff;
 }
 
 .button {

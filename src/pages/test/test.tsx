@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Taro, { useShareAppMessage } from '@tarojs/taro'
 import { View, Text, Button, Ad } from '@tarojs/components'
 import { ITouchEvent } from '@tarojs/components/types/common'
-import { randomArray, SHARE_TITLE } from '../../utils/util'
+import { randomArray } from '../../utils/util'
+import { quizShareTitle } from '../../utils/share'
 import { readStorage, writeStorage } from '../../utils/storage'
 import { DailyStats, WrongItem } from '../../type/index'
 import { result } from '../../static/result'
@@ -58,7 +59,17 @@ function Test() {
   )
   const [showWrong, setShowWrong] = useState(false)
 
-  useShareAppMessage(() => ({ title: SHARE_TITLE }))
+  // 用 ref 保存最新成绩，保证分享时拿到的是交卷后的分数
+  const shareStateRef = useRef({ submitted, grade })
+  shareStateRef.current = { submitted, grade }
+
+  useShareAppMessage(() => {
+    const state = shareStateRef.current
+    return {
+      title: quizShareTitle(state.submitted, state.grade, RANDOM_NUMBER),
+      path: '/pages/test/test'
+    }
+  })
 
   const dataInit = () => {
     setArrResult(buildQuiz())

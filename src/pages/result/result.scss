@@ -1,0 +1,125 @@
+@import '../../styles/tech.scss';
+
+page {
+  background-color: $tech-bg;
+}
+
+.result-page {
+  min-height: 100vh;
+  padding: 32rpx;
+  color: $tech-text;
+}
+
+.result-card {
+  @include tech-card(24rpx);
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.result-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.result-name {
+  font-size: 44rpx;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.result-tag {
+  flex-shrink: 0;
+  padding: 8rpx 20rpx;
+  border-radius: 999rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.tag-wet {
+  background: #f3e8e3;
+  color: #6a483f;
+}
+
+.tag-dry {
+  background: #eceae7;
+  color: #2c2b28;
+}
+
+.tag-recycle {
+  background: #e4ecfa;
+  color: #173b6b;
+}
+
+.tag-harmful {
+  background: #fde7e4;
+  color: #c0362a;
+}
+
+.tag-other {
+  background: #eef0f3;
+  color: #555555;
+}
+
+.result-desc {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  line-height: 1.7;
+  color: $tech-muted;
+}
+
+.result-label {
+  @include tech-label;
+  margin-bottom: 12rpx;
+}
+
+.result-text {
+  font-size: 28rpx;
+  line-height: 1.75;
+  color: #344054;
+}
+
+.result-actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 12rpx;
+}
+
+.result-btn {
+  flex: 1;
+  margin: 0;
+  padding: 0 24rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  border: 1rpx solid $tech-border;
+  border-radius: 999rpx;
+  background: $tech-surface;
+  color: $tech-text;
+  font-size: 28rpx;
+  text-align: center;
+
+  &::after {
+    border: none;
+  }
+}
+
+.result-btn--primary {
+  @include tech-button($tech-rose, rgba(217, 108, 130, 0.24));
+  border: none;
+  color: #ffffff;
+}
+
+.result-empty {
+  padding: 24rpx 0;
+  font-size: 30rpx;
+  color: $tech-muted;
+  text-align: center;
+}
+
+.result-foot {
+  margin-top: 24rpx;
+  font-size: 22rpx;
+  line-height: 1.7;
+  color: $tech-muted;
+}

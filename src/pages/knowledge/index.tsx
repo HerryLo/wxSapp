@@ -6,7 +6,7 @@ import { articles, getArticlesByTopic } from '../../content/knowledge'
 import { TOPICS, TOPIC_ORDER } from '../../content/knowledge/topics'
 import type { KnowledgeTopic } from '../../content/knowledge/types'
 import { readStorage, writeStorage } from '../../utils/storage'
-import { SHARE_TITLE } from '../../utils/util'
+import { KNOWLEDGE_SHARE_TITLE } from '../../utils/share'
 import { plantCityNames, plantTotal } from '../../data/plants'
 
 import './index.scss'
@@ -23,7 +23,7 @@ function KnowledgeList() {
   })
 
   useShareAppMessage(() => ({
-    title: SHARE_TITLE,
+    title: KNOWLEDGE_SHARE_TITLE,
     path: '/pages/knowledge/index'
   }))
 
