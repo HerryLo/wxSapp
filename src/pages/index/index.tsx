@@ -13,6 +13,7 @@ import { readStorage, writeStorage } from '../../utils/storage'
 import { SHARE_TITLE } from '../../utils/util'
 import { articles } from '../../content/knowledge'
 import { getDailyTip, getQuizCount } from '../../model/home/homeData'
+import { plantCityNames, plantTotal } from '../../data/plants'
 import DailyQuiz from '../../components/home/DailyQuiz'
 import DailyTip from '../../components/home/DailyTip'
 import DataStrip from '../../components/home/DataStrip'
@@ -195,6 +196,10 @@ function Index() {
     Taro.navigateTo({ url: '/pages/knowledge/index' })
   }
 
+  const goPlantMap = () => {
+    Taro.navigateTo({ url: '/pages/map/index' })
+  }
+
   const openArticle = (id: string) => {
     Taro.navigateTo({ url: `/pages/knowledge/detail?id=${id}` })
   }
@@ -335,6 +340,20 @@ function Index() {
               <View className='knowledge-entry__title'>垃圾去哪了？</View>
               <View className='knowledge-entry__desc'>
                 环境风险 · 处理技术 · 减量行动
+              </View>
+            </View>
+            <View className='knowledge-entry__arrow'>›</View>
+          </View>
+
+          <View className='knowledge-entry map-entry' onClick={goPlantMap}>
+            <View className='knowledge-entry__icon map-entry__icon'>🗺️</View>
+            <View className='knowledge-entry__body'>
+              <Text className='knowledge-entry__label map-entry__label'>
+                FACILITY MAP
+              </Text>
+              <View className='knowledge-entry__title'>垃圾焚烧厂分布</View>
+              <View className='knowledge-entry__desc'>
+                {plantCityNames} 共 {plantTotal} 座设施
               </View>
             </View>
             <View className='knowledge-entry__arrow'>›</View>

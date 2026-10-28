@@ -7,6 +7,7 @@ import { TOPICS, TOPIC_ORDER } from '../../content/knowledge/topics'
 import type { KnowledgeTopic } from '../../content/knowledge/types'
 import { readStorage, writeStorage } from '../../utils/storage'
 import { SHARE_TITLE } from '../../utils/util'
+import { plantCityNames, plantTotal } from '../../data/plants'
 
 import './index.scss'
 
@@ -71,11 +72,27 @@ function KnowledgeList() {
     Taro.navigateTo({ url: `/pages/knowledge/detail?id=${id}` })
   }
 
+  const openPlantMap = () => {
+    Taro.navigateTo({ url: '/pages/map/index' })
+  }
+
   return (
     <View className='knowledge-page'>
       <View className='knowledge-head'>
         <View className='knowledge-title'>垃圾分类知识</View>
         <View className='knowledge-subtitle'>分完之后，垃圾去了哪里</View>
+      </View>
+
+      <View className='knowledge-map' onClick={openPlantMap}>
+        <View className='knowledge-map__icon'>🗺️</View>
+        <View className='knowledge-map__body'>
+          <Text className='knowledge-map__label'>FACILITY MAP</Text>
+          <View className='knowledge-map__title'>垃圾焚烧厂分布</View>
+          <View className='knowledge-map__desc'>
+            {plantCityNames} {plantTotal} 座设施 · 查看位置与导航
+          </View>
+        </View>
+        <View className='knowledge-map__arrow'>›</View>
       </View>
 
       <ScrollView className='knowledge-filters' scrollX>

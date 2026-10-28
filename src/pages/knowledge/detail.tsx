@@ -6,6 +6,7 @@ import { getArticle, getRelatedArticles } from '../../content/knowledge'
 import { TOPICS } from '../../content/knowledge/topics'
 import { readStorage, writeStorage } from '../../utils/storage'
 import { SHARE_TITLE } from '../../utils/util'
+import { plantCityNames, plantTotal } from '../../data/plants'
 
 import './detail.scss'
 
@@ -120,6 +121,10 @@ function KnowledgeDetail() {
     Taro.redirectTo({ url: `/pages/knowledge/detail?id=${relatedId}` })
   }
 
+  const openPlantMap = () => {
+    Taro.navigateTo({ url: '/pages/map/index' })
+  }
+
   return (
     <View className='knowledge-detail'>
       <View className='detail-head'>
@@ -138,6 +143,19 @@ function KnowledgeDetail() {
         <View className='detail-takeaway__label'>一句话总结</View>
         <View className='detail-takeaway__text'>{article.takeaway}</View>
       </View>
+
+      {article.id === 'waste-to-energy' && (
+        <View className='detail-map' onClick={openPlantMap}>
+          <View className='detail-map__icon'>🗺️</View>
+          <View className='detail-map__body'>
+            <View className='detail-map__title'>看看上海的焚烧厂都在哪</View>
+            <View className='detail-map__desc'>
+              {plantCityNames} {plantTotal} 座设施 · 查看位置与导航
+            </View>
+          </View>
+          <View className='detail-map__arrow'>›</View>
+        </View>
+      )}
 
       {article.quiz.length > 0 && (
         <View className='detail-section'>

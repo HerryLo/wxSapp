@@ -56,6 +56,57 @@ page {
   color: $tech-text;
 }
 
+.detail-map {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rpx;
+  padding: 24rpx 26rpx;
+  background: linear-gradient(135deg, #fff7f0, #fff0f4);
+  border: 1rpx solid #ffd9c2;
+  border-radius: 20rpx;
+  transition: transform 0.15s ease;
+
+  &:active {
+    transform: scale(0.99);
+  }
+}
+
+.detail-map__icon {
+  width: 68rpx;
+  height: 68rpx;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  border-radius: 16rpx;
+  background: #ffffff;
+}
+
+.detail-map__body {
+  flex: 1;
+  min-width: 0;
+  margin-left: 18rpx;
+}
+
+.detail-map__title {
+  font-size: 27rpx;
+  font-weight: 700;
+  color: $tech-text;
+}
+
+.detail-map__desc {
+  margin-top: 4rpx;
+  font-size: 21rpx;
+  color: $tech-muted;
+}
+
+.detail-map__arrow {
+  flex-shrink: 0;
+  font-size: 32rpx;
+  color: #e0b4a6;
+}
+
 .detail-section {
   margin-top: 40rpx;
 }

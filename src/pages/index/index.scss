@@ -250,6 +250,18 @@ page {
   color: $tech-border-strong;
 }
 
+.map-entry {
+  margin-top: 16rpx;
+}
+
+.map-entry__icon {
+  background: linear-gradient(135deg, #fff1e6, #ffe4ec);
+}
+
+.map-entry__label {
+  color: $tech-rose;
+}
+
 .desc {
   margin-top: 24rpx;
   padding: 24rpx 26rpx;

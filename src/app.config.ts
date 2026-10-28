@@ -5,7 +5,8 @@ export default defineAppConfig({
     'pages/detail/detail',
     'pages/test/test',
     'pages/knowledge/index',
-    'pages/knowledge/detail'
+    'pages/knowledge/detail',
+    'pages/map/index'
   ],
   window: {
     backgroundTextStyle: 'light',
